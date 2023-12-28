@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "635572130084",
+    "project_id": "proyecto-trivial",
+    "storage_bucket": "proyecto-trivial.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635572130084:android:15cd41cc45661d0f22a3b1",
+        "android_client_info": {
+          "package_name": "com.example.proyectofinaltrivial"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjtzqrqlSk3EcVpH6ODSAPjhS2RrK_Zfc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

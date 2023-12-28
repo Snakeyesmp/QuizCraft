@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 class TableroFragment : Fragment() {
+    private val Consulta = Consultas()
     private lateinit var viewModel: SharedViewModel
     private var pos_jugador1: Int = 0
     private var pos_jugador2: Int = 0
@@ -20,7 +21,7 @@ class TableroFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Inicialización del ViewModel compartido
-        viewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
 
         // Observa los cambios en la posición del jugador
         viewModel.posicionJugador.observe(viewLifecycleOwner, Observer { posicion ->
@@ -52,8 +53,10 @@ class TableroFragment : Fragment() {
             jugador1 = casilla.findViewById<View>(R.id.jugador1)
             jugador1.background = context?.getDrawable(R.color.colorJugador1)
             casilla = tableroGrid.getChildAt(pos_jugador1)
+            Log.d("Consulta", "Casilla: ${casilla.tag}")
             jugador1 = casilla.findViewById(R.id.jugador1)
             jugador1.background = context?.getDrawable(R.drawable.jugador1)
+            Consulta.obtenerPreguntaPorTipo(casilla.tag.toString(), this.requireContext())
             turno = false
 
         } else {
@@ -75,8 +78,10 @@ class TableroFragment : Fragment() {
             jugador2 = casilla.findViewById(R.id.jugador2)
             jugador2.background = context?.getDrawable(R.color.colorJugador2)
             casilla = tableroGrid.getChildAt(pos_jugador2)
+            Log.d("Consulta", "Casilla: ${casilla.tag}")
             jugador2 = casilla.findViewById(R.id.jugador2)
             jugador2.background = context?.getDrawable(R.drawable.jugador2)
+            Consulta.obtenerPreguntaPorTipo(casilla.tag.toString(), this.requireContext())
             turno = true
         }
     }
@@ -102,6 +107,33 @@ class TableroFragment : Fragment() {
             params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
             params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
 
+
+            // TODO Cambair random a 4
+            var tipoPregunto = /*(1..4).random()*/ 3
+            when (tipoPregunto) {
+                1 -> {
+                    casilla.tag = "repaso"
+                }
+
+                2 -> {
+                    casilla.tag = "palabra"
+                }
+
+                3 -> {
+                    casilla.tag = "test"
+                }
+
+                4 -> {
+                    casilla.tag = "parejas"
+                }
+
+            }
+            if (i == 0) {
+                casilla.tag = "inicio"
+            }
+            if (i == 20) {
+                casilla.tag = "preguntaFinal"
+            }
             casilla.layoutParams = params
             tableroGrid.addView(casilla)
         }
