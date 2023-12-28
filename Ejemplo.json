@@ -1,0 +1,419 @@
+{
+    "minijuegos": [
+        {
+            "tipo": "Repaso",
+            "preguntas": [
+                {
+                    "enunciado": "Completa el siguiente fragmento de teoría: La mitosis es el proceso de división celular que resulta en dos células hijas idénticas. Durante la mitosis, el material genético se divide de manera equitativa, asegurando que cada célula hija tenga la misma cantidad de...",
+                    "respuestas": [
+                        "vida",
+                        "energía",
+                        "materia"
+                    ],
+                    "respuestaCorrecta": "vida"
+                },
+                {
+                    "enunciado": "En la cadena alimentaria, los productores son organismos que obtienen energía directamente de la luz solar mediante un proceso llamado fotosíntesis. Ejemplos de productores son las plantas verdes. Estos convierten la energía solar en...",
+                    "respuestas": [
+                        "oxígeno",
+                        "dióxido de carbono",
+                        "glucosa"
+                    ],
+                    "respuestaCorrecta": "glucosa"
+                },
+                {
+                    "enunciado": "La respiración celular es el proceso mediante el cual las células obtienen energía de las moléculas de glucosa. Durante la fase final de la respiración celular, la mayor parte de esta energía se libera en forma de...",
+                    "respuestas": [
+                        "ATP",
+                        "calor",
+                        "oxígeno"
+                    ],
+                    "respuestaCorrecta": "ATP"
+                },
+                {
+                    "enunciado": "El ADN, o ácido desoxirribonucleico, contiene la información genética de un organismo. La estructura de doble hélice del ADN fue descubierta por...",
+                    "respuestas": [
+                        "James Watson y Francis Crick",
+                        "Gregor Mendel",
+                        "Rosalind Franklin"
+                    ],
+                    "respuestaCorrecta": "James Watson y Francis Crick"
+                },
+                {
+                    "enunciado": "En el ecosistema, los decompositores descomponen la materia orgánica muerta y liberan nutrientes al suelo. Ejemplos de decompositores incluyen hongos y...",
+                    "respuestas": [
+                        "bacterias",
+                        "protozoos",
+                        "plantas"
+                    ],
+                    "respuestaCorrecta": "bacterias"
+                },
+                {
+                    "enunciado": "La célula eucariota se caracteriza por tener un núcleo definido que alberga el material genético. A diferencia de las células procariotas, las células eucariotas también tienen...",
+                    "respuestas": [
+                        "organelos membranosos",
+                        "pared celular",
+                        "flagelo"
+                    ],
+                    "respuestaCorrecta": "organelos membranosos"
+                },
+                {
+                    "enunciado": "Uno de los procesos esenciales para la regulación del agua en las plantas es la transpiración. La transpiración ocurre a través de pequeñas aberturas en las hojas llamadas...",
+                    "respuestas": [
+                        "estomas",
+                        "lenticelas",
+                        "tricomas"
+                    ],
+                    "respuestaCorrecta": "estomas"
+                },
+                {
+                    "enunciado": "Completa el siguiente fragmento de teoría: La teoría de la evolución propuesta por Charles Darwin se basa en el principio de la selección natural, donde los organismos con características adaptativas tienen más probabilidad de...",
+                    "respuestas": [
+                        "sobrevivir y reproducirse",
+                        "mutar",
+                        "desarrollar nuevas especies"
+                    ],
+                    "respuestaCorrecta": "sobrevivir y reproducirse"
+                },
+                {
+                    "enunciado": "Los seres vivos se clasifican en diferentes reinos. El reino que incluye organismos unicelulares procariotas es el reino...",
+                    "respuestas": [
+                        "Monera",
+                        "Protista",
+                        "Fungi"
+                    ],
+                    "respuestaCorrecta": "Monera"
+                },
+                {
+                    "enunciado": "En el ciclo del nitrógeno, las bacterias descomponedoras convierten los compuestos nitrogenados en amonio. Este amonio puede ser convertido por otras bacterias en...",
+                    "respuestas": [
+                        "nitritos y nitratos",
+                        "oxígeno y dióxido de carbono",
+                        "aminoácidos"
+                    ],
+                    "respuestaCorrecta": "nitritos y nitratos"
+                }
+            ]
+        },
+        {
+            "tipo": "Adivina la Palabra",
+            "preguntas": [
+                {
+                    "definicion": "Un tipo de ARN que lleva la información genética desde el ADN hasta los ribosomas durante la síntesis de proteínas.",
+                    "palabra": "ARN mensajero",
+                    "letrasDisponibles": [
+                        "A",
+                        "R",
+                        "N",
+                        " ",
+                        "M",
+                        "E",
+                        "S",
+                        "J",
+                        "O",
+                        "D",
+                        "U",
+                        "G",
+                        "I",
+                        "Z"
+                    ],
+                    "palabraOculta": "___ _______"
+                },
+                {
+                    "definicion": "Organelo celular que almacena y procesa la información genética.",
+                    "palabra": "núcleo",
+                    "letrasDisponibles": [
+                        "N",
+                        "Ú",
+                        "C",
+                        "L",
+                        "E",
+                        "O",
+                        "G",
+                        "A",
+                        "R",
+                        "P",
+                        "D",
+                        "I",
+                        "Z",
+                        "X"
+                    ],
+                    "palabraOculta": "_____"
+                },
+                {
+                    "definicion": "Proceso en el cual una célula se divide para formar dos células hijas idénticas.",
+                    "palabra": "mitosis",
+                    "letrasDisponibles": [
+                        "M",
+                        "I",
+                        "T",
+                        "O",
+                        "S",
+                        "I",
+                        "S",
+                        "E",
+                        "R",
+                        "D",
+                        "U",
+                        "L",
+                        "C",
+                        "G"
+                    ],
+                    "palabraOculta": "_______"
+                },
+                {
+                    "definicion": "El proceso mediante el cual las plantas convierten la luz solar en energía química.",
+                    "palabra": "fotosíntesis",
+                    "letrasDisponibles": [
+                        "F",
+                        "O",
+                        "T",
+                        "O",
+                        "S",
+                        "Í",
+                        "N",
+                        "T",
+                        "E",
+                        "S",
+                        "I",
+                        "S",
+                        "Q",
+                        "U"
+                    ],
+                    "palabraOculta": "___________"
+                },
+                {
+                    "definicion": "Tipo de célula que no tiene un núcleo definido.",
+                    "palabra": "procariota",
+                    "letrasDisponibles": [
+                        "P",
+                        "R",
+                        "O",
+                        "C",
+                        "A",
+                        "R",
+                        "I",
+                        "O",
+                        "T",
+                        "E",
+                        "U",
+                        "D",
+                        "N",
+                        "Z"
+                    ],
+                    "palabraOculta": "_________"
+                },
+                {
+                    "definicion": "Órgano del sistema digestivo donde se absorben los nutrientes de los alimentos.",
+                    "palabra": "intestino delgado",
+                    "letrasDisponibles": [
+                        "I",
+                        "N",
+                        "T",
+                        "E",
+                        "S",
+                        "I",
+                        "N",
+                        "O",
+                        " ",
+                        "D",
+                        "L",
+                        "G",
+                        "A",
+                        "U"
+                    ],
+                    "palabraOculta": "_________ _______"
+                },
+                {
+                    "definicion": "Molécula que transporta oxígeno en la sangre.",
+                    "palabra": "hemoglobina",
+                    "letrasDisponibles": [
+                        "H",
+                        "E",
+                        "M",
+                        "O",
+                        "G",
+                        "L",
+                        "B",
+                        "I",
+                        "N",
+                        "A",
+                        "R",
+                        "Z",
+                        "P",
+                        "X"
+                    ],
+                    "palabraOculta": "__________"
+                },
+                {
+                    "definicion": "La capa más externa de la piel, que actúa como barrera protectora.",
+                    "palabra": "epidermis",
+                    "letrasDisponibles": [
+                        "E",
+                        "P",
+                        "I",
+                        "D",
+                        "R",
+                        "M",
+                        "S",
+                        "O",
+                        "U",
+                        "C",
+                        "N",
+                        "T",
+                        "A",
+                        "X"
+                    ],
+                    "palabraOculta": "_________"
+                },
+                {
+                    "definicion": "Un tipo de enlace químico que se forma entre átomos mediante la compartición de electrones.",
+                    "palabra": "enlace covalente",
+                    "letrasDisponibles": [
+                        "E",
+                        "N",
+                        "L",
+                        "C",
+                        "O",
+                        "V",
+                        "A",
+                        "T",
+                        "U",
+                        "Q",
+                        "M",
+                        "I",
+                        "D",
+                        "E"
+                    ],
+                    "palabraOculta": "______ ________"
+                },
+                {
+                    "definicion": "El proceso de cambio en una población de organismos a lo largo del tiempo.",
+                    "palabra": "evolución",
+                    "letrasDisponibles": [
+                        "E",
+                        "V",
+                        "O",
+                        "L",
+                        "U",
+                        "C",
+                        "I",
+                        "Ó",
+                        "N",
+                        "A",
+                        "Z",
+                        "P",
+                        "T",
+                        "Y"
+                    ],
+                    "palabraOculta": "_________"
+                }
+            ]
+        },
+        {
+            "tipo": "Test",
+            "preguntas": [
+                {
+                    "enunciado": "¿Cuántas capas tiene la piel humana?",
+                    "opciones": [
+                        "1",
+                        "2",
+                        "3",
+                        "4"
+                    ],
+                    "respuestaCorrecta": "4"
+                },
+                {
+                    "enunciado": "¿Cuál es el principal gas en la atmósfera terrestre?",
+                    "opciones": [
+                        "Oxígeno",
+                        "Nitrógeno",
+                        "Dióxido de carbono",
+                        "Hidrógeno"
+                    ],
+                    "respuestaCorrecta": "Nitrógeno"
+                },
+                {
+                    "enunciado": "¿Cuál es la función principal de las mitocondrias en una célula?",
+                    "opciones": [
+                        "Fotosíntesis",
+                        "Producción de energía",
+                        "Almacenamiento de agua",
+                        "Producción de proteínas"
+                    ],
+                    "respuestaCorrecta": "Producción de energía"
+                },
+                {
+                    "enunciado": "¿Cuál es el proceso mediante el cual el ADN se copia a ARN?",
+                    "opciones": [
+                        "Mitosis",
+                        "Meiosis",
+                        "Replicación",
+                        "Transcripción"
+                    ],
+                    "respuestaCorrecta": "Transcripción"
+                },
+                {
+                    "enunciado": "¿Cuántas cámaras tiene el corazón humano?",
+                    "opciones": [
+                        "2",
+                        "3",
+                        "4",
+                        "5"
+                    ],
+                    "respuestaCorrecta": "4"
+                },
+                {
+                    "enunciado": "¿Qué organelo celular es responsable de la síntesis de proteínas?",
+                    "opciones": [
+                        "Núcleo",
+                        "Mitocondria",
+                        "Ribosoma",
+                        "Lisosoma"
+                    ],
+                    "respuestaCorrecta": "Ribosoma"
+                },
+                {
+                    "enunciado": "¿Cuál es la función principal de la clorofila en las plantas?",
+                    "opciones": [
+                        "Transporte de nutrientes",
+                        "Producción de energía",
+                        "Protección celular",
+                        "Digestión de alimentos"
+                    ],
+                    "respuestaCorrecta": "Producción de energía"
+                },
+                {
+                    "enunciado": "¿En qué fase de la mitosis se separan las cromátidas hermanas?",
+                    "opciones": [
+                        "Profase",
+                        "Metafase",
+                        "Anafase",
+                        "Telofase"
+                    ],
+                    "respuestaCorrecta": "Anafase"
+                },
+                {
+                    "enunciado": "¿Cuál es el reino que incluye organismos multicelulares con células eucariotas?",
+                    "opciones": [
+                        "Monera",
+                        "Protista",
+                        "Fungi",
+                        "Animalia"
+                    ],
+                    "respuestaCorrecta": "Animalia"
+                },
+                {
+                    "enunciado": "¿Cuál es el proceso mediante el cual el cuerpo obtiene energía de la glucosa en ausencia de oxígeno?",
+                    "opciones": [
+                        "Fotosíntesis",
+                        "Respiración celular",
+                        "Fermentación",
+                        "Transcripción"
+                    ],
+                    "respuestaCorrecta": "Fermentación"
+                }
+            ]
+        }
+    ]
+}
