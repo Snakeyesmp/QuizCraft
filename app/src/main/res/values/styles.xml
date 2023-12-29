@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Define tus atributos personalizados -->
+        <item name="android:windowBackground">@color/colorJugador2</item>
+        <!-- Otros atributos según tu diseño -->
+    </style>
+</resources>
+
