@@ -9,18 +9,22 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class SharedViewModel : ViewModel() {
-    // LiveData mutable para la posición del jugador
     private val _posicionJugador = MutableLiveData<Int>()
+    private val _turnoJugador = MutableLiveData<Boolean>()
 
-    // LiveData inmutable para exponer la posición del jugador
+
     val posicionJugador: LiveData<Int>
         get() = _posicionJugador
 
-    // Función para actualizar la posición del jugador
-    fun actualizarPosicionJugador(posicion: Int) {
-        viewModelScope.launch {
-            withContext(Dispatchers.Main) {
-                _posicionJugador.value = posicion
-            }
-        }}
+    val turnoJugador: LiveData<Boolean>
+        get() = _turnoJugador
+
+    // Métodos para actualizar la posición del jugador y el turno
+    fun actualizarPosicionJugador(nuevaPosicion: Int) {
+        _posicionJugador.value = nuevaPosicion
+    }
+
+    fun cambiarTurno(turno: Boolean) {
+        _turnoJugador.value = turno
+    }
 }

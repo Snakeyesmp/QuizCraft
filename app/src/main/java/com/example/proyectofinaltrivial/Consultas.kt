@@ -1,17 +1,27 @@
 package com.example.proyectofinaltrivial
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import androidx.activity.result.ActivityResultRegistry
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class Consultas {
-    fun obtenerPreguntaPorTipo(tipoPregunta: String, context: Context) {
+class Consultas(private val registry: ActivityResultRegistry){
+    fun obtenerPreguntaPorTipo(tipoPregunta: String, context: Context, callback: (Boolean) -> Unit) {
         val databaseRef = FirebaseDatabase.getInstance().getReference().child("minijuegos")
+        val startForResult = registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val isRespuestaCorrecta = result.data?.getBooleanExtra("respuesta", false) ?: false
+                Log.d("Consultas", "RespuestaCons: $isRespuestaCorrecta")
+                callback(isRespuestaCorrecta)
 
+            }
+        }
         databaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val preguntas = mutableListOf<DataSnapshot>()
@@ -29,7 +39,6 @@ class Consultas {
 
                 // Obtiene el enunciado de la pregunta
                 val enunciado = pregunta.child("enunciado").getValue(String::class.java)
-                Log.d("Consultas", "Enunciado: $enunciado")
 
                 // Obtiene las opciones de la pregunta
                 val opcionesSnapshot = pregunta.child("opciones")
@@ -39,7 +48,6 @@ class Consultas {
                     val opcion = opcionSnapshot.getValue(String::class.java)
                     if (opcion != null) {
                         opciones.add(opcion)
-                        Log.d("Consultas", "Opción: $opcion")
                     }
                 }
 
@@ -52,8 +60,7 @@ class Consultas {
                 intent.putExtra("pregunta", enunciado)
                 intent.putStringArrayListExtra("opciones", ArrayList(opciones))
                 intent.putExtra("respuestaCorrecta", respuestaCorrecta)
-                context.startActivity(intent)
-            }
+                startForResult.launch(intent)            }
 
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.d("Consultas", "Error al obtener las preguntas: ${databaseError.message}")

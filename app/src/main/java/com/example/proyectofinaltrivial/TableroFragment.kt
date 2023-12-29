@@ -12,13 +12,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 class TableroFragment : Fragment() {
-    private val Consulta = Consultas()
+    private lateinit var consulta: Consultas
     private lateinit var viewModel: SharedViewModel
     private var pos_jugador1: Int = 0
     private var pos_jugador2: Int = 0
     private var turno: Boolean = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        consulta = Consultas(requireActivity().activityResultRegistry)
         super.onViewCreated(view, savedInstanceState)
         // Inicialización del ViewModel compartido
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
@@ -31,13 +32,12 @@ class TableroFragment : Fragment() {
 
     private fun actualizarPosicion(posicion: Int) {
         val tableroGrid: GridLayout = requireView().findViewById(R.id.tableroGrid)
-
-        Log.d("TableroFragment", "Posición: $posicion")
+        Log.d("Consult", "Posicion: $posicion")
+        Log.d("Consult", "Turnofuera: $turno")
         // Lógica para actualizar la posición del jugador 1 o jugador 2
         if (turno) {
             var casilla = tableroGrid.getChildAt(pos_jugador1)
             pos_jugador1 += posicion
-            Log.d("TableroFragment", "Posición1: $pos_jugador1")
             // Control del límite máximo de la posición del jugador 1
             if (pos_jugador1 >= 20) {
                 pos_jugador1 = 20
@@ -53,16 +53,28 @@ class TableroFragment : Fragment() {
             jugador1 = casilla.findViewById<View>(R.id.jugador1)
             jugador1.background = context?.getDrawable(R.color.colorJugador1)
             casilla = tableroGrid.getChildAt(pos_jugador1)
-            Log.d("Consulta", "Casilla: ${casilla.tag}")
             jugador1 = casilla.findViewById(R.id.jugador1)
             jugador1.background = context?.getDrawable(R.drawable.jugador1)
-            Consulta.obtenerPreguntaPorTipo(casilla.tag.toString(), this.requireContext())
-            turno = false
+            consulta.obtenerPreguntaPorTipo(
+                casilla.tag.toString(), this.requireContext()
+            ) { respuesta ->
+                if (respuesta) {
+                    Log.d("Consulta", "Respuesta: $respuesta")
+                    Log.d("Consulta", "Turno1: $turno")
+                    turno = true
+                    viewModel.cambiarTurno(turno)
+                    Log.d("Consulta", "Turno2: $turno")
+                } else {
+                    turno = false
+                    viewModel.cambiarTurno(turno)
+                }
+                viewModel.cambiarTurno(turno)
+
+            }
 
         } else {
             var casilla = tableroGrid.getChildAt(pos_jugador2)
             pos_jugador2 += posicion
-            Log.d("TableroFragment", "Posición2: $pos_jugador2")
             // Control del límite máximo de la posición del jugador 2
             if (pos_jugador2 >= 20) {
                 pos_jugador2 = 20
@@ -78,18 +90,29 @@ class TableroFragment : Fragment() {
             jugador2 = casilla.findViewById(R.id.jugador2)
             jugador2.background = context?.getDrawable(R.color.colorJugador2)
             casilla = tableroGrid.getChildAt(pos_jugador2)
-            Log.d("Consulta", "Casilla: ${casilla.tag}")
             jugador2 = casilla.findViewById(R.id.jugador2)
             jugador2.background = context?.getDrawable(R.drawable.jugador2)
-            Consulta.obtenerPreguntaPorTipo(casilla.tag.toString(), this.requireContext())
-            turno = true
+            consulta.obtenerPreguntaPorTipo(
+                casilla.tag.toString(), this.requireContext()
+            ) { respuesta ->
+                if (respuesta) {
+                    Log.d("Consulta", "Respuesta: $respuesta")
+                    Log.d("Consulta", "Turno1: $turno")
+                    turno = false
+                    Log.d("Consulta", "Turno2: $turno")
+                    viewModel.cambiarTurno(turno)
+                } else {
+                    turno = true
+                    viewModel.cambiarTurno(turno)
+                }
+
+            }
+
         }
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_tablero, container, false)
         val tableroGrid: GridLayout = view.findViewById(R.id.tableroGrid)

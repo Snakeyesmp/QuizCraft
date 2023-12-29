@@ -3,6 +3,7 @@ package com.example.proyectofinaltrivial
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,14 +15,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.Observer
 
 
 class JuegoFragment : Fragment() {
     private lateinit var viewModel: SharedViewModel
-    private var turnoJugador = false // Variable para controlar el turno, inicialmente jugador 1
-
+    var textoJugador: TextView? = null
+    var perfilJugador: ImageView? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // Inicialización de textoJugador y perfilJugador
+        textoJugador = view.findViewById(R.id.jugador)
+        perfilJugador = view.findViewById(R.id.perfilJugador)
 
         // Inicialización del ViewModel compartido
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
@@ -31,7 +36,7 @@ class JuegoFragment : Fragment() {
         botonAvanzar.setOnClickListener {
 
             val imagenDado = view.findViewById<ImageView>(R.id.simulacionDado)
-            imagenDado.background= context?.getDrawable(R.drawable.dado_general)
+            imagenDado.background = context?.getDrawable(R.drawable.dado_general)
             imagenDado.visibility = View.VISIBLE
 
             val rotateAnimation = RotateAnimation(
@@ -47,12 +52,29 @@ class JuegoFragment : Fragment() {
             imagenDado.startAnimation(rotateAnimation)
             Handler(Looper.getMainLooper()).postDelayed({
                 val dado = generarNumeroAleatorio() // Generar un número aleatorio entre 1 y 6
+                Log.d("Consult", "Dado: $dado")
                 avanzarJugador(dado) // Llamar a la función para avanzar el jugador
-                cambiarTurno() // Cambiar el turno después de avanzar el jugador
                 imagenDado.visibility = View.INVISIBLE // Ocultar la imagen del dado
             }, 1000)
         }
 
+
+
+        // Observar cambios en el turno del jugador
+        viewModel.turnoJugador.observe(viewLifecycleOwner, Observer { turno ->
+            // Actualizar la interfaz para mostrar de quién es el turno
+            if (turno) {
+                // Turno jugador 1
+                textoJugador?.text = "Turno de Jugador 1"
+                perfilJugador?.setImageResource(R.drawable.jugador1)
+            } else {
+                // Turno jugador 2
+                textoJugador?.text = "Turno de Jugador 2"
+                perfilJugador?.setImageResource(R.drawable.jugador2)
+            }
+
+        })
+        cambiarTurno()
     }
 
     // Inflar el layout del fragmento
@@ -65,31 +87,19 @@ class JuegoFragment : Fragment() {
     }
 
     // Función para avanzar el jugador
+    // Función para avanzar el jugador
     private fun avanzarJugador(numero: Int ) {
         val posicionActual = viewModel.posicionJugador.value ?: 0
-        viewModel.actualizarPosicionJugador(posicionActual + numero)
-
+        viewModel.actualizarPosicionJugador( numero)
     }
 
     // Función para generar un número aleatorio entre 1 y 6
     private fun generarNumeroAleatorio(): Int {
         return (1..6).random()
     }
+
     private fun cambiarTurno() {
-        val textoJugador = view?.findViewById<TextView>(R.id.jugador)
-        val perfilJugador = view?.findViewById<ImageView>(R.id.perfilJugador)
-        if (turnoJugador) {
-            // Turno jugador 1
-            textoJugador?.text = "Turno de Jugador 1"
-            perfilJugador?.setImageResource(R.drawable.jugador1)
-
-        } else {
-           // Turno jugador 2
-            textoJugador?.text = "Turno de Jugador 2"
-            perfilJugador?.setImageResource(R.drawable.jugador2)
-
-        }
-        turnoJugador = !turnoJugador
-
+        val turnoActual = viewModel.turnoJugador.value ?: false
+        viewModel.cambiarTurno(!turnoActual)
     }
 }

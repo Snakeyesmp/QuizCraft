@@ -1,5 +1,7 @@
 package com.example.proyectofinaltrivial
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -32,37 +34,31 @@ class TestActivity : AppCompatActivity() {
 
 
         opcion1.setOnClickListener {
-            if (opcion1.text == respuestaCorrecta) {
-                Log.d("TestActivity", "Respuesta correcta")
-            } else {
-                Log.d("TestActivity", "Respuesta incorrecta")
-            }
-            finish()
+            val isTrue = respuestaCorrecta == opcion1.text
+            devolverResultado(isTrue)
+
         }
         opcion2.setOnClickListener {
-            if (opcion2.text == respuestaCorrecta) {
-                Log.d("TestActivity", "Respuesta correcta")
-            } else {
-                Log.d("TestActivity", "Respuesta incorrecta")
-            }
-            finish()
+            val isTrue = respuestaCorrecta == opcion2.text
+            devolverResultado(isTrue)
+
         }
         opcion3.setOnClickListener {
-            if (opcion3.text == respuestaCorrecta) {
-                Log.d("TestActivity", "Respuesta correcta")
-            } else {
-                Log.d("TestActivity", "Respuesta incorrecta")
-            }
-            finish()
+            val isTrue = respuestaCorrecta == opcion3.text
+            devolverResultado(isTrue)
+
         }
         opcion4.setOnClickListener {
-            if (opcion4.text == respuestaCorrecta) {
-                Log.d("TestActivity", "Respuesta correcta")
-            } else {
-                Log.d("TestActivity", "Respuesta incorrecta")
-            }
-            finish()
+            val isTrue = respuestaCorrecta == opcion4.text
+            devolverResultado(isTrue)
         }
+    }
+
+    private fun devolverResultado(isTrue: Boolean) {
+        val intent = Intent()
+        intent.putExtra("respuesta", isTrue)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
     //TODO: Hacer que si la respuesta es correcta, se conserve el turno del jugador
 }

@@ -20,4 +20,6 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.fragmentJuego, JuegoFragment())
             .commit()
     }
+
+
 }
