@@ -24,8 +24,8 @@
     <FrameLayout
         android:id="@+id/fragmentJuego"
         android:layout_width="380dp"
-        android:layout_height="327dp"
-        android:layout_marginBottom="36dp"
+        android:layout_height="354dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
