@@ -6,11 +6,11 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkInfo
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
@@ -21,6 +21,40 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val botonSettings =  findViewById<ImageView>(R.id.btnSettings)
+
+
+        botonSettings.setOnClickListener {
+            val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog)
+            val inflater = layoutInflater
+            val dialogView = inflater.inflate(R.layout.activity_settings, null)
+            builder.setView(dialogView)
+
+            val buttonReiniciar = dialogView.findViewById<Button>(R.id.btnReiniciar)
+
+
+            // Configurar elementos del AlertDialog personalizado
+            val titleTextView = dialogView.findViewById<TextView>(R.id.alertTitle)
+            val messageTextView = dialogView.findViewById<TextView>(R.id.alertMessage)
+            titleTextView.text = "Configuracion"
+            messageTextView.text =
+                "¿Qué desea realizar?"
+
+            builder.setNegativeButton("Cerrar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            val alertDialog = builder.create()
+            alertDialog.show()
+            buttonReiniciar.setOnClickListener {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+            }
+
+
+        }
+
+
 
         // Si hay conexión a Internet, reemplazar el fragmento del tablero en el contenedor correspondiente
         supportFragmentManager.beginTransaction()
@@ -94,8 +128,6 @@ class MainActivity : AppCompatActivity() {
     inner class ConnectivityReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (isInternetAvailable()) {
-                Toast.makeText(context, "Conexión a Internet establecida", Toast.LENGTH_SHORT)
-                    .show()
                 enableUserInteractions()
             }else{
                 showNoInternetDialog()

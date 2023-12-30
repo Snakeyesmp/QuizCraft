@@ -131,6 +131,7 @@ class TableroFragment : Fragment() {
             params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
 
 
+
             // TODO Cambair random a 4
             var tipoPregunto = /*(1..4).random()*/ 3
             when (tipoPregunto) {

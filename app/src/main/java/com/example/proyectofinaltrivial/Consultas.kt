@@ -1,6 +1,6 @@
 package com.example.proyectofinaltrivial
 
-import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -15,7 +15,7 @@ class Consultas(private val registry: ActivityResultRegistry){
     fun obtenerPreguntaPorTipo(tipoPregunta: String, context: Context, callback: (Boolean) -> Unit) {
         val databaseRef = FirebaseDatabase.getInstance().getReference().child("minijuegos")
         val startForResult = registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
+            if (result.resultCode == AppCompatActivity.RESULT_OK) {
                 val isRespuestaCorrecta = result.data?.getBooleanExtra("respuesta", false) ?: false
                 Log.d("Consultas", "RespuestaCons: $isRespuestaCorrecta")
                 callback(isRespuestaCorrecta)
