@@ -32,7 +32,7 @@ class JuegoFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
 
         // Obtener referencia al botón de avance y asignar un Listener
-        val botonAvanzar: Button = view.findViewById(R.id.botonAvanzar)
+        val botonAvanzar: ImageView = view.findViewById(R.id.botonAvanzar)
         botonAvanzar.setOnClickListener {
 
             val imagenDado = view.findViewById<ImageView>(R.id.simulacionDado)
