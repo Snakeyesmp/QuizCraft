@@ -7,22 +7,28 @@ import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
     private var connectivityReceiver: ConnectivityReceiver? = null
+    private var tableroFragment: TableroFragment? = null
+    private var dbHelper: DBHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val botonSettings =  findViewById<ImageView>(R.id.btnSettings)
+        val botonSettings = findViewById<ImageView>(R.id.btnSettings)
 
 
         botonSettings.setOnClickListener {
@@ -32,8 +38,8 @@ class MainActivity : AppCompatActivity() {
             builder.setView(dialogView)
 
             val buttonReiniciar = dialogView.findViewById<Button>(R.id.btnReiniciar)
-
-
+            val buttonGuardar = dialogView.findViewById<Button>(R.id.btnGuardar)
+            val buttonCargarPartida = dialogView.findViewById<Button>(R.id.btnCargarPartida)
             // Configurar elementos del AlertDialog personalizado
             val titleTextView = dialogView.findViewById<TextView>(R.id.alertTitle)
             val messageTextView = dialogView.findViewById<TextView>(R.id.alertMessage)
@@ -46,14 +52,37 @@ class MainActivity : AppCompatActivity() {
             }
             val alertDialog = builder.create()
             alertDialog.show()
+
+            buttonGuardar.setOnClickListener {
+                tableroFragment = supportFragmentManager.findFragmentById(R.id.fragmentTablero) as TableroFragment?
+                val datosGuardar = tableroFragment?.guardarPartida()
+                dbHelper = DBHelper(this)
+
+                //Obtener fecha y hora sistema
+
+                if (datosGuardar != null) {
+                    val nombrePartida = "Partida_${obtenerFechaYHora()}"
+
+                    dbHelper?.addPartida(nombrePartida, datosGuardar)
+                }
+                alertDialog.dismiss()
+
+            }
+
             buttonReiniciar.setOnClickListener {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
 
+            buttonCargarPartida.setOnClickListener {
+                val dbHelper = DBHelper(this)
+                val partidas = dbHelper.getAllPartidas()
+                partidas.forEach { partida ->
+                    Log.d("Consult", "Partida: ${partida}")
+                }
+            }
 
         }
-
 
 
         // Si hay conexión a Internet, reemplazar el fragmento del tablero en el contenedor correspondiente
@@ -129,12 +158,13 @@ class MainActivity : AppCompatActivity() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (isInternetAvailable()) {
                 enableUserInteractions()
-            }else{
+            } else {
                 showNoInternetDialog()
                 disableUserInteractions()
             }
         }
     }
+
     override fun onDestroy() {
         super.onDestroy()
         // Desregistrar el receptor al destruir la actividad para evitar memory leaks
@@ -143,5 +173,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
+    fun obtenerFechaYHora(): String {
+        val cal = Calendar.getInstance()
+        val dateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
+        return dateFormat.format(cal.time)
+    }
 }

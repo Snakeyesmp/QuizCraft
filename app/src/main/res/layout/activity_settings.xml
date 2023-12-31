@@ -38,8 +38,19 @@
         android:id="@+id/btnReiniciar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:fontFamily="@font/audiowide"
         android:text="Reiniciar Partida"
+        android:textColor="#FFEB3B"
+        android:textSize="18sp"
+        android:textStyle="normal|bold" />
+
+    <Button
+        android:id="@+id/btnCargarPartida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/audiowide"
+        android:text="Cargar Partida"
         android:textColor="#FFEB3B"
         android:textSize="18sp"
         android:textStyle="normal|bold" />

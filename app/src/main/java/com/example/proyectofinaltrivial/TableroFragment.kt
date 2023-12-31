@@ -14,9 +14,9 @@ import androidx.lifecycle.ViewModelProvider
 class TableroFragment : Fragment() {
     private lateinit var consulta: Consultas
     private lateinit var viewModel: SharedViewModel
-    private var pos_jugador1: Int = 0
-    private var pos_jugador2: Int = 0
-    private var turno: Boolean = true
+     var pos_jugador1: Int = 0
+     var pos_jugador2: Int = 0
+     var turno: Boolean = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         consulta = Consultas(requireActivity().activityResultRegistry)
@@ -131,7 +131,6 @@ class TableroFragment : Fragment() {
             params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
 
 
-
             // TODO Cambair random a 4
             var tipoPregunto = /*(1..4).random()*/ 3
             when (tipoPregunto) {
@@ -190,7 +189,30 @@ class TableroFragment : Fragment() {
         return casillaView
     }
 
-    private fun preguntaFinal() {
-        Log.d("JuegoFragment", "Has llegado a la meta")
+    fun guardarPartida(): ArrayList<String> {
+        val datos = ArrayList<String>()
+        val posicion1 = pos_jugador1 // Ejemplo, sustituye con tus datos reales
+        val posicion2 = pos_jugador2 // Ejemplo, sustituye con tus datos reales
+        val turnoGuardar = turno // Ejemplo, sustituye con tus datos reales
+        var tipoPregunta: ArrayList<String> = ArrayList()
+
+        val tablero = requireView().findViewById<GridLayout>(R.id.tableroGrid)
+        for (i in 0 until tablero.childCount) {
+            val casilla = tablero.getChildAt(i)
+            tipoPregunta.add(casilla.tag.toString())
+        }
+        Log.d("Consult", "Datos: $posicion1")
+        Log.d("Consult", "Datos: $posicion2")
+        Log.d("Consult", "Datos: $turnoGuardar")
+        Log.d("Consult", "Datos: $tipoPregunta")
+        datos.add(posicion1.toString())
+        datos.add(posicion2.toString())
+        datos.add(turnoGuardar.toString())
+        val preguntas = tipoPregunta.joinToString (",")
+        datos.add(preguntas)
+
+        return datos
     }
+
+
 }
