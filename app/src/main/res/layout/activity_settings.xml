@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="50dp"
@@ -54,4 +56,36 @@
         android:textColor="#FFEB3B"
         android:textSize="18sp"
         android:textStyle="normal|bold" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="242dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        tools:ignore="ExtraText">
+
+        <ImageView
+            android:id="@+id/vibration"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="36dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/vibration_on" />
+
+        <ImageView
+            android:id="@+id/sound"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="36dp"
+            android:clickable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/sound_on" /><![CDATA[
+            />
+
+
+
+        ]]>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

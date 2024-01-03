@@ -4,9 +4,15 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.media.MediaPlayer
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
+import android.os.CombinedVibration
+import android.os.VibrationEffect
+import android.os.Vibrator
+import android.os.VibratorManager
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Button
@@ -19,6 +25,12 @@ import java.util.Calendar
 import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        const val PREFS_NAME = "Prefs_File"
+        const val VIBRATION_MODE = "vibration_mode"
+        const val SOUND_MODE = "sound_mode"
+
+    }
 
     private var connectivityReceiver: ConnectivityReceiver? = null
     private var tableroFragment: TableroFragment? = null
@@ -29,6 +41,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val botonSettings = findViewById<ImageView>(R.id.btnSettings)
+        val sharedPref = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val mediaPlayer = MediaPlayer.create(this, R.raw.sound)
+        mediaPlayer.isLooping = true
+
+
+
 
 
         botonSettings.setOnClickListener {
@@ -40,6 +58,8 @@ class MainActivity : AppCompatActivity() {
             val buttonReiniciar = dialogView.findViewById<Button>(R.id.btnReiniciar)
             val buttonGuardar = dialogView.findViewById<Button>(R.id.btnGuardar)
             val buttonCargarPartida = dialogView.findViewById<Button>(R.id.btnCargarPartida)
+            val buttonVibrate = dialogView.findViewById<ImageView>(R.id.vibration)
+            val buttonSound = dialogView.findViewById<ImageView>(R.id.sound)
             // Configurar elementos del AlertDialog personalizado
             val titleTextView = dialogView.findViewById<TextView>(R.id.alertTitle)
             val messageTextView = dialogView.findViewById<TextView>(R.id.alertMessage)
@@ -54,7 +74,8 @@ class MainActivity : AppCompatActivity() {
             alertDialog.show()
 
             buttonGuardar.setOnClickListener {
-                tableroFragment = supportFragmentManager.findFragmentById(R.id.fragmentTablero) as TableroFragment?
+                tableroFragment =
+                    supportFragmentManager.findFragmentById(R.id.fragmentTablero) as TableroFragment?
                 val datosGuardar = tableroFragment?.guardarPartida()
                 dbHelper = DBHelper(this)
 
@@ -81,6 +102,67 @@ class MainActivity : AppCompatActivity() {
                     Log.d("Consult", "Partida: ${partida}")
                 }
             }
+
+            val soundMode = sharedPref.getBoolean(SOUND_MODE, true)
+            var vibrationMode = sharedPref.getBoolean(VIBRATION_MODE, true)
+
+            if (vibrationMode) {
+                buttonVibrate.setImageResource(R.drawable.vibration_on)
+            } else {
+                buttonVibrate.setImageResource(R.drawable.vibration_off)
+            }
+            if (soundMode) {
+                buttonSound.setImageResource(R.drawable.sound_on)
+
+                mediaPlayer.start()
+            } else {
+                buttonSound.setImageResource(R.drawable.sound_off)
+            }
+
+
+
+
+            buttonVibrate.setOnClickListener {
+
+                if (vibrationMode) {
+                    buttonVibrate.setImageResource(R.drawable.vibration_off)
+                    with(sharedPref.edit()) {
+                        putBoolean(VIBRATION_MODE, false)
+                        apply()
+                    }
+                } else {
+                    buttonVibrate.setImageResource(R.drawable.vibration_on)
+                    with(sharedPref.edit()) {
+                        putBoolean(VIBRATION_MODE, true)
+                        apply()
+                    }
+                }
+
+                // Después de cambiar el estado, actualizar la variable vibrationMode con el nuevo valor de SharedPreferences
+                vibrationMode = sharedPref.getBoolean(VIBRATION_MODE, true)
+            }
+
+
+            buttonSound.setOnClickListener {
+
+                Log.d("vib", "vibra: $vibrationMode")
+                if (soundMode) {
+                    buttonSound.setImageResource(R.drawable.sound_off)
+                    with(sharedPref.edit()) {
+                        putBoolean(SOUND_MODE, false)
+                        apply()
+                    }
+                    mediaPlayer.pause()
+                } else {
+                    buttonSound.setImageResource(R.drawable.sound_on)
+                    with(sharedPref.edit()) {
+                        putBoolean(SOUND_MODE, true)
+                        apply()
+                    }
+                    mediaPlayer.start()
+                }
+            }
+
 
         }
 
@@ -178,4 +260,25 @@ class MainActivity : AppCompatActivity() {
         val dateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
         return dateFormat.format(cal.time)
     }
+
+    fun vibrar(context: Context) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+
+            // Crea un efecto de vibración de un solo disparo con una duración de 2000 milisegundos
+            val vibrationEffect = VibrationEffect.createWaveform(
+                longArrayOf(0, 1500),
+                -1)
+
+            vibratorManager.vibrate(
+                CombinedVibration.createParallel(vibrationEffect)
+            )
+        }
+        else {
+            val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            vibrator.vibrate(VibrationEffect.createOneShot(1500, VibrationEffect.DEFAULT_AMPLITUDE))
+        }
+    }
+
 }

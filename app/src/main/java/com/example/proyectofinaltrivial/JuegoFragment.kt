@@ -35,6 +35,14 @@ class JuegoFragment : Fragment() {
         val botonAvanzar: ImageView = view.findViewById(R.id.botonAvanzar)
         botonAvanzar.setOnClickListener {
 
+            val sharedPref = activity?.getSharedPreferences("Prefs_File",0)
+            val vibration = sharedPref?.getBoolean(MainActivity.VIBRATION_MODE, true)
+            Log.d("vib", "Vibration1: $vibration")
+            if (vibration == true) {
+                val mainActivity = requireActivity() as MainActivity
+                mainActivity.vibrar(requireContext())
+            }
+
             val imagenDado = view.findViewById<ImageView>(R.id.simulacionDado)
             imagenDado.background = context?.getDrawable(R.drawable.dado_general)
             imagenDado.visibility = View.VISIBLE
