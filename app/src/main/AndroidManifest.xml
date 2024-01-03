@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.proyectofinaltrivial">
+
+    <!-- Tus permisos y otras configuraciones -->
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE"/>
-
 
     <application
         android:allowBackup="true"
@@ -15,8 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoFinalTrivial"
         tools:targetApi="31">
+
+        <!-- Actividades, servicios, receptores, etc. -->
+
         <activity
-            android:name=".MainActivity"
+            android:name=".main_package.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,6 +36,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Agregar el receptor ConnectivityReceiver -->
+        <receiver
+            android:name=".utils.ConnectivityReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Otros componentes de tu aplicación -->
 
         <meta-data
             android:name="preloaded_fonts"
