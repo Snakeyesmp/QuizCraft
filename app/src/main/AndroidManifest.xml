@@ -18,10 +18,10 @@
         android:theme="@style/Theme.ProyectoFinalTrivial"
         tools:targetApi="31">
 
-        <!-- Actividades, servicios, receptores, etc. -->
 
         <activity
             android:name=".main_package.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +37,6 @@
             </intent-filter>
         </activity>
 
-        <!-- Agregar el receptor ConnectivityReceiver -->
         <receiver
             android:name=".utils.ConnectivityReceiver"
             android:enabled="true"
@@ -47,7 +46,6 @@
             </intent-filter>
         </receiver>
 
-        <!-- Otros componentes de tu aplicación -->
 
         <meta-data
             android:name="preloaded_fonts"

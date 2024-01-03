@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
@@ -12,13 +13,17 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.example.proyectofinaltrivial.DBHelper
-import com.example.proyectofinaltrivial.JuegoFragment
+import com.example.proyectofinaltrivial.juego_package.JuegoFragment
 import com.example.proyectofinaltrivial.R
 import com.example.proyectofinaltrivial.TableroFragment
 import com.example.proyectofinaltrivial.utils.ConnectivityReceiver
@@ -49,6 +54,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        window.statusBarColor = Color.parseColor("#7BA1CE")
+
+
+
 
         botonSettings = findViewById(R.id.btnSettings)
         mediaPlayer = MediaPlayer.create(this, R.raw.sound)
@@ -236,7 +245,12 @@ class MainActivity : AppCompatActivity() {
      * @param buttonReiniciar Botón para reiniciar la actividad principal.
      * @param buttonCargarPartida Botón para cargar partidas guardadas.
      */
-    private fun configureSettingsDialogActions(alertDialog: AlertDialog, buttonGuardar: Button?, buttonReiniciar: Button?, buttonCargarPartida: Button?) {
+    private fun configureSettingsDialogActions(
+        alertDialog: AlertDialog,
+        buttonGuardar: Button?,
+        buttonReiniciar: Button?,
+        buttonCargarPartida: Button?
+    ) {
         buttonGuardar?.setOnClickListener {
             // Obtener el fragmento del tablero actual para guardar la partida
             tableroFragment =
@@ -308,7 +322,8 @@ class MainActivity : AppCompatActivity() {
      */
     fun vibrar(context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            val vibratorManager = context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            val vibratorManager =
+                context.getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
 
             // Crea un efecto de vibración de un solo disparo con una duración de 2000 milisegundos
             val vibrationEffect = VibrationEffect.createWaveform(longArrayOf(0, 1500), -1)

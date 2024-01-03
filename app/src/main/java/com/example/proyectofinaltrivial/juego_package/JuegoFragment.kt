@@ -1,4 +1,4 @@
-package com.example.proyectofinaltrivial
+package com.example.proyectofinaltrivial.juego_package
 
 import android.os.Bundle
 import android.os.Handler
@@ -15,6 +15,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
+import com.example.proyectofinaltrivial.R
+import com.example.proyectofinaltrivial.SharedViewModel
 import com.example.proyectofinaltrivial.main_package.MainActivity
 
 
