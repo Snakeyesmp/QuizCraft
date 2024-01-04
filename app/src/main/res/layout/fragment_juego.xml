@@ -5,16 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <TextView
         android:id="@+id/simulacionDado"
         android:layout_width="156dp"
         android:layout_height="156dp"
-        android:visibility="invisible"
+        android:textAlignment="center"
+        android:textSize="60sp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonAvanzar"
-        app:srcCompat="@drawable/dado_general" />
+        app:layout_constraintTop_toBottomOf="@+id/botonAvanzar" />
 
     <TextView
         android:id="@+id/jugador"

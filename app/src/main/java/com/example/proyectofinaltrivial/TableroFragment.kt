@@ -132,7 +132,7 @@ class TableroFragment : Fragment() {
 
 
             // TODO Cambair random a 4
-            var tipoPregunto = /*(1..4).random()*/ 3
+            var tipoPregunto = (1..4).random()
             when (tipoPregunto) {
                 1 -> {
                     casilla.tag = "repaso"
@@ -213,6 +213,47 @@ class TableroFragment : Fragment() {
 
         return datos
     }
+
+    fun cargarPartida(partidaSeleccionada: Partida) {
+
+        pos_jugador1 = partidaSeleccionada.posJugador1
+        pos_jugador2 = partidaSeleccionada.posJugador2
+        turno = partidaSeleccionada.turno.toBoolean()
+        Log.d("Consult", "Datos: ${partidaSeleccionada.tiposPreguntas}")
+        Log.d("Consult", "Datos: $pos_jugador1")
+        Log.d("Consult", "Datos: $pos_jugador2")
+        Log.d("Consult", "Datos: $turno")
+
+        val tablero = requireView().findViewById<GridLayout>(R.id.tableroGrid)
+        val tipoPreguntas = partidaSeleccionada.tiposPreguntas.split(",")
+        for (i in 0 until tablero.childCount) {
+            val casilla = tablero.getChildAt(i)
+            casilla.tag = tipoPreguntas[i]
+        }
+        var casilla: Any
+        var jugador1: View
+        var jugador2: View
+        for (i in 0 until pos_jugador1) {
+            casilla = tablero.getChildAt(i)
+            jugador1 = casilla.findViewById(R.id.jugador1)
+            jugador1.background = context?.getDrawable(R.color.colorJugador1)
+            if (i == pos_jugador1 - 1) {
+                jugador1.background = context?.getDrawable(R.drawable.jugador1)
+            }
+        }
+        for (i in 0 until pos_jugador2) {
+            casilla = tablero.getChildAt(i)
+            jugador2 = casilla.findViewById(R.id.jugador2)
+            jugador2.background = context?.getDrawable(R.color.colorJugador2)
+            if (i == pos_jugador2 - 1) {
+                jugador2.background = context?.getDrawable(R.drawable.jugador2)
+            }
+        }
+
+
+    }
+
+
 
 
 }

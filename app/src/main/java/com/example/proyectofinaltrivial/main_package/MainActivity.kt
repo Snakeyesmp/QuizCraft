@@ -13,15 +13,12 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
 import android.util.Log
-import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import com.example.proyectofinaltrivial.DBHelper
 import com.example.proyectofinaltrivial.juego_package.JuegoFragment
 import com.example.proyectofinaltrivial.R
@@ -66,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         viewModel = MainViewModel(sharedPref, mediaPlayer, this)
 
 
-        setupSettingsDialog()
+        settingsDialog()
         initializeFragments()
         initializeConnectivityReceiver()
 
@@ -83,7 +80,7 @@ class MainActivity : AppCompatActivity() {
      * Este método configura la funcionalidad del botón de ajustes, crea el diálogo de ajustes
      * y gestiona las acciones dentro del diálogo.
      */
-    private fun setupSettingsDialog() {
+    private fun settingsDialog() {
         // Obtener referencia al botón de ajustes en la interfaz de usuario
         val botonSettings = findViewById<ImageView>(R.id.btnSettings)
         // Configurar un listener para el botón de ajustes
@@ -273,13 +270,35 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonCargarPartida?.setOnClickListener {
-            // Cargar partidas guardadas al hacer clic en el botón 'Cargar Partida'
             val dbHelper = DBHelper(this)
             val partidas = dbHelper.getAllPartidas()
+
+            // Crear una lista de nombres de partidas para mostrar en el ListView
+            val nombresDePartidas = ArrayList<String>()
             partidas.forEach { partida ->
-                Log.d("Consult", "Partida: $partida")
+                nombresDePartidas.add( partida.nombrePartida)
             }
+
+            // Crear un ArrayAdapter para mostrar los nombres de las partidas en un ListView
+            val adapter = ArrayAdapter(this, R.layout.partida_item_layout, nombresDePartidas)
+
+            // Crear un AlertDialog para mostrar el ListView de partidas
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Selecciona una partida")
+            builder.setAdapter(adapter) { dialog, partidaSelected ->
+                // Aquí se manejará la selección de la partida
+                val partidaSeleccionada = partidas[partidaSelected]
+                val tableroFragment =
+                    supportFragmentManager.findFragmentById(R.id.fragmentTablero) as TableroFragment?
+                tableroFragment?.cargarPartida(partidaSeleccionada)
+
+            }
+
+            val dialog = builder.create()
+            dialog.show()
+            alertDialog.dismiss()
         }
+
     }
 
 
@@ -310,7 +329,7 @@ class MainActivity : AppCompatActivity() {
         val cal = Calendar.getInstance()
 
         // Crear un formato de fecha específico ("yyyyMMdd_HHmmss") usando el idioma por defecto del dispositivo
-        val dateFormat = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("yyyy/MM/dd_HH:mm", Locale.getDefault())
 
         // Formatear la fecha y hora actuales y devolverla como una cadena de texto
         return dateFormat.format(cal.time)
@@ -344,13 +363,11 @@ class MainActivity : AppCompatActivity() {
      */
     private fun initializeFragments() {
         // Reemplaza el fragmento en el contenedor 'fragmentTablero' con un nuevo TableroFragment
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentTablero, TableroFragment())
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentTablero, TableroFragment())
             .commit()
 
         // Reemplaza el fragmento en el contenedor 'fragmentJuego' con un nuevo JuegoFragment
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragmentJuego, JuegoFragment())
+        supportFragmentManager.beginTransaction().replace(R.id.fragmentJuego, JuegoFragment())
             .commit()
     }
 
