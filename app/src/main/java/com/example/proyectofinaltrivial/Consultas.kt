@@ -13,7 +13,7 @@ import com.google.firebase.database.ValueEventListener
 
 class Consultas(private val registry: ActivityResultRegistry){
     fun obtenerPreguntaPorTipo(tipoPregunta: String, context: Context, callback: (Boolean) -> Unit) {
-        val databaseRef = FirebaseDatabase.getInstance().getReference().child("minijuegos")
+        val databaseRef = FirebaseDatabase.getInstance().reference.child("minijuegos")
         val startForResult = registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == AppCompatActivity.RESULT_OK) {
                 val isRespuestaCorrecta = result.data?.getBooleanExtra("respuesta", false) ?: false

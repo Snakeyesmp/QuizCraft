@@ -14,7 +14,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.Observer
 import com.example.proyectofinaltrivial.R
 import com.example.proyectofinaltrivial.SharedViewModel
 import com.example.proyectofinaltrivial.main_package.MainActivity
@@ -73,19 +72,19 @@ class JuegoFragment : Fragment() {
 
 
         // Observar cambios en el turno del jugador
-        viewModel.turnoJugador.observe(viewLifecycleOwner, Observer { turno ->
+        viewModel.turnoJugador.observe(viewLifecycleOwner) { turno ->
             // Actualizar la interfaz para mostrar de quién es el turno
             if (turno) {
                 // Turno jugador 1
-                textoJugador?.text = "Turno de Jugador 1"
+                textoJugador?.text = getString(R.string.turno_de_jugador_1)
                 perfilJugador?.setImageResource(R.drawable.jugador1)
             } else {
                 // Turno jugador 2
-                textoJugador?.text = "Turno de Jugador 2"
+                textoJugador?.text = getString(R.string.turno_de_jugador_2)
                 perfilJugador?.setImageResource(R.drawable.jugador2)
             }
 
-        })
+        }
         cambiarTurno()
     }
 

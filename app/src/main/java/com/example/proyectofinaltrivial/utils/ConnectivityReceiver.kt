@@ -9,6 +9,7 @@ class ConnectivityReceiver(private val activity: MainActivity) : BroadcastReceiv
 
     constructor() : this(MainActivity()) // Puedes proporcionar una instancia de MainActivity aquí
 
+
     override fun onReceive(context: Context?, intent: Intent?) {
         if (InternetUtils.isInternetAvailable(activity)) {
             InternetUtils.dismissDialog()

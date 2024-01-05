@@ -43,7 +43,8 @@
         android:layout_marginEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/settings" />
+        app:srcCompat="@drawable/settings"
+        android:contentDescription="@string/botonajustes" />
 
     <TextView
         android:id="@+id/nombreApp"
@@ -52,7 +53,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="164dp"
         android:fontFamily="@font/audiowide"
-        android:text="QuizCraft"
+        android:text="@string/quizcraft"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/btnSettings"

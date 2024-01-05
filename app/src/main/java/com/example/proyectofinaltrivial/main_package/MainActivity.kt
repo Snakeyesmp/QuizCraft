@@ -10,9 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.CombinedVibration
 import android.os.VibrationEffect
-import android.os.Vibrator
 import android.os.VibratorManager
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
@@ -60,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         mediaPlayer = MediaPlayer.create(this, R.raw.sound)
         mediaPlayer.isLooping = true
         sharedPref = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        viewModel = MainViewModel(sharedPref, mediaPlayer, this)
+        viewModel = MainViewModel(sharedPref, mediaPlayer)
 
 
         settingsDialog()
@@ -94,6 +92,7 @@ class MainActivity : AppCompatActivity() {
             val buttonGuardar = alertDialog.findViewById<Button>(R.id.btnGuardar)
             val buttonReiniciar = alertDialog.findViewById<Button>(R.id.btnReiniciar)
             val buttonCargarPartida = alertDialog.findViewById<Button>(R.id.btnCargarPartida)
+            val buttonBorrarPartidas = alertDialog.findViewById<Button>(R.id.btnBorrar)
             val buttonVibrate = alertDialog.findViewById<ImageView>(R.id.vibration)
             val buttonSound = alertDialog.findViewById<ImageView>(R.id.sound)
 
@@ -102,7 +101,11 @@ class MainActivity : AppCompatActivity() {
 
             // Configurar las acciones dentro del diálogo de ajustes
             configureSettingsDialogActions(
-                alertDialog, buttonGuardar, buttonReiniciar, buttonCargarPartida
+                alertDialog,
+                buttonGuardar,
+                buttonReiniciar,
+                buttonCargarPartida,
+                buttonBorrarPartidas
             )
         }
     }
@@ -128,8 +131,8 @@ class MainActivity : AppCompatActivity() {
         val messageTextView = dialogView.findViewById<TextView>(R.id.alertMessage)
 
         // Establecer el título y el mensaje del diálogo
-        titleTextView.text = "Configuración"
-        messageTextView.text = "¿Qué desea realizar?"
+        titleTextView.text = getString(R.string.configuracion)
+        messageTextView.text = getString(R.string.accion)
 
         // Configurar el botón negativo para cerrar el diálogo al hacer clic
         builder.setNegativeButton("Cerrar") { dialog, _ ->
@@ -147,7 +150,7 @@ class MainActivity : AppCompatActivity() {
     private fun configureSettingsDialogUI(buttonVibrate: ImageView, buttonSound: ImageView) {
         // Obtener los modos de sonido y vibración desde las preferencias compartidas
         val soundMode = sharedPref.getBoolean(SOUND_MODE, true)
-        var vibrationMode = sharedPref.getBoolean(VIBRATION_MODE, true)
+        val vibrationMode = sharedPref.getBoolean(VIBRATION_MODE, true)
 
         // Configurar la representación de la imagen del botón de vibración según el modo de vibración
         if (vibrationMode) {
@@ -246,7 +249,8 @@ class MainActivity : AppCompatActivity() {
         alertDialog: AlertDialog,
         buttonGuardar: Button?,
         buttonReiniciar: Button?,
-        buttonCargarPartida: Button?
+        buttonCargarPartida: Button?,
+        buttonBorrarPartidas: Button?
     ) {
         buttonGuardar?.setOnClickListener {
             // Obtener el fragmento del tablero actual para guardar la partida
@@ -273,31 +277,49 @@ class MainActivity : AppCompatActivity() {
             val dbHelper = DBHelper(this)
             val partidas = dbHelper.getAllPartidas()
 
-            // Crear una lista de nombres de partidas para mostrar en el ListView
-            val nombresDePartidas = ArrayList<String>()
-            partidas.forEach { partida ->
-                nombresDePartidas.add( partida.nombrePartida)
+
+            if (partidas.isEmpty()) {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("No hay partidas guardadas")
+                builder.setPositiveButton("OK") { _, _ ->
+                    alertDialog.dismiss()
+                }
+                val dialog = builder.create()
+                dialog.show()
+            } else {
+                // Crear una lista de nombres de partidas para mostrar en el ListView
+                val nombresDePartidas = ArrayList<String>()
+                partidas.forEach { partida ->
+                    nombresDePartidas.add(partida.nombrePartida)
+                }
+
+                // Crear un ArrayAdapter para mostrar los nombres de las partidas en un ListView
+                val adapter = ArrayAdapter(this, R.layout.partida_item_layout, nombresDePartidas)
+
+                // Crear un AlertDialog para mostrar el ListView de partidas
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Selecciona una partida")
+                builder.setAdapter(adapter) { _, partidaSelected ->
+                    // Aquí se manejará la selección de la partida
+                    val partidaSeleccionada = partidas[partidaSelected]
+                    val tableroFragment =
+                        supportFragmentManager.findFragmentById(R.id.fragmentTablero) as TableroFragment?
+                    tableroFragment?.cargarPartida(partidaSeleccionada)
+
+                }
+
+                val dialog = builder.create()
+                dialog.show()
+                alertDialog.dismiss()
             }
+        }
 
-            // Crear un ArrayAdapter para mostrar los nombres de las partidas en un ListView
-            val adapter = ArrayAdapter(this, R.layout.partida_item_layout, nombresDePartidas)
-
-            // Crear un AlertDialog para mostrar el ListView de partidas
-            val builder = AlertDialog.Builder(this)
-            builder.setTitle("Selecciona una partida")
-            builder.setAdapter(adapter) { dialog, partidaSelected ->
-                // Aquí se manejará la selección de la partida
-                val partidaSeleccionada = partidas[partidaSelected]
-                val tableroFragment =
-                    supportFragmentManager.findFragmentById(R.id.fragmentTablero) as TableroFragment?
-                tableroFragment?.cargarPartida(partidaSeleccionada)
-
-            }
-
-            val dialog = builder.create()
-            dialog.show()
+        buttonBorrarPartidas?.setOnClickListener {
+            dbHelper = DBHelper(this)
+            dbHelper?.deleteAllPartidas()
             alertDialog.dismiss()
         }
+
 
     }
 
@@ -348,11 +370,6 @@ class MainActivity : AppCompatActivity() {
             val vibrationEffect = VibrationEffect.createWaveform(longArrayOf(0, 1500), -1)
 
             vibratorManager.vibrate(CombinedVibration.createParallel(vibrationEffect))
-        } else {
-            val vibrator = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
-
-            // Vibración para versiones anteriores a Android 12
-            vibrator.vibrate(VibrationEffect.createOneShot(1500, VibrationEffect.DEFAULT_AMPLITUDE))
         }
     }
 

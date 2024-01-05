@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">QuizCraft</string>
+    <string name="turno_de_jugador_1">Turno de Jugador 1</string>
+    <string name="turno_de_jugador_2">Turno de Jugador 2</string>
+    <string name="configuracion">Configuración</string>
+    <string name="accion">¿Qué desea realizar?</string>
+    <string name="mensaje">Mensaje</string>
+    <string name="t_tulo">Título</string>
+    <string name="borrar_partidas_guardadas">Borrar Partidas Guardadas</string>
+    <string name="cargar_partida">Cargar Partida</string>
+    <string name="guardar_partida">Guardar Partida</string>
+    <string name="reiniciar_partida">Reiniciar Partida</string>
+    <string name="botonsonido">botonSonido</string>
+    <string name="botonvibrar">botonVibrar</string>
+    <string name="botonajustes">botonAjustes</string>
+    <string name="quizcraft">QuizCraft</string>
+    <string name="botontirardado">botonTirarDado</string>
+    <string name="imagenpersonaje">imagenPersonaje</string>
+    <string name="biologia">Biologia</string>
+    <string name="descripcion_opcion">Descripcion opcion</string>
 </resources>

@@ -6,7 +6,6 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
 
 class DBHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -25,9 +24,9 @@ class DBHelper(context: Context) :
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val CREATE_PARTIDAS_TABLE =
+        val createTablePartidas =
             ("CREATE TABLE $TABLE_PARTIDAS($KEY_ID INTEGER PRIMARY KEY, $KEY_NOMBRE_PARTIDA TEXT, $KEY_TURNO TEXT, $KEY_POS_JUGADOR1 INTEGER, $KEY_POS_JUGADOR2 INTEGER, $KEY_TIPOS_PREGUNTAS TEXT)")
-        db?.execSQL(CREATE_PARTIDAS_TABLE)
+        db?.execSQL(createTablePartidas)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -39,10 +38,10 @@ class DBHelper(context: Context) :
         val db = this.writableDatabase
         val values = ContentValues()
         values.put(KEY_NOMBRE_PARTIDA, nombrePartida)
-        values.put(KEY_POS_JUGADOR1, datosPartida[0].toString())
-        values.put(KEY_POS_JUGADOR2, datosPartida[1].toString())
-        values.put(KEY_TURNO, datosPartida[2].toString())
-        values.put(KEY_TIPOS_PREGUNTAS, datosPartida[3].toString())
+        values.put(KEY_POS_JUGADOR1, datosPartida[0])
+        values.put(KEY_POS_JUGADOR2, datosPartida[1])
+        values.put(KEY_TURNO, datosPartida[2])
+        values.put(KEY_TIPOS_PREGUNTAS, datosPartida[3])
         db.insert(TABLE_PARTIDAS, null, values)
         db.close()
     }
@@ -54,7 +53,7 @@ class DBHelper(context: Context) :
         val selectQuery = "SELECT  * FROM $TABLE_PARTIDAS"
 
         val db = this.readableDatabase
-        var cursor: Cursor? = null
+        val cursor: Cursor?
         try {
             // Ejecuta la consulta SQL.
             cursor = db.rawQuery(selectQuery, null)
@@ -104,6 +103,12 @@ class DBHelper(context: Context) :
         return partidasList
     }
 
+    fun deleteAllPartidas() {
+        val db = this.writableDatabase
+        db.delete(TABLE_PARTIDAS, null, null)
+        db.close()
+
+    }
 
 
 }

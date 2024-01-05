@@ -12,7 +12,7 @@
         android:id="@+id/alertTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Título"
+        android:text="@string/t_tulo"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -20,7 +20,7 @@
         android:id="@+id/alertMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mensaje"
+        android:text="@string/mensaje"
         android:textSize="16sp" />
 
     <Button
@@ -30,11 +30,12 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/audiowide"
-        android:text="Guardar Partida"
+        android:text="@string/guardar_partida"
 
         android:textColor="#FFEB3B"
         android:textSize="18sp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        tools:ignore="VisualLintButtonSize" />
 
     <Button
         android:id="@+id/btnReiniciar"
@@ -42,20 +43,34 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/audiowide"
-        android:text="Reiniciar Partida"
+        android:text="@string/reiniciar_partida"
         android:textColor="#FFEB3B"
         android:textSize="18sp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        tools:ignore="VisualLintButtonSize" />
 
     <Button
         android:id="@+id/btnCargarPartida"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/audiowide"
-        android:text="Cargar Partida"
+        android:text="@string/cargar_partida"
         android:textColor="#FFEB3B"
         android:textSize="18sp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        tools:ignore="VisualLintButtonSize" />
+
+    <Button
+        android:id="@+id/btnBorrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/audiowide"
+        android:text="@string/borrar_partidas_guardadas"
+        android:textColor="#FFEB3B"
+        android:textSize="18sp"
+        android:textStyle="normal|bold"
+        tools:ignore="VisualLintButtonSize" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="242dp"
@@ -70,7 +85,8 @@
             android:layout_marginStart="36dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/vibration_on" />
+            app:srcCompat="@drawable/vibration_on"
+            android:contentDescription="@string/botonvibrar" />
 
         <ImageView
             android:id="@+id/sound"
@@ -80,12 +96,11 @@
             android:clickable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/sound_on" /><![CDATA[
-            />
+            app:srcCompat="@drawable/sound_on"
+            android:contentDescription="@string/botonsonido" />
 
 
 
-        ]]>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

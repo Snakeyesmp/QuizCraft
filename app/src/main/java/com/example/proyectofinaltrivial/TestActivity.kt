@@ -3,7 +3,6 @@ package com.example.proyectofinaltrivial
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 
@@ -56,8 +55,7 @@ class TestActivity : AppCompatActivity() {
     private fun devolverResultado(isTrue: Boolean) {
         val intent = Intent()
         intent.putExtra("respuesta", isTrue)
-        setResult(AppCompatActivity.RESULT_OK, intent)
+        setResult(RESULT_OK, intent)
         finish()
     }
-    //TODO: Hacer que si la respuesta es correcta, se conserve el turno del jugador
 }

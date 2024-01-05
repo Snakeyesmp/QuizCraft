@@ -14,9 +14,9 @@ import androidx.lifecycle.ViewModelProvider
 class TableroFragment : Fragment() {
     private lateinit var consulta: Consultas
     private lateinit var viewModel: SharedViewModel
-     var pos_jugador1: Int = 0
-     var pos_jugador2: Int = 0
-     var turno: Boolean = true
+    var pos_jugador1: Int = 0
+    var pos_jugador2: Int = 0
+    var turno: Boolean = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         consulta = Consultas(requireActivity().activityResultRegistry)
@@ -133,7 +133,7 @@ class TableroFragment : Fragment() {
 
             // TODO Cambair random a 4
             var tipoPregunto = (1..4).random()
-            when (tipoPregunto) {
+            when (3) {
                 1 -> {
                     casilla.tag = "repaso"
                 }
