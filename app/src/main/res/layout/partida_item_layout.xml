@@ -1,5 +1,3 @@
-<!-- partida_item_layout.xml -->
-<!-- Este sería el diseño de cada elemento de la lista (cada partida) -->
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/textViewPartidaNombre"
     android:layout_width="match_parent"

@@ -30,7 +30,7 @@
         </activity>
 
         <activity
-            android:name=".TestActivity"
+            android:name=".PreguntaActivity"
             android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>

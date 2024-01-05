@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wall2">
+
+    <TextView
+        android:id="@+id/categoria"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/audiowide"
+        android:paddingTop="15dp"
+        android:text="@string/biologia"
+        android:textAlignment="center"
+        android:textColor="#5D4037"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/enunciado"
+        android:layout_width="303dp"
+        android:layout_height="204dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/board"
+        android:fontFamily="@font/bad_script"
+        android:justificationMode="inter_word"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/categoria" />
+
+    <FrameLayout
+        android:id="@+id/fragment_respuesta"
+        android:layout_width="323dp"
+        android:layout_height="444dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/cuaderno"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enunciado">
+
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

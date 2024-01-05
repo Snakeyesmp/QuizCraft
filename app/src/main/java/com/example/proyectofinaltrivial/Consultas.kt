@@ -11,24 +11,32 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class Consultas(private val registry: ActivityResultRegistry){
-    fun obtenerPreguntaPorTipo(tipoPregunta: String, context: Context, callback: (Boolean) -> Unit) {
+class Consultas(private val registry: ActivityResultRegistry) {
+    fun obtenerPreguntaPorTipo(
+        tipoPregunta: String,
+        context: Context,
+        callback: (Boolean) -> Unit
+    ) {
         val databaseRef = FirebaseDatabase.getInstance().reference.child("minijuegos")
-        val startForResult = registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == AppCompatActivity.RESULT_OK) {
-                val isRespuestaCorrecta = result.data?.getBooleanExtra("respuesta", false) ?: false
-                Log.d("Consultas", "RespuestaCons: $isRespuestaCorrecta")
-                callback(isRespuestaCorrecta)
+        val startForResult =
+            registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                    val isRespuestaCorrecta =
+                        result.data?.getBooleanExtra("respuesta", false) ?: false
+                    Log.d("Consultas", "RespuestaCons: $isRespuestaCorrecta")
+                    callback(isRespuestaCorrecta)
 
+                }
             }
-        }
         databaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val preguntas = mutableListOf<DataSnapshot>()
 
                 // Recorre los minijuegos y encuentra las preguntas del tipo especificado
                 for (minijuegoSnapshot in dataSnapshot.children) {
-                    if (minijuegoSnapshot.child("tipo").getValue(String::class.java) == tipoPregunta) {
+                    if (minijuegoSnapshot.child("tipo")
+                            .getValue(String::class.java) == tipoPregunta
+                    ) {
                         preguntas.addAll(minijuegoSnapshot.child("preguntas").children)
                     }
                 }
@@ -52,15 +60,18 @@ class Consultas(private val registry: ActivityResultRegistry){
                 }
 
                 // Obtiene la opción correcta de la pregunta
-                val respuestaCorrecta = pregunta.child("respuestaCorrecta").getValue(String::class.java)
+                val respuestaCorrecta =
+                    pregunta.child("respuestaCorrecta").getValue(String::class.java)
                 Log.d("Consultas", "Respuesta Correcta: $respuestaCorrecta")
 
                 // Crea un intent para iniciar la actividad de la pregunta
-                val intent = Intent(context, TestActivity::class.java)
+                val intent = Intent(context, PreguntaActivity::class.java)
+                intent.putExtra("tipoPregunta",tipoPregunta)
                 intent.putExtra("pregunta", enunciado)
                 intent.putStringArrayListExtra("opciones", ArrayList(opciones))
                 intent.putExtra("respuestaCorrecta", respuestaCorrecta)
-                startForResult.launch(intent)            }
+                startForResult.launch(intent)
+            }
 
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.d("Consultas", "Error al obtener las preguntas: ${databaseError.message}")
