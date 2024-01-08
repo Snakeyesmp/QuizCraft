@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.os.CombinedVibration
 import android.os.VibrationEffect
 import android.os.VibratorManager
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageView
@@ -105,7 +106,9 @@ class MainActivity : AppCompatActivity() {
                 buttonGuardar,
                 buttonReiniciar,
                 buttonCargarPartida,
-                buttonBorrarPartidas
+                buttonBorrarPartidas,
+                buttonVibrate,
+                buttonSound
             )
         }
     }
@@ -168,7 +171,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Configurar los botones de vibración y sonido para gestionar sus acciones
-        configureVibrationAndSoundButtons(buttonVibrate, buttonSound, soundMode, vibrationMode)
+        configureVibrationAndSoundButtons(buttonVibrate, buttonSound)
     }
 
     /**
@@ -179,16 +182,16 @@ class MainActivity : AppCompatActivity() {
      * @param vibrationMode Estado actual del modo de vibración.
      */
     private fun configureVibrationAndSoundButtons(
-        buttonVibrate: ImageView, buttonSound: ImageView, soundMode: Boolean, vibrationMode: Boolean
+        buttonVibrate: ImageView, buttonSound: ImageView
     ) {
         // Configura el listener del botón de vibración para manejar cambios en el modo de vibración
         buttonVibrate.setOnClickListener {
-            handleVibrationModeChange(buttonVibrate, vibrationMode)
+            handleVibrationModeChange(buttonVibrate)
         }
 
         // Configura el listener del botón de sonido para manejar cambios en el modo de sonido
         buttonSound.setOnClickListener {
-            handleSoundModeChange(buttonSound, soundMode)
+            handleSoundModeChange(buttonSound)
         }
     }
 
@@ -197,20 +200,20 @@ class MainActivity : AppCompatActivity() {
      * @param buttonVibrate ImageView que representa el modo de vibración.
      * @param vibrationMode Estado actual del modo de vibración.
      */
-    private fun handleVibrationModeChange(buttonVibrate: ImageView, vibrationMode: Boolean) {
-        // Cambia la representación de la imagen del botón y actualiza el modo de vibración en las preferencias
-        if (vibrationMode) {
-            buttonVibrate.setImageResource(R.drawable.vibration_off)
-            with(sharedPref.edit()) {
-                putBoolean(VIBRATION_MODE, false)
-                apply()
-            }
-        } else {
+    private fun handleVibrationModeChange(buttonVibrate: ImageView) {
+        val vibrationMode = sharedPref.getBoolean(VIBRATION_MODE, true)
+
+        val newVibrationMode = !vibrationMode
+        if (newVibrationMode) {
             buttonVibrate.setImageResource(R.drawable.vibration_on)
-            with(sharedPref.edit()) {
-                putBoolean(VIBRATION_MODE, true)
-                apply()
-            }
+            Log.d("Vibration", "Vibration mode ON")
+        } else {
+            buttonVibrate.setImageResource(R.drawable.vibration_off)
+            Log.d("Vibration", "Vibration mode OFF")
+        }
+        with(sharedPref.edit()) {
+            putBoolean(VIBRATION_MODE, newVibrationMode)
+            apply()
         }
     }
 
@@ -219,22 +222,22 @@ class MainActivity : AppCompatActivity() {
      * @param buttonSound ImageView que representa el modo de sonido.
      * @param soundMode Estado actual del modo de sonido.
      */
-    private fun handleSoundModeChange(buttonSound: ImageView, soundMode: Boolean) {
-        // Cambia la representación de la imagen del botón y actualiza el modo de sonido en las preferencias
-        if (soundMode) {
-            buttonSound.setImageResource(R.drawable.sound_off)
-            with(sharedPref.edit()) {
-                putBoolean(SOUND_MODE, false)
-                apply()
-            }
-            mediaPlayer.pause()
-        } else {
+    private fun handleSoundModeChange(buttonSound: ImageView) {
+        val soundMode = sharedPref.getBoolean(SOUND_MODE, true)
+
+        val newSoundMode = !soundMode
+        if (newSoundMode) {
             buttonSound.setImageResource(R.drawable.sound_on)
-            with(sharedPref.edit()) {
-                putBoolean(SOUND_MODE, true)
-                apply()
-            }
             mediaPlayer.start()
+            Log.d("Sound", "Sound mode ON")
+        } else {
+            buttonSound.setImageResource(R.drawable.sound_off)
+            mediaPlayer.pause()
+            Log.d("Sound", "Sound mode OFF")
+        }
+        with(sharedPref.edit()) {
+            putBoolean(SOUND_MODE, newSoundMode)
+            apply()
         }
     }
 
@@ -250,7 +253,9 @@ class MainActivity : AppCompatActivity() {
         buttonGuardar: Button?,
         buttonReiniciar: Button?,
         buttonCargarPartida: Button?,
-        buttonBorrarPartidas: Button?
+        buttonBorrarPartidas: Button?,
+        buttonVibrate: ImageView,
+        buttonSound: ImageView
     ) {
         buttonGuardar?.setOnClickListener {
             // Obtener el fragmento del tablero actual para guardar la partida
@@ -318,6 +323,14 @@ class MainActivity : AppCompatActivity() {
             dbHelper = DBHelper(this)
             dbHelper?.deleteAllPartidas()
             alertDialog.dismiss()
+        }
+
+        buttonVibrate.setOnClickListener {
+            handleVibrationModeChange(buttonVibrate)
+        }
+
+        buttonSound.setOnClickListener {
+            handleSoundModeChange(buttonSound)
         }
 
 
