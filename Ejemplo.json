@@ -4,94 +4,49 @@
             "tipo": "Repaso",
             "preguntas": [
                 {
-                    "enunciado": "Completa el siguiente fragmento de teoría: La mitosis es el proceso de división celular que resulta en dos células hijas idénticas. Durante la mitosis, el material genético se divide de manera equitativa, asegurando que cada célula hija tenga la misma cantidad de...",
+                    "enunciado": "¿Cuál es la capital de Francia?",
                     "respuestas": [
-                        "vida",
-                        "energía",
-                        "materia"
+                        "Berlín",
+                        "Londres",
+                        "París"
                     ],
-                    "respuestaCorrecta": "vida"
+                    "respuestaCorrecta": "París"
                 },
                 {
-                    "enunciado": "En la cadena alimentaria, los productores son organismos que obtienen energía directamente de la luz solar mediante un proceso llamado fotosíntesis. Ejemplos de productores son las plantas verdes. Estos convierten la energía solar en...",
+                    "enunciado": "¿En qué año se independizó Estados Unidos?",
                     "respuestas": [
-                        "oxígeno",
-                        "dióxido de carbono",
-                        "glucosa"
+                        "1776",
+                        "1789",
+                        "1804"
                     ],
-                    "respuestaCorrecta": "glucosa"
+                    "respuestaCorrecta": "1776"
                 },
                 {
-                    "enunciado": "La respiración celular es el proceso mediante el cual las células obtienen energía de las moléculas de glucosa. Durante la fase final de la respiración celular, la mayor parte de esta energía se libera en forma de...",
+                    "enunciado": "¿Quién fue el primer presidente de México?",
                     "respuestas": [
-                        "ATP",
-                        "calor",
-                        "oxígeno"
+                        "Benito Juárez",
+                        "Miguel Hidalgo",
+                        "Emiliano Zapata"
                     ],
-                    "respuestaCorrecta": "ATP"
+                    "respuestaCorrecta": "Benito Juárez"
                 },
                 {
-                    "enunciado": "El ADN, o ácido desoxirribonucleico, contiene la información genética de un organismo. La estructura de doble hélice del ADN fue descubierta por...",
+                    "enunciado": "¿En qué año cayó el Muro de Berlín?",
                     "respuestas": [
-                        "James Watson y Francis Crick",
-                        "Gregor Mendel",
-                        "Rosalind Franklin"
+                        "1989",
+                        "1991",
+                        "1993"
                     ],
-                    "respuestaCorrecta": "James Watson y Francis Crick"
+                    "respuestaCorrecta": "1989"
                 },
                 {
-                    "enunciado": "En el ecosistema, los decompositores descomponen la materia orgánica muerta y liberan nutrientes al suelo. Ejemplos de decompositores incluyen hongos y...",
+                    "enunciado": "¿Cuál fue la civilización que construyó las pirámides en Egipto?",
                     "respuestas": [
-                        "bacterias",
-                        "protozoos",
-                        "plantas"
+                        "Mayas",
+                        "Egipcios",
+                        "Romanos"
                     ],
-                    "respuestaCorrecta": "bacterias"
-                },
-                {
-                    "enunciado": "La célula eucariota se caracteriza por tener un núcleo definido que alberga el material genético. A diferencia de las células procariotas, las células eucariotas también tienen...",
-                    "respuestas": [
-                        "organelos membranosos",
-                        "pared celular",
-                        "flagelo"
-                    ],
-                    "respuestaCorrecta": "organelos membranosos"
-                },
-                {
-                    "enunciado": "Uno de los procesos esenciales para la regulación del agua en las plantas es la transpiración. La transpiración ocurre a través de pequeñas aberturas en las hojas llamadas...",
-                    "respuestas": [
-                        "estomas",
-                        "lenticelas",
-                        "tricomas"
-                    ],
-                    "respuestaCorrecta": "estomas"
-                },
-                {
-                    "enunciado": "Completa el siguiente fragmento de teoría: La teoría de la evolución propuesta por Charles Darwin se basa en el principio de la selección natural, donde los organismos con características adaptativas tienen más probabilidad de...",
-                    "respuestas": [
-                        "sobrevivir y reproducirse",
-                        "mutar",
-                        "desarrollar nuevas especies"
-                    ],
-                    "respuestaCorrecta": "sobrevivir y reproducirse"
-                },
-                {
-                    "enunciado": "Los seres vivos se clasifican en diferentes reinos. El reino que incluye organismos unicelulares procariotas es el reino...",
-                    "respuestas": [
-                        "Monera",
-                        "Protista",
-                        "Fungi"
-                    ],
-                    "respuestaCorrecta": "Monera"
-                },
-                {
-                    "enunciado": "En el ciclo del nitrógeno, las bacterias descomponedoras convierten los compuestos nitrogenados en amonio. Este amonio puede ser convertido por otras bacterias en...",
-                    "respuestas": [
-                        "nitritos y nitratos",
-                        "oxígeno y dióxido de carbono",
-                        "aminoácidos"
-                    ],
-                    "respuestaCorrecta": "nitritos y nitratos"
+                    "respuestaCorrecta": "Egipcios"
                 }
             ]
         },
@@ -99,214 +54,116 @@
             "tipo": "Adivina la Palabra",
             "preguntas": [
                 {
-                    "definicion": "Un tipo de ARN que lleva la información genética desde el ADN hasta los ribosomas durante la síntesis de proteínas.",
-                    "palabra": "ARN mensajero",
+                    "definicion": "Conjunto de normas que rigen a una nación.",
+                    "palabra": "constitución",
                     "letrasDisponibles": [
-                        "A",
-                        "R",
-                        "N",
-                        " ",
-                        "M",
-                        "E",
-                        "S",
-                        "J",
-                        "O",
-                        "D",
-                        "U",
-                        "G",
-                        "I",
-                        "Z"
-                    ],
-                    "palabraOculta": "___ _______"
-                },
-                {
-                    "definicion": "Organelo celular que almacena y procesa la información genética.",
-                    "palabra": "núcleo",
-                    "letrasDisponibles": [
-                        "N",
-                        "Ú",
-                        "C",
-                        "L",
-                        "E",
-                        "O",
-                        "G",
-                        "A",
-                        "R",
-                        "P",
-                        "D",
-                        "I",
-                        "Z",
-                        "X"
-                    ],
-                    "palabraOculta": "_____"
-                },
-                {
-                    "definicion": "Proceso en el cual una célula se divide para formar dos células hijas idénticas.",
-                    "palabra": "mitosis",
-                    "letrasDisponibles": [
-                        "M",
-                        "I",
-                        "T",
-                        "O",
-                        "S",
-                        "I",
-                        "S",
-                        "E",
-                        "R",
-                        "D",
-                        "U",
-                        "L",
-                        "C",
-                        "G"
-                    ],
-                    "palabraOculta": "_______"
-                },
-                {
-                    "definicion": "El proceso mediante el cual las plantas convierten la luz solar en energía química.",
-                    "palabra": "fotosíntesis",
-                    "letrasDisponibles": [
-                        "F",
-                        "O",
-                        "T",
-                        "O",
-                        "S",
-                        "Í",
-                        "N",
-                        "T",
-                        "E",
-                        "S",
-                        "I",
-                        "S",
-                        "Q",
-                        "U"
-                    ],
-                    "palabraOculta": "___________"
-                },
-                {
-                    "definicion": "Tipo de célula que no tiene un núcleo definido.",
-                    "palabra": "procariota",
-                    "letrasDisponibles": [
-                        "P",
-                        "R",
-                        "O",
-                        "C",
-                        "A",
-                        "R",
-                        "I",
-                        "O",
-                        "T",
-                        "E",
-                        "U",
-                        "D",
-                        "N",
-                        "Z"
-                    ],
-                    "palabraOculta": "_________"
-                },
-                {
-                    "definicion": "Órgano del sistema digestivo donde se absorben los nutrientes de los alimentos.",
-                    "palabra": "intestino delgado",
-                    "letrasDisponibles": [
-                        "I",
-                        "N",
-                        "T",
-                        "E",
-                        "S",
-                        "I",
-                        "N",
-                        "O",
-                        " ",
-                        "D",
-                        "L",
-                        "G",
-                        "A",
-                        "U"
-                    ],
-                    "palabraOculta": "_________ _______"
-                },
-                {
-                    "definicion": "Molécula que transporta oxígeno en la sangre.",
-                    "palabra": "hemoglobina",
-                    "letrasDisponibles": [
-                        "H",
-                        "E",
-                        "M",
-                        "O",
-                        "G",
-                        "L",
-                        "B",
-                        "I",
-                        "N",
-                        "A",
-                        "R",
-                        "Z",
-                        "P",
-                        "X"
-                    ],
-                    "palabraOculta": "__________"
-                },
-                {
-                    "definicion": "La capa más externa de la piel, que actúa como barrera protectora.",
-                    "palabra": "epidermis",
-                    "letrasDisponibles": [
-                        "E",
-                        "P",
-                        "I",
-                        "D",
-                        "R",
-                        "M",
-                        "S",
-                        "O",
-                        "U",
-                        "C",
-                        "N",
-                        "T",
-                        "A",
-                        "X"
-                    ],
-                    "palabraOculta": "_________"
-                },
-                {
-                    "definicion": "Un tipo de enlace químico que se forma entre átomos mediante la compartición de electrones.",
-                    "palabra": "enlace covalente",
-                    "letrasDisponibles": [
-                        "E",
-                        "N",
-                        "L",
                         "C",
                         "O",
-                        "V",
-                        "A",
+                        "N",
+                        "S",
                         "T",
-                        "U",
-                        "Q",
-                        "M",
                         "I",
-                        "D",
-                        "E"
-                    ],
-                    "palabraOculta": "______ ________"
-                },
-                {
-                    "definicion": "El proceso de cambio en una población de organismos a lo largo del tiempo.",
-                    "palabra": "evolución",
-                    "letrasDisponibles": [
-                        "E",
-                        "V",
-                        "O",
-                        "L",
+                        "T",
                         "U",
                         "C",
                         "I",
                         "Ó",
-                        "N",
-                        "A",
-                        "Z",
-                        "P",
-                        "T",
-                        "Y"
+                        "N"
                     ],
-                    "palabraOculta": "_________"
+                    "palabraOculta": "___________"
+                },
+                {
+                    "definicion": "Documento que garantiza derechos y libertades fundamentales en Estados Unidos.",
+                    "palabra": "Declaración de Independencia",
+                    "letrasDisponibles": [
+                        "D",
+                        "E",
+                        "C",
+                        "L",
+                        "A",
+                        "R",
+                        "A",
+                        "C",
+                        "I",
+                        "Ó",
+                        "N",
+                        " ",
+                        "D",
+                        "E",
+                        " ",
+                        "I",
+                        "N",
+                        "D",
+                        "E",
+                        "P",
+                        "E",
+                        "N",
+                        "D",
+                        "E",
+                        "N",
+                        "C",
+                        "I",
+                        "A"
+                    ],
+                    "palabraOculta": "______________ __ _____________"
+                },
+                {
+                    "definicion": "País europeo cuya capital es Atenas.",
+                    "palabra": "Grecia",
+                    "letrasDisponibles": [
+                        "G",
+                        "R",
+                        "E",
+                        "C",
+                        "I",
+                        "A",
+                        "H",
+                        "L",
+                        "J",
+                        "N",
+                        "B",
+                        "V"
+                    ],
+                    "palabraOculta": "______"
+                },
+                {
+                    "definicion": "Sistema de gobierno en el que el poder está en manos de la nobleza.",
+                    "palabra": "aristocracia",
+                    "letrasDisponibles": [
+                        "A",
+                        "R",
+                        "I",
+                        "S",
+                        "T",
+                        "O",
+                        "C",
+                        "R",
+                        "A",
+                        "C",
+                        "I",
+                        "A"
+                    ],
+                    "palabraOculta": "___________"
+                },
+                {
+                    "definicion": "Ciencia que estudia los fósiles y la historia de la Tierra.",
+                    "palabra": "paleontología",
+                    "letrasDisponibles": [
+                        "P",
+                        "A",
+                        "L",
+                        "E",
+                        "O",
+                        "N",
+                        "T",
+                        "O",
+                        "L",
+                        "O",
+                        "G",
+                        "Í",
+                        "A"
+                    ],
+                    "palabraOculta": "______________"
                 }
             ]
         },
@@ -314,104 +171,104 @@
             "tipo": "Test",
             "preguntas": [
                 {
-                    "enunciado": "¿Cuántas capas tiene la piel humana?",
+                    "enunciado": "¿Cuál fue la batalla que marcó el fin de la Guerra Civil estadounidense?",
                     "opciones": [
-                        "1",
-                        "2",
-                        "3",
-                        "4"
+                        "Gettysburg",
+                        "Antietam",
+                        "Bull Run",
+                        "Appomattox"
                     ],
-                    "respuestaCorrecta": "4"
+                    "respuestaCorrecta": "Appomattox"
                 },
                 {
-                    "enunciado": "¿Cuál es el principal gas en la atmósfera terrestre?",
+                    "enunciado": "¿En qué año se firmó el Tratado de Versalles, poniendo fin a la Primera Guerra Mundial?",
                     "opciones": [
-                        "Oxígeno",
-                        "Nitrógeno",
-                        "Dióxido de carbono",
-                        "Hidrógeno"
+                        "1917",
+                        "1918",
+                        "1919",
+                        "1920"
                     ],
-                    "respuestaCorrecta": "Nitrógeno"
+                    "respuestaCorrecta": "1919"
                 },
                 {
-                    "enunciado": "¿Cuál es la función principal de las mitocondrias en una célula?",
+                    "enunciado": "¿Cuál fue el líder militar y político de la Revolución Cubana?",
                     "opciones": [
-                        "Fotosíntesis",
-                        "Producción de energía",
-                        "Almacenamiento de agua",
-                        "Producción de proteínas"
+                        "Fulgencio Batista",
+                        "Che Guevara",
+                        "Fidel Castro",
+                        "Camilo Cienfuegos"
                     ],
-                    "respuestaCorrecta": "Producción de energía"
+                    "respuestaCorrecta": "Fidel Castro"
                 },
                 {
-                    "enunciado": "¿Cuál es el proceso mediante el cual el ADN se copia a ARN?",
+                    "enunciado": "¿En qué año comenzó la Segunda Guerra Mundial?",
                     "opciones": [
-                        "Mitosis",
-                        "Meiosis",
-                        "Replicación",
-                        "Transcripción"
+                        "1936",
+                        "1939",
+                        "1941",
+                        "1945"
                     ],
-                    "respuestaCorrecta": "Transcripción"
+                    "respuestaCorrecta": "1939"
                 },
                 {
-                    "enunciado": "¿Cuántas cámaras tiene el corazón humano?",
+                    "enunciado": "¿Cuál fue la primera civilización en Mesopotamia?",
                     "opciones": [
-                        "2",
-                        "3",
-                        "4",
-                        "5"
+                        "Babilonia",
+                        "Asiria",
+                        "Sumeria",
+                        "Acadia"
                     ],
-                    "respuestaCorrecta": "4"
+                    "respuestaCorrecta": "Sumeria"
                 },
                 {
-                    "enunciado": "¿Qué organelo celular es responsable de la síntesis de proteínas?",
+                    "enunciado": "¿Quién fue el líder de la independencia de la India?",
                     "opciones": [
-                        "Núcleo",
-                        "Mitocondria",
-                        "Ribosoma",
-                        "Lisosoma"
+                        "Jawaharlal Nehru",
+                        "Mahatma Gandhi",
+                        "Subhas Chandra Bose",
+                        "Sardar Patel"
                     ],
-                    "respuestaCorrecta": "Ribosoma"
+                    "respuestaCorrecta": "Mahatma Gandhi"
                 },
                 {
-                    "enunciado": "¿Cuál es la función principal de la clorofila en las plantas?",
+                    "enunciado": "¿En qué año se promulgó la Declaración de los Derechos Humanos?",
                     "opciones": [
-                        "Transporte de nutrientes",
-                        "Producción de energía",
-                        "Protección celular",
-                        "Digestión de alimentos"
+                        "1945",
+                        "1948",
+                        "1951",
+                        "1954"
                     ],
-                    "respuestaCorrecta": "Producción de energía"
+                    "respuestaCorrecta": "1948"
                 },
                 {
-                    "enunciado": "¿En qué fase de la mitosis se separan las cromátidas hermanas?",
+                    "enunciado": "¿Cuál fue el imperio gobernado por Justiniano I en el siglo VI?",
                     "opciones": [
-                        "Profase",
-                        "Metafase",
-                        "Anafase",
-                        "Telofase"
+                        "Imperio Romano",
+                        "Imperio Persa",
+                        "Imperio Bizantino",
+                        "Imperio Carolingio"
                     ],
-                    "respuestaCorrecta": "Anafase"
+                    "respuestaCorrecta": "Imperio Bizantino"
                 },
                 {
-                    "enunciado": "¿Cuál es el reino que incluye organismos multicelulares con células eucariotas?",
+                    "enunciado": "¿Quién fue el primer presidente de Sudáfrica después del apartheid?",
                     "opciones": [
-                        "Monera",
-                        "Protista",
-                        "Fungi",
-                        "Animalia"
+                        "Nelson Mandela",
+                        "F. W. de Klerk",
+                        "Thabo Mbeki",
+                        "Cyril Ramaphosa"
                     ],
-                    "respuestaCorrecta": "Animalia"
+                    "respuestaCorrecta": "Nelson Mandela"
                 },
                 {
-                    "enunciado": "¿Cuál es el proceso mediante el cual el cuerpo obtiene energía de la glucosa en ausencia de oxígeno?",
+                    "enunciado": "¿Cuál fue el evento que marcó el comienzo de la Revolución Rusa en 1917?",
                     "opciones": [
-                        "Fotosíntesis",
-                        "Respiración celular",
-                        "Fermentación",
-                        "Transcripción"
+                        "Batalla de Stalingrado",
+                        "Asesinato de Rasputín",
+                        "Marcha de las Mujeres",
+                        "Revolución de Octubre"
                     ],
-                    "respuestaCorrecta": "Fermentación"
+                    "respuestaCorrecta": "Revolución de Octubre"
                 }
             ]
         }

@@ -333,7 +333,6 @@ class MainActivity : AppCompatActivity() {
             handleSoundModeChange(buttonSound)
         }
 
-
     }
 
 
