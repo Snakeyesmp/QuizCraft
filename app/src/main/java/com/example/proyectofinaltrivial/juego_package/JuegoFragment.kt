@@ -20,6 +20,7 @@ import com.example.proyectofinaltrivial.main_package.MainActivity
 
 
 class JuegoFragment : Fragment() {
+
     private lateinit var viewModel: SharedViewModel
     private var textoJugador: TextView? = null
     private var perfilJugador: ImageView? = null
@@ -117,4 +118,5 @@ class JuegoFragment : Fragment() {
         val turnoActual = viewModel.turnoJugador.value ?: false
         viewModel.cambiarTurno(!turnoActual)
     }
+
 }

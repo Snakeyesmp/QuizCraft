@@ -2,6 +2,7 @@ package com.example.proyectofinaltrivial
 
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -14,6 +15,7 @@ class PreguntaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_pregunta)
+        window.statusBarColor = Color.parseColor("#7BA1CE")
 
         val enunciado = findViewById<TextView>(R.id.enunciado)
 

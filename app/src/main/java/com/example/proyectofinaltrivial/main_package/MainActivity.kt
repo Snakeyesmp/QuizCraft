@@ -14,8 +14,10 @@ import android.os.VibratorManager
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.proyectofinaltrivial.DBHelper
@@ -41,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     private var tableroFragment: TableroFragment? = null
     private var dbHelper: DBHelper? = null
     private var botonSettings: ImageView? = null
-
+    private var primeraVez = true
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var sharedPref: SharedPreferences
     private var connectivityReceiver: ConnectivityReceiver? = null
@@ -53,13 +55,29 @@ class MainActivity : AppCompatActivity() {
         window.statusBarColor = Color.parseColor("#7BA1CE")
 
 
-
-
         botonSettings = findViewById(R.id.btnSettings)
         mediaPlayer = MediaPlayer.create(this, R.raw.sound)
         mediaPlayer.isLooping = true
         sharedPref = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         viewModel = MainViewModel(sharedPref, mediaPlayer)
+
+        AlertDialog.Builder(this)
+            .setIcon(R.drawable.logo)
+            .setTitle("Bienvenido")
+            .setMessage("Bienvenido a QuizCraft. ¿Quieres cargar una partida guardada?")
+            .setPositiveButton("Sí") { _, _ ->
+                cargarPartida()
+
+            }
+            .setNegativeButton("No") { _, _ ->
+                Toast.makeText(
+                    this,
+                    "Bienvenido a Trivial, la partida esta lista",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+            }
+            .show()
 
 
         settingsDialog()
@@ -264,59 +282,38 @@ class MainActivity : AppCompatActivity() {
             val datosGuardar = tableroFragment?.guardarPartida()
             dbHelper = DBHelper(this)
 
-            // Obtener fecha y hora del sistema
             if (datosGuardar != null) {
-                val nombrePartida = "Partida_${obtenerFechaYHora()}"
-                dbHelper?.addPartida(nombrePartida, datosGuardar)
+                val input = EditText(this)
+
+                AlertDialog.Builder(this)
+                    .setIcon(R.drawable.logo)
+                    .setTitle("Nombre de la partida")
+                    .setMessage("Introduce el nombre de la partida, asi será mas facil encontrarla")
+                    .setView(input)
+                    .setPositiveButton("Sí") { _, _ ->
+                        val nombrePartida = input.text.toString()
+                        dbHelper?.addPartida(nombrePartida, datosGuardar)
+                        Toast.makeText(this, "Partida guardada", Toast.LENGTH_SHORT).show()
+                    }
+                    .setNegativeButton("No") { _, _ ->
+                        Toast.makeText(this, "Partida no guardada", Toast.LENGTH_SHORT).show()
+                    }
+                    .show()
+
+
             }
             alertDialog.dismiss()
         }
 
         buttonReiniciar?.setOnClickListener {
-            // Reiniciar la actividad principal al hacer clic en el botón 'Reiniciar'
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            alertDialog.dismiss()
         }
 
         buttonCargarPartida?.setOnClickListener {
-            val dbHelper = DBHelper(this)
-            val partidas = dbHelper.getAllPartidas()
-
-
-            if (partidas.isEmpty()) {
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("No hay partidas guardadas")
-                builder.setPositiveButton("OK") { _, _ ->
-                    alertDialog.dismiss()
-                }
-                val dialog = builder.create()
-                dialog.show()
-            } else {
-                // Crear una lista de nombres de partidas para mostrar en el ListView
-                val nombresDePartidas = ArrayList<String>()
-                partidas.forEach { partida ->
-                    nombresDePartidas.add(partida.nombrePartida)
-                }
-
-                // Crear un ArrayAdapter para mostrar los nombres de las partidas en un ListView
-                val adapter = ArrayAdapter(this, R.layout.partida_item_layout, nombresDePartidas)
-
-                // Crear un AlertDialog para mostrar el ListView de partidas
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Selecciona una partida")
-                builder.setAdapter(adapter) { _, partidaSelected ->
-                    // Aquí se manejará la selección de la partida
-                    val partidaSeleccionada = partidas[partidaSelected]
-                    val tableroFragment =
-                        supportFragmentManager.findFragmentById(R.id.fragmentTablero) as TableroFragment?
-                    tableroFragment?.cargarPartida(partidaSeleccionada)
-
-                }
-
-                val dialog = builder.create()
-                dialog.show()
-                alertDialog.dismiss()
-            }
+            cargarPartida()
+            alertDialog.dismiss()
         }
 
         buttonBorrarPartidas?.setOnClickListener {
@@ -335,13 +332,55 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun cargarPartida() {
+        val dbHelper = DBHelper(this)
+        val partidas = dbHelper.getAllPartidas()
+
+
+        if (partidas.isEmpty()) {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("No hay partidas guardadas")
+            builder.setPositiveButton("OK") { _, _ ->
+            }
+            val dialog = builder.create()
+            dialog.show()
+        } else {
+            // Crear una lista de nombres de partidas para mostrar en el ListView
+            val nombresDePartidas = ArrayList<String>()
+            partidas.forEach { partida ->
+                nombresDePartidas.add(partida.nombrePartida)
+            }
+
+            // Crear un ArrayAdapter para mostrar los nombres de las partidas en un ListView
+            val adapter = ArrayAdapter(this, R.layout.partida_item_layout, nombresDePartidas)
+
+            // Crear un AlertDialog para mostrar el ListView de partidas
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Selecciona una partida")
+            builder.setAdapter(adapter) { _, partidaSelected ->
+                // Aquí se manejará la selección de la partida
+                val partidaSeleccionada = partidas[partidaSelected]
+                val tableroFragment =
+                    supportFragmentManager.findFragmentById(R.id.fragmentTablero) as TableroFragment?
+                tableroFragment?.cargarPartida(partidaSeleccionada)
+
+            }
+
+            val dialog = builder.create()
+            dialog.show()
+        }
+    }
+
+
 
     override fun onDestroy() {
         super.onDestroy()
         // Desregistrar el receptor al destruir la actividad para evitar memory leaks
         connectivityReceiver?.let {
             unregisterReceiver(it)
+
         }
+
     }
 
     override fun onPause() {
