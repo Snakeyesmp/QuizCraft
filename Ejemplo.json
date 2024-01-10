@@ -1,52 +1,60 @@
 {
     "minijuegos": [
         {
-            "tipo": "Repaso",
+            "tipo": "repaso",
             "preguntas": [
                 {
-                    "enunciado": "¿Cuál es la capital de Francia?",
-                    "respuestas": [
-                        "Berlín",
-                        "Londres",
-                        "París"
-                    ],
+                    "enunciado": "La capital de Francia es _____",
+                    
                     "respuestaCorrecta": "París"
                 },
                 {
-                    "enunciado": "¿En qué año se independizó Estados Unidos?",
-                    "respuestas": [
-                        "1776",
-                        "1789",
-                        "1804"
-                    ],
+                    "enunciado": "En el año ____ se independizó Estados Unidos?",
+                    
                     "respuestaCorrecta": "1776"
                 },
                 {
-                    "enunciado": "¿Quién fue el primer presidente de México?",
-                    "respuestas": [
-                        "Benito Juárez",
-                        "Miguel Hidalgo",
-                        "Emiliano Zapata"
-                    ],
+                    "enunciado": "El primer presidente de México fué ______ ______?",
+                    
                     "respuestaCorrecta": "Benito Juárez"
                 },
                 {
-                    "enunciado": "¿En qué año cayó el Muro de Berlín?",
-                    "respuestas": [
-                        "1989",
-                        "1991",
-                        "1993"
-                    ],
+                    "enunciado": "En el año ____ cayó el Muro de Berlín?",
+                   
                     "respuestaCorrecta": "1989"
                 },
                 {
-                    "enunciado": "¿Cuál fue la civilización que construyó las pirámides en Egipto?",
-                    "respuestas": [
-                        "Mayas",
-                        "Egipcios",
-                        "Romanos"
-                    ],
-                    "respuestaCorrecta": "Egipcios"
+                    "enunciado": "La civilización que construyó las pirámides en Egipto fué la _______",
+                   
+                    "respuestaCorrecta": "Egipcia"
+                },
+                {
+                    "enunciado": "El año ____ se firmó la Declaración de Independencia de los Estados Unidos.",
+                    "respuestaCorrecta": "1776"
+                },
+                {
+                    "enunciado": "El líder de la Revolución Rusa fue ________ ________?",
+                    "respuestaCorrecta": "Vladimir Lenin"
+                },  
+                {
+                    "enunciado": "La civilización que construyó Chichén Itzá fue la _______",
+                    "respuestaCorrecta": "Maya"
+                },
+                {
+                    "enunciado": "El animal terrestre más rápido es el ________.",
+                    "respuestaCorrecta": "Guepardo"
+                },
+                {
+                    "enunciado": "El planeta más grande del sistema solar es ________.",
+                    "respuestaCorrecta": "Júpiter"
+                },
+                {
+                    "enunciado": "El escritor de 'Don Quijote de la Mancha' es ________.",
+                    "respuestaCorrecta": "Miguel de Cervantes"
+                },
+                {
+                    "enunciado": "La capital de Australia es ________.",
+                    "respuestaCorrecta": "Canberra"
                 }
             ]
         },
@@ -55,115 +63,59 @@
             "preguntas": [
                 {
                     "definicion": "Conjunto de normas que rigen a una nación.",
-                    "palabra": "constitución",
-                    "letrasDisponibles": [
-                        "C",
-                        "O",
-                        "N",
-                        "S",
-                        "T",
-                        "I",
-                        "T",
-                        "U",
-                        "C",
-                        "I",
-                        "Ó",
-                        "N"
-                    ],
-                    "palabraOculta": "___________"
-                },
+                    "palabra": "constitución"
+                                    },
                 {
                     "definicion": "Documento que garantiza derechos y libertades fundamentales en Estados Unidos.",
-                    "palabra": "Declaración de Independencia",
-                    "letrasDisponibles": [
-                        "D",
-                        "E",
-                        "C",
-                        "L",
-                        "A",
-                        "R",
-                        "A",
-                        "C",
-                        "I",
-                        "Ó",
-                        "N",
-                        " ",
-                        "D",
-                        "E",
-                        " ",
-                        "I",
-                        "N",
-                        "D",
-                        "E",
-                        "P",
-                        "E",
-                        "N",
-                        "D",
-                        "E",
-                        "N",
-                        "C",
-                        "I",
-                        "A"
-                    ],
-                    "palabraOculta": "______________ __ _____________"
-                },
+                    "palabra": "Declaración de Independencia"
+                                    },
                 {
                     "definicion": "País europeo cuya capital es Atenas.",
-                    "palabra": "Grecia",
-                    "letrasDisponibles": [
-                        "G",
-                        "R",
-                        "E",
-                        "C",
-                        "I",
-                        "A",
-                        "H",
-                        "L",
-                        "J",
-                        "N",
-                        "B",
-                        "V"
-                    ],
-                    "palabraOculta": "______"
-                },
+                    "palabra": "Grecia"
+                            },
                 {
                     "definicion": "Sistema de gobierno en el que el poder está en manos de la nobleza.",
-                    "palabra": "aristocracia",
-                    "letrasDisponibles": [
-                        "A",
-                        "R",
-                        "I",
-                        "S",
-                        "T",
-                        "O",
-                        "C",
-                        "R",
-                        "A",
-                        "C",
-                        "I",
-                        "A"
-                    ],
-                    "palabraOculta": "___________"
+                    "palabra": "aristocracia"
                 },
                 {
                     "definicion": "Ciencia que estudia los fósiles y la historia de la Tierra.",
-                    "palabra": "paleontología",
-                    "letrasDisponibles": [
-                        "P",
-                        "A",
-                        "L",
-                        "E",
-                        "O",
-                        "N",
-                        "T",
-                        "O",
-                        "L",
-                        "O",
-                        "G",
-                        "Í",
-                        "A"
-                    ],
-                    "palabraOculta": "______________"
+                    "palabra": "paleontología"
+                },
+                {
+                    "definicion": "Continente donde se originó la civilización humana según muchos historiadores.",
+                    "palabra": "África"
+                },
+                {
+                    "definicion": "Ciudad antigua conocida como la 'Ciudad de los Dioses', ubicada en México.",
+                    "palabra": "Teotihuacán"
+                },
+                {
+                    "definicion": "Río que atraviesa la ciudad de Londres.",
+                    "palabra": "Támesis"
+                },
+                {
+                    "definicion": "Evento histórico que marcó el fin de la Edad Media en Europa.",
+                    "palabra": "Renacimiento"
+                },
+                {
+                    "definicion": "Montaña más alta del mundo, ubicada en la cordillera del Himalaya.",
+                    "palabra": "Everest"
+                },
+                {
+                    "definicion": "Ciudad antigua conocida como la 'Ciudad de los Dioses', ubicada en México.",
+                    "palabra": "Teotihuacán"
+                },
+                {
+                    "definicion": "Río que atraviesa la ciudad de Londres.",
+                    "palabra": "Támesis"
+                },
+                {
+                    "definicion": "Evento histórico que marcó el fin de la Edad Media en Europa.",
+                    "palabra": "Renacimiento"
+                },
+                {
+                    "definicion": "Montaña más alta del mundo, ubicada en la cordillera del Himalaya.",
+                    "palabra": "Everest"
                 }
             ]
         },
@@ -273,55 +225,139 @@
             ]
         },
         {
-            "tipo": "Parejas",
-            "preguntas": [
+            "tipo":"Parejas",
+            "preguntas":[
                 {
-                    "enunciado": "Relaciona cada persona con su profesión:",
-                    "parejas": [
-                        {"persona": "Albert Einstein", "profesion": "Físico teórico"},
-                        {"persona": "Leonardo da Vinci", "profesion": "Artista e inventor"},
-                        {"persona": "Marie Curie", "profesion": "Científica"}
-                    ]
+                    "elemento1": "Capital de Francia",
+                    "elemento2": "París"
                 },
                 {
-                    "enunciado": "Relaciona cada persona con su profesión:",
-                    "parejas": [
-                        {"persona": "Nelson Mandela", "profesion": "Político y activista"},
-                        {"persona": "Ada Lovelace", "profesion": "Matemática y escritora"},
-                        {"persona": "Mahatma Gandhi", "profesion": "Líder político y pacifista"}
-                    ]
+                    "elemento1": "Descubridor de América",
+                    "elemento2": "Cristóbal Colón"
                 },
                 {
-                    "enunciado": "Relaciona cada persona con su profesión:",
-                    "parejas": [
-                        {"persona": "Isaac Newton", "profesion": "Científico y matemático"},
-                        {"persona": "Cleopatra", "profesion": "Reina de Egipto"},
-                        {"persona": "Wolfgang Amadeus Mozart", "profesion": "Compositor y músico"}
-                    ]
+                    "elemento1": "Río más largo del mundo",
+                    "elemento2": "Nilo"
                 },
                 {
-                    "enunciado": "Relaciona cada persona con su profesión:",
-                    "parejas": [
-                        {"persona": "Marco Polo", "profesion": "Explorador y comerciante"},
-                        {"persona": "Joan of Arc", "profesion": "Heroína militar"},
-                        {"persona": "Charles Darwin", "profesion": "Naturalista y biólogo"}
-                    ]
+                    "elemento1": "Montaña más alta del mundo",
+                    "elemento2": "Everest"
                 },
                 {
-                    "enunciado": "Relaciona cada persona con su profesión:",
-                    "parejas": [
-                        {"persona": "Galileo Galilei", "profesion": "Científico y astrónomo"},
-                        {"persona": "Queen Elizabeth I", "profesion": "Reina de Inglaterra"},
-                        {"persona": "Vincent van Gogh", "profesion": "Pintor postimpresionista"}
-                    ]
+                    "elemento1": "Guerra entre Atenas y Esparta en la antigua Grecia",
+                    "elemento2": "Guerra del Peloponeso"
                 },
                 {
-                    "enunciado": "Relaciona cada persona con su profesión:",
-                    "parejas": [
-                        {"persona": "Alexander the Great", "profesion": "Rey y conquistador"},
-                        {"persona": "Marie Antoinette", "profesion": "Reina de Francia"},
-                        {"persona": "Alan Turing", "profesion": "Matemático y científico de la computación"}
-                    ]
+                    "elemento1": "Ciudad conocida como la 'Ciudad Eterna'",
+                    "elemento2": "Roma"
+                },
+                {
+                    "elemento1": "Inventor de la bombilla eléctrica",
+                    "elemento2": "Thomas Edison"
+                },
+                {
+                    "elemento1": "Desierto más grande del mundo",
+                    "elemento2": "Sahara"
+                },
+                {
+                    "elemento1": "País con la población más grande del mundo",
+                    "elemento2": "China"
+                },
+                {
+                    "elemento1": "Conflicto bélico que tuvo lugar entre 1939 y 1945",
+                    "elemento2": "Segunda Guerra Mundial"
+                },
+                {
+                    "elemento1": "Ciudad donde se encuentra la Torre Eiffel",
+                    "elemento2": "París"
+                },
+                {
+                    "elemento1": "Descubridor de la teoría de la relatividad",
+                    "elemento2": "Albert Einstein"
+                },
+                {
+                    "elemento1": "Río que atraviesa la ciudad de Nueva York",
+                    "elemento2": "Hudson"
+                },
+                {
+                    "elemento1": "País donde se encuentra el Taj Mahal",
+                    "elemento2": "India"
+                },
+                {
+                    "elemento1": "Evento histórico que marcó el inicio de la Edad Moderna en Europa",
+                    "elemento2": "Caída del Imperio Romano de Occidente"
+                },
+                {
+                    "elemento1": "Albert Einstein",
+                    "elemento2": "Físico teórico"
+                },
+                {
+                    "elemento1": "Leonardo da Vinci",
+                    "elemento2": "Artista e inventor"
+                },
+                {
+                    "elemento1": "Marie Curie",
+                    "elemento2": "Científica"
+                },
+                {
+                    "elemento1": "Nelson Mandela",
+                    "elemento2": "Político y activista"
+                },
+                {
+                    "elemento1": "Ada Lovelace",
+                    "elemento2": "Matemática y escritora"
+                },
+                {
+                    "elemento1": "Mahatma Gandhi",
+                    "elemento2": "Líder político y pacifista"
+                },
+                {
+                    "elemento1": "Isaac Newton",
+                    "elemento2": "Científico y matemático"
+                },
+                {
+                    "elemento1": "Cleopatra",
+                    "elemento2": "Reina de Egipto"
+                },
+                {
+                    "elemento1": "Wolfgang Amadeus Mozart",
+                    "elemento2": "Compositor y músico"
+                },
+                {
+                    "elemento1": "Marco Polo",
+                    "elemento2": "Explorador y comerciante"
+                },
+                {
+                    "elemento1": "Joan of Arc",
+                    "elemento2": "Heroína militar"
+                },
+                {
+                    "elemento1": "Charles Darwin",
+                    "elemento2": "Naturalista y biólogo"
+                },
+                {
+                    "elemento1": "Galileo Galilei",
+                    "elemento2": "Científico y astrónomo"
+                },
+                {
+                    "elemento1": "Queen Elizabeth I",
+                    "elemento2": "Reina de Inglaterra"
+                },
+                {
+                    "elemento1": "Vincent van Gogh",
+                    "elemento2": "Pintor postimpresionista"
+                },
+                {
+                    "elemento1": "Alexander the Great",
+                    "elemento2": "Rey y conquistador"
+                },
+                {
+                    "elemento1": "Marie Antoinette",
+                    "elemento2": "Reina de Francia"
+                },
+                {
+                    "elemento1": "Alan Turing",
+                    "elemento2": "Matemático y científico de la computación"
                 }
             ]
         }
