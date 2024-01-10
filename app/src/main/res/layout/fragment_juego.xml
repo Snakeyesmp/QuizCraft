@@ -54,4 +54,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/dado_tirar"
         android:contentDescription="@string/botontirardado" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -196,8 +196,6 @@ class MainActivity : AppCompatActivity() {
      * Configura los botones de control de vibración y sonido para gestionar cambios en sus modos respectivos.
      * @param buttonVibrate ImageView para el control del modo de vibración.
      * @param buttonSound ImageView para el control del modo de sonido.
-     * @param soundMode Estado actual del modo de sonido.
-     * @param vibrationMode Estado actual del modo de vibración.
      */
     private fun configureVibrationAndSoundButtons(
         buttonVibrate: ImageView, buttonSound: ImageView
@@ -216,7 +214,6 @@ class MainActivity : AppCompatActivity() {
     /**
      * Maneja el cambio de modo de vibración y actualiza la interfaz de usuario en consecuencia.
      * @param buttonVibrate ImageView que representa el modo de vibración.
-     * @param vibrationMode Estado actual del modo de vibración.
      */
     private fun handleVibrationModeChange(buttonVibrate: ImageView) {
         val vibrationMode = sharedPref.getBoolean(VIBRATION_MODE, true)
@@ -238,7 +235,6 @@ class MainActivity : AppCompatActivity() {
     /**
      * Maneja el cambio de modo de sonido y actualiza la interfaz de usuario en consecuencia.
      * @param buttonSound ImageView que representa el modo de sonido.
-     * @param soundMode Estado actual del modo de sonido.
      */
     private fun handleSoundModeChange(buttonSound: ImageView) {
         val soundMode = sharedPref.getBoolean(SOUND_MODE, true)
