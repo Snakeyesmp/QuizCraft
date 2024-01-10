@@ -271,6 +271,59 @@
                     "respuestaCorrecta": "Revolución de Octubre"
                 }
             ]
+        },
+        {
+            "tipo": "Parejas",
+            "preguntas": [
+                {
+                    "enunciado": "Relaciona cada persona con su profesión:",
+                    "parejas": [
+                        {"persona": "Albert Einstein", "profesion": "Físico teórico"},
+                        {"persona": "Leonardo da Vinci", "profesion": "Artista e inventor"},
+                        {"persona": "Marie Curie", "profesion": "Científica"}
+                    ]
+                },
+                {
+                    "enunciado": "Relaciona cada persona con su profesión:",
+                    "parejas": [
+                        {"persona": "Nelson Mandela", "profesion": "Político y activista"},
+                        {"persona": "Ada Lovelace", "profesion": "Matemática y escritora"},
+                        {"persona": "Mahatma Gandhi", "profesion": "Líder político y pacifista"}
+                    ]
+                },
+                {
+                    "enunciado": "Relaciona cada persona con su profesión:",
+                    "parejas": [
+                        {"persona": "Isaac Newton", "profesion": "Científico y matemático"},
+                        {"persona": "Cleopatra", "profesion": "Reina de Egipto"},
+                        {"persona": "Wolfgang Amadeus Mozart", "profesion": "Compositor y músico"}
+                    ]
+                },
+                {
+                    "enunciado": "Relaciona cada persona con su profesión:",
+                    "parejas": [
+                        {"persona": "Marco Polo", "profesion": "Explorador y comerciante"},
+                        {"persona": "Joan of Arc", "profesion": "Heroína militar"},
+                        {"persona": "Charles Darwin", "profesion": "Naturalista y biólogo"}
+                    ]
+                },
+                {
+                    "enunciado": "Relaciona cada persona con su profesión:",
+                    "parejas": [
+                        {"persona": "Galileo Galilei", "profesion": "Científico y astrónomo"},
+                        {"persona": "Queen Elizabeth I", "profesion": "Reina de Inglaterra"},
+                        {"persona": "Vincent van Gogh", "profesion": "Pintor postimpresionista"}
+                    ]
+                },
+                {
+                    "enunciado": "Relaciona cada persona con su profesión:",
+                    "parejas": [
+                        {"persona": "Alexander the Great", "profesion": "Rey y conquistador"},
+                        {"persona": "Marie Antoinette", "profesion": "Reina de Francia"},
+                        {"persona": "Alan Turing", "profesion": "Matemático y científico de la computación"}
+                    ]
+                }
+            ]
         }
     ]
 }
