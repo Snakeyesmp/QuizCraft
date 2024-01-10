@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Botones a la izquierda -->
+    <LinearLayout
+        android:id="@+id/layoutLeft"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentStart="true"
+        android:padding="16dp">
+
+        <!-- Botones a la izquierda -->
+        <Button
+            android:id="@+id/buttonLeft1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onLeftButtonClick"
+            android:text="Left 1" />
+
+        <Button
+            android:id="@+id/buttonLeft2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onLeftButtonClick"
+            android:text="Left 2" />
+
+        <Button
+            android:id="@+id/buttonLeft3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onLeftButtonClick"
+            android:text="Left 3" />
+    </LinearLayout>
+
+    <!-- Botones a la derecha -->
+    <LinearLayout
+        android:id="@+id/layoutRight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentEnd="true"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/buttonRight1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onRightButtonClick"
+            android:text="Right 1" />
+
+        <Button
+            android:id="@+id/buttonRight2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onRightButtonClick"
+            android:text="Right 2" />
+
+        <Button
+            android:id="@+id/buttonRight3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onRightButtonClick"
+            android:text="Right 3" />
+    </LinearLayout>
+
+</RelativeLayout>
