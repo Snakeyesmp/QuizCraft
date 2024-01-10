@@ -3,10 +3,12 @@ package com.example.proyectofinaltrivial.utils
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.getSystemService
 import com.example.proyectofinaltrivial.R
 
 object InternetUtils {
@@ -19,15 +21,22 @@ object InternetUtils {
      */
     fun isInternetAvailable(context: Context): Boolean {
         val connectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
-                ?: return false
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager? ?: return false
 
-        val activeNetwork = connectivityManager.activeNetwork ?: return false
-        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val networkCapabilities = connectivityManager.activeNetwork ?: return false
+            val networkInfo =
+                connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
 
-        return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
-                capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+            return networkInfo.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+                    networkInfo.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+        } else {
+            // Para versiones anteriores a Android M (API level 23)
+            val networkInfo = connectivityManager.activeNetworkInfo
+            return networkInfo != null && networkInfo.isConnected
+        }
     }
+
 
     /**
      * Muestra un diálogo de alerta cuando no hay conexión a Internet.
