@@ -59,63 +59,63 @@
             ]
         },
         {
-            "tipo": "Adivina la Palabra",
+            "tipo": "AdivinaPalabra",
             "preguntas": [
                 {
-                    "definicion": "Conjunto de normas que rigen a una nación.",
-                    "palabra": "constitución"
+                    "enunciado": "Conjunto de normas que rigen a una nación.",
+                    "respuestaCorrecta": "constitución"
                                     },
                 {
-                    "definicion": "Documento que garantiza derechos y libertades fundamentales en Estados Unidos.",
-                    "palabra": "Declaración de Independencia"
+                    "enunciado": "Documento que garantiza derechos y libertades fundamentales en Estados Unidos.",
+                    "respuestaCorrecta": "Declaración de Independencia"
                                     },
                 {
-                    "definicion": "País europeo cuya capital es Atenas.",
-                    "palabra": "Grecia"
+                    "enunciado": "País europeo cuya capital es Atenas.",
+                    "respuestaCorrecta": "Grecia"
                             },
                 {
-                    "definicion": "Sistema de gobierno en el que el poder está en manos de la nobleza.",
-                    "palabra": "aristocracia"
+                    "enunciado": "Sistema de gobierno en el que el poder está en manos de la nobleza.",
+                    "respuestaCorrecta": "aristocracia"
                 },
                 {
-                    "definicion": "Ciencia que estudia los fósiles y la historia de la Tierra.",
-                    "palabra": "paleontología"
+                    "enunciado": "Ciencia que estudia los fósiles y la historia de la Tierra.",
+                    "respuestaCorrecta": "paleontología"
                 },
                 {
-                    "definicion": "Continente donde se originó la civilización humana según muchos historiadores.",
-                    "palabra": "África"
+                    "enunciado": "Continente donde se originó la civilización humana según muchos historiadores.",
+                    "respuestaCorrecta": "África"
                 },
                 {
-                    "definicion": "Ciudad antigua conocida como la 'Ciudad de los Dioses', ubicada en México.",
-                    "palabra": "Teotihuacán"
+                    "enunciado": "Ciudad antigua conocida como la 'Ciudad de los Dioses', ubicada en México.",
+                    "respuestaCorrecta": "Teotihuacán"
                 },
                 {
-                    "definicion": "Río que atraviesa la ciudad de Londres.",
-                    "palabra": "Támesis"
+                    "enunciado": "Río que atraviesa la ciudad de Londres.",
+                    "respuestaCorrecta": "Támesis"
                 },
                 {
-                    "definicion": "Evento histórico que marcó el fin de la Edad Media en Europa.",
-                    "palabra": "Renacimiento"
+                    "enunciado": "Evento histórico que marcó el fin de la Edad Media en Europa.",
+                    "respuestaCorrecta": "Renacimiento"
                 },
                 {
-                    "definicion": "Montaña más alta del mundo, ubicada en la cordillera del Himalaya.",
-                    "palabra": "Everest"
+                    "enunciado": "Montaña más alta del mundo, ubicada en la cordillera del Himalaya.",
+                    "respuestaCorrecta": "Everest"
                 },
                 {
-                    "definicion": "Ciudad antigua conocida como la 'Ciudad de los Dioses', ubicada en México.",
-                    "palabra": "Teotihuacán"
+                    "enunciado": "Ciudad antigua conocida como la 'Ciudad de los Dioses', ubicada en México.",
+                    "respuestaCorrecta": "Teotihuacán"
                 },
                 {
-                    "definicion": "Río que atraviesa la ciudad de Londres.",
-                    "palabra": "Támesis"
+                    "enunciado": "Río que atraviesa la ciudad de Londres.",
+                    "respuestaCorrecta": "Támesis"
                 },
                 {
-                    "definicion": "Evento histórico que marcó el fin de la Edad Media en Europa.",
-                    "palabra": "Renacimiento"
+                    "enunciado": "Evento histórico que marcó el fin de la Edad Media en Europa.",
+                    "respuestaCorrecta": "Renacimiento"
                 },
                 {
-                    "definicion": "Montaña más alta del mundo, ubicada en la cordillera del Himalaya.",
-                    "palabra": "Everest"
+                    "enunciado": "Montaña más alta del mundo, ubicada en la cordillera del Himalaya.",
+                    "respuestaCorrecta": "Everest"
                 }
             ]
         },
