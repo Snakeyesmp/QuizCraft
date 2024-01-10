@@ -74,5 +74,4 @@ class FragmentTest : Fragment() {
                 }
             }
         }
-    }
-}
+    } }

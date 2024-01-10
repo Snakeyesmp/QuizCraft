@@ -1,35 +1,23 @@
-package com.example.proyectofinaltrivial
-
-import androidx.appcompat.app.AppCompatActivity
-import android.content.Context
-import android.content.Intent
 import android.util.Log
-import androidx.activity.result.ActivityResultRegistry
-import androidx.activity.result.contract.ActivityResultContracts
+import com.example.proyectofinaltrivial.utils.Pregunta
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class  Consultas(private val registry: ActivityResultRegistry) {
+class Consultas {
+
+
     fun obtenerPreguntaPorTipo(
         tipoPregunta: String,
-        context: Context,
-        callback: (Boolean) -> Unit
+        callback: (Pregunta?) -> Unit // Callback para manejar la devolución de la pregunta
     ) {
         val databaseRef = FirebaseDatabase.getInstance().reference.child("minijuegos")
-        val startForResult =
-            registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == AppCompatActivity.RESULT_OK) {
-                    val isRespuestaCorrecta =
-                        result.data?.getBooleanExtra("respuesta", false) ?: false
-                    Log.d("Consultas", "RespuestaCons: $isRespuestaCorrecta")
-                    callback(isRespuestaCorrecta)
 
-                }
-            }
         databaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                var preguntaObj : Pregunta? = null
+
                 val preguntas = mutableListOf<DataSnapshot>()
 
                 // Recorre los minijuegos y encuentra las preguntas del tipo especificado
@@ -43,38 +31,37 @@ class  Consultas(private val registry: ActivityResultRegistry) {
 
                 // Escoge una pregunta aleatoria del tipo especificado
                 val random = (0 until preguntas.size).random()
-                val pregunta = preguntas[random]
+                val preguntaSnapshot = preguntas[random]
 
-                // Obtiene el enunciado de la pregunta
-                val enunciado = pregunta.child("enunciado").getValue(String::class.java)
+                // Obtiene los datos de la pregunta
+                val enunciado = preguntaSnapshot.child("enunciado").getValue(String::class.java)
+                val respuestaCorrecta =
+                    preguntaSnapshot.child("respuestaCorrecta").getValue(String::class.java)
 
-                // Obtiene las opciones de la pregunta
-                val opcionesSnapshot = pregunta.child("opciones")
-                val opciones = mutableListOf<String>()
+                if (tipoPregunta == "test") {
+                    val opcionesSnapshot = preguntaSnapshot.child("opciones")
+                    val opciones = ArrayList<String>()
 
-                for (opcionSnapshot in opcionesSnapshot.children) {
-                    val opcion = opcionSnapshot.getValue(String::class.java)
-                    if (opcion != null) {
-                        opciones.add(opcion)
+                    for (opcionSnapshot in opcionesSnapshot.children) {
+                        val opcion = opcionSnapshot.getValue(String::class.java)
+                        if (opcion != null) {
+                            opciones.add(opcion)
+
+                        }
                     }
+                     preguntaObj = Pregunta(enunciado, respuestaCorrecta, opciones)
+
+                } else {
+                     preguntaObj = Pregunta(enunciado, respuestaCorrecta)
                 }
 
-                // Obtiene la opción correcta de la pregunta
-                val respuestaCorrecta =
-                    pregunta.child("respuestaCorrecta").getValue(String::class.java)
-                Log.d("Consultas", "Respuesta Correcta: $respuestaCorrecta")
-
-                // Crea un intent para iniciar la actividad de la pregunta
-                val intent = Intent(context, PreguntaActivity::class.java)
-                intent.putExtra("tipoPregunta",tipoPregunta)
-                intent.putExtra("pregunta", enunciado)
-                intent.putStringArrayListExtra("opciones", ArrayList(opciones))
-                intent.putExtra("respuestaCorrecta", respuestaCorrecta)
-                startForResult.launch(intent)
+                // Devuelve la pregunta mediante el callback
+                callback(preguntaObj)
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
                 Log.d("Consultas", "Error al obtener las preguntas: ${databaseError.message}")
+                callback(null) // Manejo del error, devolviendo null
             }
         })
     }

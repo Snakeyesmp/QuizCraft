@@ -1,15 +1,21 @@
 package com.example.proyectofinaltrivial
 
+import Consultas
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridLayout
+import androidx.activity.result.ActivityResultRegistry
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.proyectofinaltrivial.utils.Pregunta
 
 class TableroFragment : Fragment() {
     private lateinit var consulta: Consultas
@@ -19,7 +25,7 @@ class TableroFragment : Fragment() {
     var turno: Boolean = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        consulta = Consultas(requireActivity().activityResultRegistry)
+        consulta = Consultas()
         super.onViewCreated(view, savedInstanceState)
         // Inicialización del ViewModel compartido
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
@@ -55,21 +61,22 @@ class TableroFragment : Fragment() {
             casilla = tableroGrid.getChildAt(pos_jugador1)
             jugador1 = casilla.findViewById(R.id.jugador1)
             jugador1.background = context?.getDrawable(R.drawable.jugador1)
-            consulta.obtenerPreguntaPorTipo(
-                casilla.tag.toString(), this.requireContext()
-            ) { respuesta ->
-                if (respuesta) {
-                    Log.d("Consulta", "Respuesta: $respuesta")
-                    Log.d("Consulta", "Turno1: $turno")
-                    turno = true
-                    viewModel.cambiarTurno(turno)
-                    Log.d("Consulta", "Turno2: $turno")
-                } else {
-                    turno = false
-                    viewModel.cambiarTurno(turno)
-                }
-                viewModel.cambiarTurno(turno)
 
+            consulta.obtenerPreguntaPorTipo(
+                casilla.tag.toString()
+            ) { pregunta ->
+                mostrarPregunta(pregunta, casilla.tag.toString(), { respuesta ->
+                    Log.d("Consult", "Respuesta: $respuesta")
+                    if (respuesta) {
+                        turno = true
+                        viewModel.cambiarTurno(turno)
+                    } else {
+                        turno = false
+                        viewModel.cambiarTurno(turno)
+                    }
+                    viewModel.cambiarTurno(turno)
+
+                }, requireActivity().activityResultRegistry)
             }
 
         } else {
@@ -93,22 +100,47 @@ class TableroFragment : Fragment() {
             jugador2 = casilla.findViewById(R.id.jugador2)
             jugador2.background = context?.getDrawable(R.drawable.jugador2)
             consulta.obtenerPreguntaPorTipo(
-                casilla.tag.toString(), this.requireContext()
-            ) { respuesta ->
-                if (respuesta) {
-                    Log.d("Consulta", "Respuesta: $respuesta")
-                    Log.d("Consulta", "Turno1: $turno")
-                    turno = false
-                    Log.d("Consulta", "Turno2: $turno")
+                casilla.tag.toString()
+            ) { pregunta ->
+                mostrarPregunta(pregunta, casilla.tag.toString(), { respuesta ->
+                    if (respuesta) {
+                        turno = false
+                        viewModel.cambiarTurno(turno)
+                    } else {
+                        turno = true
+                        viewModel.cambiarTurno(turno)
+                    }
                     viewModel.cambiarTurno(turno)
-                } else {
-                    turno = true
-                    viewModel.cambiarTurno(turno)
-                }
 
+                }, requireActivity().activityResultRegistry)
+            }
+        }
+    }
+
+    private fun mostrarPregunta(
+        pregunta: Pregunta?,
+        tipoPregunta: String, callback: (Boolean) -> Unit, registry: ActivityResultRegistry
+    ) {
+        val startForResult =
+            registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                    val isRespuestaCorrecta =
+                        result.data?.getBooleanExtra("respuesta", false) ?: false
+                    Log.d("Consultas", "RespuestaCons: $isRespuestaCorrecta")
+                    callback(isRespuestaCorrecta)
+
+                }
             }
 
+
+        val intent = Intent(context, PreguntaActivity::class.java)
+        intent.putExtra("tipoPregunta", tipoPregunta)
+        intent.putExtra("pregunta", pregunta?.enunciado)
+        if (tipoPregunta == "test"){
+            intent.putStringArrayListExtra("opciones", ArrayList(pregunta?.opciones))
         }
+        intent.putExtra("respuestaCorrecta", pregunta?.respuestaCorrecta)
+        startForResult.launch(intent)
     }
 
     override fun onCreateView(
@@ -132,8 +164,7 @@ class TableroFragment : Fragment() {
 
 
             // TODO Cambair random a 4
-            var tipoPregunto = (1..4).random()
-            when (3) {
+            when ((1..4).random()) {
                 1 -> {
                     casilla.tag = "repaso"
                 }
@@ -208,7 +239,7 @@ class TableroFragment : Fragment() {
         datos.add(posicion1.toString())
         datos.add(posicion2.toString())
         datos.add(turnoGuardar.toString())
-        val preguntas = tipoPregunta.joinToString (",")
+        val preguntas = tipoPregunta.joinToString(",")
         datos.add(preguntas)
 
         return datos
@@ -252,8 +283,6 @@ class TableroFragment : Fragment() {
 
 
     }
-
-
 
 
 }

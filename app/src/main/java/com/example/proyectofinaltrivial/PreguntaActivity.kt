@@ -22,17 +22,20 @@ class PreguntaActivity : AppCompatActivity() {
         val pregunta = intent.getStringExtra("pregunta")
         val tipoPregunta = intent.getStringExtra("tipoPregunta")
 
-
+    Log.d("FragmentTest", "TipoPregunta: $tipoPregunta")
+        Log.d("FragmentTest", "Pregunta: $pregunta")
 
         enunciado.text = pregunta
         Log.d("FragmentTest", "TipoPregunta: $tipoPregunta")
 
         when (tipoPregunta) {
             "repaso" -> {
+                devolverResultado(false)
 
             }
 
             "palabra" -> {
+                devolverResultado(false)
             }
 
             "test" -> {
@@ -51,6 +54,7 @@ class PreguntaActivity : AppCompatActivity() {
             }
 
             "parejas" -> {
+                devolverResultado(false)
             }
 
         }
