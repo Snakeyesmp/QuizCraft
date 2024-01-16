@@ -1,365 +1,360 @@
 {
-    "minijuegos": [
+  "minijuegos": [
+    {
+      "preguntas": [
         {
-            "tipo": "repaso",
-            "preguntas": [
-                {
-                    "enunciado": "La capital de Francia es _____",
-                    
-                    "respuestaCorrecta": "París"
-                },
-                {
-                    "enunciado": "En el año ____ se independizó Estados Unidos?",
-                    
-                    "respuestaCorrecta": "1776"
-                },
-                {
-                    "enunciado": "El primer presidente de México fué ______ ______?",
-                    
-                    "respuestaCorrecta": "Benito Juárez"
-                },
-                {
-                    "enunciado": "En el año ____ cayó el Muro de Berlín?",
-                   
-                    "respuestaCorrecta": "1989"
-                },
-                {
-                    "enunciado": "La civilización que construyó las pirámides en Egipto fué la _______",
-                   
-                    "respuestaCorrecta": "Egipcia"
-                },
-                {
-                    "enunciado": "El año ____ se firmó la Declaración de Independencia de los Estados Unidos.",
-                    "respuestaCorrecta": "1776"
-                },
-                {
-                    "enunciado": "El líder de la Revolución Rusa fue ________ ________?",
-                    "respuestaCorrecta": "Vladimir Lenin"
-                },  
-                {
-                    "enunciado": "La civilización que construyó Chichén Itzá fue la _______",
-                    "respuestaCorrecta": "Maya"
-                },
-                {
-                    "enunciado": "El animal terrestre más rápido es el ________.",
-                    "respuestaCorrecta": "Guepardo"
-                },
-                {
-                    "enunciado": "El planeta más grande del sistema solar es ________.",
-                    "respuestaCorrecta": "Júpiter"
-                },
-                {
-                    "enunciado": "El escritor de 'Don Quijote de la Mancha' es ________.",
-                    "respuestaCorrecta": "Miguel de Cervantes"
-                },
-                {
-                    "enunciado": "La capital de Australia es ________.",
-                    "respuestaCorrecta": "Canberra"
-                }
-            ]
+          "enunciado": "La capital de Francia es _____",
+          "respuestaCorrecta": "París"
         },
         {
-            "tipo": "AdivinaPalabra",
-            "preguntas": [
-                {
-                    "enunciado": "Conjunto de normas que rigen a una nación.",
-                    "respuestaCorrecta": "constitución"
-                                    },
-                {
-                    "enunciado": "Documento que garantiza derechos y libertades fundamentales en Estados Unidos.",
-                    "respuestaCorrecta": "Declaración de Independencia"
-                                    },
-                {
-                    "enunciado": "País europeo cuya capital es Atenas.",
-                    "respuestaCorrecta": "Grecia"
-                            },
-                {
-                    "enunciado": "Sistema de gobierno en el que el poder está en manos de la nobleza.",
-                    "respuestaCorrecta": "aristocracia"
-                },
-                {
-                    "enunciado": "Ciencia que estudia los fósiles y la historia de la Tierra.",
-                    "respuestaCorrecta": "paleontología"
-                },
-                {
-                    "enunciado": "Continente donde se originó la civilización humana según muchos historiadores.",
-                    "respuestaCorrecta": "África"
-                },
-                {
-                    "enunciado": "Ciudad antigua conocida como la 'Ciudad de los Dioses', ubicada en México.",
-                    "respuestaCorrecta": "Teotihuacán"
-                },
-                {
-                    "enunciado": "Río que atraviesa la ciudad de Londres.",
-                    "respuestaCorrecta": "Támesis"
-                },
-                {
-                    "enunciado": "Evento histórico que marcó el fin de la Edad Media en Europa.",
-                    "respuestaCorrecta": "Renacimiento"
-                },
-                {
-                    "enunciado": "Montaña más alta del mundo, ubicada en la cordillera del Himalaya.",
-                    "respuestaCorrecta": "Everest"
-                },
-                {
-                    "enunciado": "Ciudad antigua conocida como la 'Ciudad de los Dioses', ubicada en México.",
-                    "respuestaCorrecta": "Teotihuacán"
-                },
-                {
-                    "enunciado": "Río que atraviesa la ciudad de Londres.",
-                    "respuestaCorrecta": "Támesis"
-                },
-                {
-                    "enunciado": "Evento histórico que marcó el fin de la Edad Media en Europa.",
-                    "respuestaCorrecta": "Renacimiento"
-                },
-                {
-                    "enunciado": "Montaña más alta del mundo, ubicada en la cordillera del Himalaya.",
-                    "respuestaCorrecta": "Everest"
-                }
-            ]
+          "enunciado": "En el año ____ se independizó Estados Unidos?",
+          "respuestaCorrecta": "1776"
         },
         {
-            "tipo": "Test",
-            "preguntas": [
-                {
-                    "enunciado": "¿Cuál fue la batalla que marcó el fin de la Guerra Civil estadounidense?",
-                    "opciones": [
-                        "Gettysburg",
-                        "Antietam",
-                        "Bull Run",
-                        "Appomattox"
-                    ],
-                    "respuestaCorrecta": "Appomattox"
-                },
-                {
-                    "enunciado": "¿En qué año se firmó el Tratado de Versalles, poniendo fin a la Primera Guerra Mundial?",
-                    "opciones": [
-                        "1917",
-                        "1918",
-                        "1919",
-                        "1920"
-                    ],
-                    "respuestaCorrecta": "1919"
-                },
-                {
-                    "enunciado": "¿Cuál fue el líder militar y político de la Revolución Cubana?",
-                    "opciones": [
-                        "Fulgencio Batista",
-                        "Che Guevara",
-                        "Fidel Castro",
-                        "Camilo Cienfuegos"
-                    ],
-                    "respuestaCorrecta": "Fidel Castro"
-                },
-                {
-                    "enunciado": "¿En qué año comenzó la Segunda Guerra Mundial?",
-                    "opciones": [
-                        "1936",
-                        "1939",
-                        "1941",
-                        "1945"
-                    ],
-                    "respuestaCorrecta": "1939"
-                },
-                {
-                    "enunciado": "¿Cuál fue la primera civilización en Mesopotamia?",
-                    "opciones": [
-                        "Babilonia",
-                        "Asiria",
-                        "Sumeria",
-                        "Acadia"
-                    ],
-                    "respuestaCorrecta": "Sumeria"
-                },
-                {
-                    "enunciado": "¿Quién fue el líder de la independencia de la India?",
-                    "opciones": [
-                        "Jawaharlal Nehru",
-                        "Mahatma Gandhi",
-                        "Subhas Chandra Bose",
-                        "Sardar Patel"
-                    ],
-                    "respuestaCorrecta": "Mahatma Gandhi"
-                },
-                {
-                    "enunciado": "¿En qué año se promulgó la Declaración de los Derechos Humanos?",
-                    "opciones": [
-                        "1945",
-                        "1948",
-                        "1951",
-                        "1954"
-                    ],
-                    "respuestaCorrecta": "1948"
-                },
-                {
-                    "enunciado": "¿Cuál fue el imperio gobernado por Justiniano I en el siglo VI?",
-                    "opciones": [
-                        "Imperio Romano",
-                        "Imperio Persa",
-                        "Imperio Bizantino",
-                        "Imperio Carolingio"
-                    ],
-                    "respuestaCorrecta": "Imperio Bizantino"
-                },
-                {
-                    "enunciado": "¿Quién fue el primer presidente de Sudáfrica después del apartheid?",
-                    "opciones": [
-                        "Nelson Mandela",
-                        "F. W. de Klerk",
-                        "Thabo Mbeki",
-                        "Cyril Ramaphosa"
-                    ],
-                    "respuestaCorrecta": "Nelson Mandela"
-                },
-                {
-                    "enunciado": "¿Cuál fue el evento que marcó el comienzo de la Revolución Rusa en 1917?",
-                    "opciones": [
-                        "Batalla de Stalingrado",
-                        "Asesinato de Rasputín",
-                        "Marcha de las Mujeres",
-                        "Revolución de Octubre"
-                    ],
-                    "respuestaCorrecta": "Revolución de Octubre"
-                }
-            ]
+          "enunciado": "El primer presidente de México fué ______ ______?",
+          "respuestaCorrecta": "Benito Juárez"
         },
         {
-            "tipo":"Parejas",
-            "preguntas":[
-                {
-                    "elemento1": "Capital de Francia",
-                    "elemento2": "París"
-                },
-                {
-                    "elemento1": "Descubridor de América",
-                    "elemento2": "Cristóbal Colón"
-                },
-                {
-                    "elemento1": "Río más largo del mundo",
-                    "elemento2": "Nilo"
-                },
-                {
-                    "elemento1": "Montaña más alta del mundo",
-                    "elemento2": "Everest"
-                },
-                {
-                    "elemento1": "Guerra entre Atenas y Esparta en la antigua Grecia",
-                    "elemento2": "Guerra del Peloponeso"
-                },
-                {
-                    "elemento1": "Ciudad conocida como la 'Ciudad Eterna'",
-                    "elemento2": "Roma"
-                },
-                {
-                    "elemento1": "Inventor de la bombilla eléctrica",
-                    "elemento2": "Thomas Edison"
-                },
-                {
-                    "elemento1": "Desierto más grande del mundo",
-                    "elemento2": "Sahara"
-                },
-                {
-                    "elemento1": "País con la población más grande del mundo",
-                    "elemento2": "China"
-                },
-                {
-                    "elemento1": "Conflicto bélico que tuvo lugar entre 1939 y 1945",
-                    "elemento2": "Segunda Guerra Mundial"
-                },
-                {
-                    "elemento1": "Ciudad donde se encuentra la Torre Eiffel",
-                    "elemento2": "París"
-                },
-                {
-                    "elemento1": "Descubridor de la teoría de la relatividad",
-                    "elemento2": "Albert Einstein"
-                },
-                {
-                    "elemento1": "Río que atraviesa la ciudad de Nueva York",
-                    "elemento2": "Hudson"
-                },
-                {
-                    "elemento1": "País donde se encuentra el Taj Mahal",
-                    "elemento2": "India"
-                },
-                {
-                    "elemento1": "Evento histórico que marcó el inicio de la Edad Moderna en Europa",
-                    "elemento2": "Caída del Imperio Romano de Occidente"
-                },
-                {
-                    "elemento1": "Albert Einstein",
-                    "elemento2": "Físico teórico"
-                },
-                {
-                    "elemento1": "Leonardo da Vinci",
-                    "elemento2": "Artista e inventor"
-                },
-                {
-                    "elemento1": "Marie Curie",
-                    "elemento2": "Científica"
-                },
-                {
-                    "elemento1": "Nelson Mandela",
-                    "elemento2": "Político y activista"
-                },
-                {
-                    "elemento1": "Ada Lovelace",
-                    "elemento2": "Matemática y escritora"
-                },
-                {
-                    "elemento1": "Mahatma Gandhi",
-                    "elemento2": "Líder político y pacifista"
-                },
-                {
-                    "elemento1": "Isaac Newton",
-                    "elemento2": "Científico y matemático"
-                },
-                {
-                    "elemento1": "Cleopatra",
-                    "elemento2": "Reina de Egipto"
-                },
-                {
-                    "elemento1": "Wolfgang Amadeus Mozart",
-                    "elemento2": "Compositor y músico"
-                },
-                {
-                    "elemento1": "Marco Polo",
-                    "elemento2": "Explorador y comerciante"
-                },
-                {
-                    "elemento1": "Joan of Arc",
-                    "elemento2": "Heroína militar"
-                },
-                {
-                    "elemento1": "Charles Darwin",
-                    "elemento2": "Naturalista y biólogo"
-                },
-                {
-                    "elemento1": "Galileo Galilei",
-                    "elemento2": "Científico y astrónomo"
-                },
-                {
-                    "elemento1": "Queen Elizabeth I",
-                    "elemento2": "Reina de Inglaterra"
-                },
-                {
-                    "elemento1": "Vincent van Gogh",
-                    "elemento2": "Pintor postimpresionista"
-                },
-                {
-                    "elemento1": "Alexander the Great",
-                    "elemento2": "Rey y conquistador"
-                },
-                {
-                    "elemento1": "Marie Antoinette",
-                    "elemento2": "Reina de Francia"
-                },
-                {
-                    "elemento1": "Alan Turing",
-                    "elemento2": "Matemático y científico de la computación"
-                }
-            ]
+          "enunciado": "En el año ____ cayó el Muro de Berlín?",
+          "respuestaCorrecta": "1989"
+        },
+        {
+          "enunciado": "La civilización que construyó las pirámides en Egipto fué la _______",
+          "respuestaCorrecta": "Egipcia"
+        },
+        {
+          "enunciado": "El año ____ se firmó la Declaración de Independencia de los Estados Unidos.",
+          "respuestaCorrecta": "1776"
+        },
+        {
+          "enunciado": "El líder de la Revolución Rusa fue ________ ________?",
+          "respuestaCorrecta": "Vladimir Lenin"
+        },
+        {
+          "enunciado": "La civilización que construyó Chichén Itzá fue la _______",
+          "respuestaCorrecta": "Maya"
+        },
+        {
+          "enunciado": "El animal terrestre más rápido es el ________.",
+          "respuestaCorrecta": "Guepardo"
+        },
+        {
+          "enunciado": "El planeta más grande del sistema solar es ________.",
+          "respuestaCorrecta": "Júpiter"
+        },
+        {
+          "enunciado": "El escritor de 'Don Quijote de la Mancha' es ________.",
+          "respuestaCorrecta": "Miguel de Cervantes"
+        },
+        {
+          "enunciado": "La capital de Australia es ________.",
+          "respuestaCorrecta": "Canberra"
         }
-    ]
+      ],
+      "tipo": "repaso"
+    },
+    {
+      "preguntas": [
+        {
+          "enunciado": "Conjunto de normas que rigen a una nación.",
+          "respuestaCorrecta": "constitución"
+        },
+        {
+          "enunciado": "Documento que garantiza derechos y libertades fundamentales en Estados Unidos.",
+          "respuestaCorrecta": "Declaración de Independencia"
+        },
+        {
+          "enunciado": "País europeo cuya capital es Atenas.",
+          "respuestaCorrecta": "Grecia"
+        },
+        {
+          "enunciado": "Sistema de gobierno en el que el poder está en manos de la nobleza.",
+          "respuestaCorrecta": "aristocracia"
+        },
+        {
+          "enunciado": "Ciencia que estudia los fósiles y la historia de la Tierra.",
+          "respuestaCorrecta": "paleontología"
+        },
+        {
+          "enunciado": "Continente donde se originó la civilización humana según muchos historiadores.",
+          "respuestaCorrecta": "África"
+        },
+        {
+          "enunciado": "Ciudad antigua conocida como la 'Ciudad de los Dioses', ubicada en México.",
+          "respuestaCorrecta": "Teotihuacán"
+        },
+        {
+          "enunciado": "Río que atraviesa la ciudad de Londres.",
+          "respuestaCorrecta": "Támesis"
+        },
+        {
+          "enunciado": "Evento histórico que marcó el fin de la Edad Media en Europa.",
+          "respuestaCorrecta": "Renacimiento"
+        },
+        {
+          "enunciado": "Montaña más alta del mundo, ubicada en la cordillera del Himalaya.",
+          "respuestaCorrecta": "Everest"
+        },
+        {
+          "enunciado": "Ciudad antigua conocida como la 'Ciudad de los Dioses', ubicada en México.",
+          "respuestaCorrecta": "Teotihuacán"
+        },
+        {
+          "enunciado": "Río que atraviesa la ciudad de Londres.",
+          "respuestaCorrecta": "Támesis"
+        },
+        {
+          "enunciado": "Evento histórico que marcó el fin de la Edad Media en Europa.",
+          "respuestaCorrecta": "Renacimiento"
+        },
+        {
+          "enunciado": "Montaña más alta del mundo, ubicada en la cordillera del Himalaya.",
+          "respuestaCorrecta": "Everest"
+        }
+      ],
+      "tipo": "palabra"
+    },
+    {
+      "preguntas": [
+        {
+          "enunciado": "¿Cuál fue la batalla que marcó el fin de la Guerra Civil estadounidense?",
+          "opciones": [
+            "Gettysburg",
+            "Antietam",
+            "Bull Run",
+            "Appomattox"
+          ],
+          "respuestaCorrecta": "Appomattox"
+        },
+        {
+          "enunciado": "¿En qué año se firmó el Tratado de Versalles, poniendo fin a la Primera Guerra Mundial?",
+          "opciones": [
+            "1917",
+            "1918",
+            "1919",
+            "1920"
+          ],
+          "respuestaCorrecta": "1919"
+        },
+        {
+          "enunciado": "¿Cuál fue el líder militar y político de la Revolución Cubana?",
+          "opciones": [
+            "Fulgencio Batista",
+            "Che Guevara",
+            "Fidel Castro",
+            "Camilo Cienfuegos"
+          ],
+          "respuestaCorrecta": "Fidel Castro"
+        },
+        {
+          "enunciado": "¿En qué año comenzó la Segunda Guerra Mundial?",
+          "opciones": [
+            "1936",
+            "1939",
+            "1941",
+            "1945"
+          ],
+          "respuestaCorrecta": "1939"
+        },
+        {
+          "enunciado": "¿Cuál fue la primera civilización en Mesopotamia?",
+          "opciones": [
+            "Babilonia",
+            "Asiria",
+            "Sumeria",
+            "Acadia"
+          ],
+          "respuestaCorrecta": "Sumeria"
+        },
+        {
+          "enunciado": "¿Quién fue el líder de la independencia de la India?",
+          "opciones": [
+            "Jawaharlal Nehru",
+            "Mahatma Gandhi",
+            "Subhas Chandra Bose",
+            "Sardar Patel"
+          ],
+          "respuestaCorrecta": "Mahatma Gandhi"
+        },
+        {
+          "enunciado": "¿En qué año se promulgó la Declaración de los Derechos Humanos?",
+          "opciones": [
+            "1945",
+            "1948",
+            "1951",
+            "1954"
+          ],
+          "respuestaCorrecta": "1948"
+        },
+        {
+          "enunciado": "¿Cuál fue el imperio gobernado por Justiniano I en el siglo VI?",
+          "opciones": [
+            "Imperio Romano",
+            "Imperio Persa",
+            "Imperio Bizantino",
+            "Imperio Carolingio"
+          ],
+          "respuestaCorrecta": "Imperio Bizantino"
+        },
+        {
+          "enunciado": "¿Quién fue el primer presidente de Sudáfrica después del apartheid?",
+          "opciones": [
+            "Nelson Mandela",
+            "F. W. de Klerk",
+            "Thabo Mbeki",
+            "Cyril Ramaphosa"
+          ],
+          "respuestaCorrecta": "Nelson Mandela"
+        },
+        {
+          "enunciado": "¿Cuál fue el evento que marcó el comienzo de la Revolución Rusa en 1917?",
+          "opciones": [
+            "Batalla de Stalingrado",
+            "Asesinato de Rasputín",
+            "Marcha de las Mujeres",
+            "Revolución de Octubre"
+          ],
+          "respuestaCorrecta": "Revolución de Octubre"
+        }
+      ],
+      "tipo": "test"
+    },
+    {
+      "preguntas": [
+        {
+          "enunciado": "Capital de Francia",
+          "respuestaCorrecta": "París"
+        },
+        {
+          "enunciado": "Descubridor de América",
+          "respuestaCorrecta": "Cristóbal Colón"
+        },
+        {
+          "enunciado": "Río más largo del mundo",
+          "respuestaCorrecta": "Nilo"
+        },
+        {
+          "enunciado": "Montaña más alta del mundo",
+          "respuestaCorrecta": "Everest"
+        },
+        {
+          "enunciado": "Guerra entre Atenas y Esparta en la antigua Grecia",
+          "respuestaCorrecta": "Guerra del Peloponeso"
+        },
+        {
+          "enunciado": "Ciudad conocida como la 'Ciudad Eterna'",
+          "respuestaCorrecta": "Roma"
+        },
+        {
+          "enunciado": "Inventor de la bombilla eléctrica",
+          "respuestaCorrecta": "Thomas Edison"
+        },
+        {
+          "enunciado": "Desierto más grande del mundo",
+          "respuestaCorrecta": "Sahara"
+        },
+        {
+          "enunciado": "País con la población más grande del mundo",
+          "respuestaCorrecta": "China"
+        },
+        {
+          "enunciado": "Conflicto bélico que tuvo lugar entre 1939 y 1945",
+          "respuestaCorrecta": "Segunda Guerra Mundial"
+        },
+        {
+          "enunciado": "Ciudad donde se encuentra la Torre Eiffel",
+          "respuestaCorrecta": "París"
+        },
+        {
+          "enunciado": "Descubridor de la teoría de la relatividad",
+          "respuestaCorrecta": "Albert Einstein"
+        },
+        {
+          "enunciado": "Río que atraviesa la ciudad de Nueva York",
+          "respuestaCorrecta": "Hudson"
+        },
+        {
+          "enunciado": "País donde se encuentra el Taj Mahal",
+          "respuestaCorrecta": "India"
+        },
+        {
+          "enunciado": "Evento histórico que marcó el inicio de la Edad Moderna en Europa",
+          "respuestaCorrecta": "Caída del Imperio Romano de Occidente"
+        },
+        {
+          "enunciado": "Albert Einstein",
+          "respuestaCorrecta": "Físico teórico"
+        },
+        {
+          "enunciado": "Leonardo da Vinci",
+          "respuestaCorrecta": "Artista e inventor"
+        },
+        {
+          "enunciado": "Marie Curie",
+          "respuestaCorrecta": "Científica"
+        },
+        {
+          "enunciado": "Nelson Mandela",
+          "respuestaCorrecta": "Político y activista"
+        },
+        {
+          "enunciado": "Ada Lovelace",
+          "respuestaCorrecta": "Matemática y escritora"
+        },
+        {
+          "enunciado": "Mahatma Gandhi",
+          "respuestaCorrecta": "Líder político y pacifista"
+        },
+        {
+          "enunciado": "Isaac Newton",
+          "respuestaCorrecta": "Científico y matemático"
+        },
+        {
+          "enunciado": "Cleopatra",
+          "respuestaCorrecta": "Reina de Egipto"
+        },
+        {
+          "enunciado": "Wolfgang Amadeus Mozart",
+          "respuestaCorrecta": "Compositor y músico"
+        },
+        {
+          "enunciado": "Marco Polo",
+          "respuestaCorrecta": "Explorador y comerciante"
+        },
+        {
+          "enunciado": "Joan of Arc",
+          "respuestaCorrecta": "Heroína militar"
+        },
+        {
+          "enunciado": "Charles Darwin",
+          "respuestaCorrecta": "Naturalista y biólogo"
+        },
+        {
+          "enunciado": "Galileo Galilei",
+          "respuestaCorrecta": "Científico y astrónomo"
+        },
+        {
+          "enunciado": "Queen Elizabeth I",
+          "respuestaCorrecta": "Reina de Inglaterra"
+        },
+        {
+          "enunciado": "Vincent van Gogh",
+          "respuestaCorrecta": "Pintor postimpresionista"
+        },
+        {
+          "enunciado": "Alexander the Great",
+          "respuestaCorrecta": "Rey y conquistador"
+        },
+        {
+          "enunciado": "Marie Antoinette",
+          "respuestaCorrecta": "Reina de Francia"
+        },
+        {
+          "enunciado": "Alan Turing",
+          "respuestaCorrecta": "Matemático y científico de la computación"
+        }
+      ],
+      "tipo": "parejas"
+    }
+  ]
 }
