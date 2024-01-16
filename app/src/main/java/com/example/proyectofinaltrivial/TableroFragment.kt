@@ -117,10 +117,12 @@ class TableroFragment : Fragment() {
         }
     }
 
-    private fun mostrarPregunta(
-        pregunta: Pregunta?,
+    fun mostrarPregunta(
+        pregunta: Any?,
         tipoPregunta: String, callback: (Boolean) -> Unit, registry: ActivityResultRegistry
     ) {
+
+        var pregunta = pregunta as Pregunta? // CASTEO PARA LA FUNCION QUE DEVUELVE VARIOS TIPOS
         val startForResult =
             registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == AppCompatActivity.RESULT_OK) {
@@ -131,7 +133,6 @@ class TableroFragment : Fragment() {
 
                 }
             }
-
 
         val intent = Intent(context, PreguntaActivity::class.java)
         intent.putExtra("tipoPregunta", tipoPregunta)
