@@ -1,5 +1,7 @@
 import android.util.Log
+import com.example.proyectofinaltrivial.utils.Parejas
 import com.example.proyectofinaltrivial.utils.Pregunta
+import com.example.proyectofinaltrivial.utils.PreguntaParejas
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -8,15 +10,18 @@ import com.google.firebase.database.ValueEventListener
 class Consultas {
 
 
+    /**
+     * Devuelve distintos tipo de objeto, según la pregunta que salga
+     */
     fun obtenerPreguntaPorTipo(
         tipoPregunta: String,
-        callback: (Pregunta?) -> Unit // Callback para manejar la devolución de la pregunta
+        callback: (Any?) -> Unit // Callback para manejar la devolución de la pregunta
     ) {
         val databaseRef = FirebaseDatabase.getInstance().reference.child("minijuegos")
 
         databaseRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                var preguntaObj : Pregunta? = null
+                var preguntaObj: Any? = null
 
                 val preguntas = mutableListOf<DataSnapshot>()
 
@@ -49,10 +54,23 @@ class Consultas {
 
                         }
                     }
-                     preguntaObj = Pregunta(enunciado, respuestaCorrecta, opciones)
+                    preguntaObj = Pregunta(enunciado, respuestaCorrecta, opciones)
 
-                } else {
-                     preguntaObj = Pregunta(enunciado, respuestaCorrecta)
+                } else if (tipoPregunta == "parejas") {
+
+                    val listaParejas = ArrayList<Map<String, String>>()
+
+                    for (parejaSnapshot in preguntaSnapshot.children) {
+                        val elemento1 = parejaSnapshot.child("elemento1").getValue(String::class.java)
+                        val elemento2 = parejaSnapshot.child("elemento2").getValue(String::class.java)
+                        val pareja = mapOf("elemento1" to elemento1!!, "elemento2" to elemento2!!)
+                        listaParejas.add(pareja)
+                    }
+
+                    preguntaObj = Parejas(listaParejas)
+
+                }else {
+                    preguntaObj = Pregunta(enunciado, respuestaCorrecta)
                 }
 
                 // Devuelve la pregunta mediante el callback

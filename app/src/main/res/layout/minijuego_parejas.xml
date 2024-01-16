@@ -2,69 +2,64 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingTop="16dp"
+    android:paddingRight="16dp"
+    android:paddingBottom="16dp">
 
-    <!-- Botones a la izquierda -->
-    <LinearLayout
-        android:id="@+id/layoutLeft"
-        android:layout_width="match_parent"
+    <!-- Botones en el lado izquierdo -->
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentStart="true"
-        android:padding="16dp">
+        android:text="Botón 1"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"/>
 
-        <!-- Botones a la izquierda -->
-        <Button
-            android:id="@+id/buttonLeft1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onLeftButtonClick"
-            android:text="Left 1" />
-
-        <Button
-            android:id="@+id/buttonLeft2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onLeftButtonClick"
-            android:text="Left 2" />
-
-        <Button
-            android:id="@+id/buttonLeft3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onLeftButtonClick"
-            android:text="Left 3" />
-    </LinearLayout>
-
-    <!-- Botones a la derecha -->
-    <LinearLayout
-        android:id="@+id/layoutRight"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentEnd="true"
-        android:padding="16dp">
+        android:text="Botón 2"
+        android:layout_below="@+id/button1"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="16dp"/>
 
-        <Button
-            android:id="@+id/buttonRight1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onRightButtonClick"
-            android:text="Right 1" />
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Botón 3"
+        android:layout_below="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="16dp"/>
 
-        <Button
-            android:id="@+id/buttonRight2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onRightButtonClick"
-            android:text="Right 2" />
+    <!-- Botones en el lado derecho -->
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Botón 4"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
 
-        <Button
-            android:id="@+id/buttonRight3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="onRightButtonClick"
-            android:text="Right 3" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Botón 5"
+        android:layout_below="@+id/button4"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Botón 6"
+        android:layout_below="@+id/button5"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"/>
 
 </RelativeLayout>
