@@ -12,17 +12,25 @@ import android.widget.GridLayout
 import androidx.activity.result.ActivityResultRegistry
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.proyectofinaltrivial.utils.Pregunta
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import androidx.appcompat.app.AlertDialog
+import com.example.proyectofinaltrivial.main_package.MainActivity
+
 
 class TableroFragment : Fragment() {
     private lateinit var consulta: Consultas
     private lateinit var viewModel: SharedViewModel
-    var pos_jugador1: Int = 0
-    var pos_jugador2: Int = 0
-    var turno: Boolean = true
+    private var pos_jugador1: Int = 0
+    private var pos_jugador2: Int = 0
+    private var turno: Boolean = true
+    private var aciertosJugador1: Int = 0
+    private var aciertosJugador2: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         consulta = Consultas()
@@ -46,7 +54,7 @@ class TableroFragment : Fragment() {
             pos_jugador1 += posicion
             // Control del límite máximo de la posición del jugador 1
             if (pos_jugador1 >= 20) {
-                pos_jugador1 = 20
+                pos_jugador1 = 0
             }
             var jugador1: View
 
@@ -54,12 +62,11 @@ class TableroFragment : Fragment() {
             for (i in 0 until pos_jugador1) {
                 casilla = tableroGrid.getChildAt(i)
                 jugador1 = casilla.findViewById(R.id.jugador1)
-                jugador1.background = context?.getDrawable(R.color.colorJugador1)
+                jugador1.background = ColorDrawable(Color.TRANSPARENT)
             }
-            jugador1 = casilla.findViewById<View>(R.id.jugador1)
-            jugador1.background = context?.getDrawable(R.color.colorJugador1)
-            casilla = tableroGrid.getChildAt(pos_jugador1)
+
             jugador1 = casilla.findViewById(R.id.jugador1)
+            jugador1.background = ColorDrawable(Color.TRANSPARENT)
             jugador1.background = context?.getDrawable(R.drawable.jugador1)
 
             consulta.obtenerPreguntaPorTipo(
@@ -68,6 +75,20 @@ class TableroFragment : Fragment() {
                 mostrarPregunta(pregunta, casilla.tag.toString(), { respuesta ->
                     Log.d("Consult", "Respuesta: $respuesta")
                     if (respuesta) {
+                        aciertosJugador1++
+                        if (aciertosJugador1 == 5) {
+                            AlertDialog.Builder(requireContext())
+                                .setTitle("¡Ganador!")
+                                .setMessage("El jugador 1 ha ganado")
+                                .setPositiveButton("Aceptar") { dialog, which ->
+                                    val intent = Intent(context, MainActivity::class.java)
+                                    startActivity(intent)
+                                    dialog.dismiss()
+                                }
+                                .show()
+                            //reiniciar partida
+                        }
+                        // TODO Solicitar pregunta final
                         turno = true
                         viewModel.cambiarTurno(turno)
                     } else {
@@ -84,7 +105,7 @@ class TableroFragment : Fragment() {
             pos_jugador2 += posicion
             // Control del límite máximo de la posición del jugador 2
             if (pos_jugador2 >= 20) {
-                pos_jugador2 = 20
+                pos_jugador2 = 0
             }
             var jugador2: View
 
@@ -92,10 +113,10 @@ class TableroFragment : Fragment() {
             for (i in 0 until pos_jugador2) {
                 casilla = tableroGrid.getChildAt(i)
                 jugador2 = casilla.findViewById(R.id.jugador2)
-                jugador2.background = context?.getDrawable(R.color.colorJugador2)
+                jugador2.background = ColorDrawable(Color.TRANSPARENT)
             }
             jugador2 = casilla.findViewById(R.id.jugador2)
-            jugador2.background = context?.getDrawable(R.color.colorJugador2)
+            jugador2.background = ColorDrawable(Color.TRANSPARENT)
             casilla = tableroGrid.getChildAt(pos_jugador2)
             jugador2 = casilla.findViewById(R.id.jugador2)
             jugador2.background = context?.getDrawable(R.drawable.jugador2)
@@ -104,6 +125,19 @@ class TableroFragment : Fragment() {
             ) { pregunta ->
                 mostrarPregunta(pregunta, casilla.tag.toString(), { respuesta ->
                     if (respuesta) {
+                        aciertosJugador2++
+                        if (aciertosJugador2 == 5) {
+                            AlertDialog.Builder(requireContext())
+                                .setTitle("¡Ganador!")
+                                .setMessage("El jugador 2 ha ganado")
+                                .setPositiveButton("Aceptar") { dialog, which ->
+                                    val intent = Intent(context, MainActivity::class.java)
+                                    startActivity(intent)
+                                    dialog.dismiss()
+                                }
+                                .show()
+                            //reiniciar partida
+                        }
                         turno = false
                         viewModel.cambiarTurno(turno)
                     } else {
@@ -150,10 +184,11 @@ class TableroFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_tablero, container, false)
         val tableroGrid: GridLayout = view.findViewById(R.id.tableroGrid)
 
-        // Agregar las casillas al GridLayout
-        val totalCasillas = 21
-        for (i in 0 until totalCasillas) {
-            // Crea las casillas y las añade al GridLayout
+        // Definir la cantidad de tipos de casillas
+        val tiposCasillas = listOf("repaso", "palabra", "test", "parejas")
+
+
+        for (i in 0 until 21) {
             val casilla = crearCasilla(requireContext(), i)
             val params = GridLayout.LayoutParams()
 
@@ -163,38 +198,36 @@ class TableroFragment : Fragment() {
             params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
             params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
 
-
-            // TODO Cambair random a 4
-            when ((1..4).random()) {
-                1 -> {
+            // Distribuir las casillas de manera equitativa por cada tipo
+            when (tiposCasillas[i % tiposCasillas.size]) {
+                "repaso" -> {
                     casilla.tag = "repaso"
+                    casilla.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.repaso, null))
                 }
 
-                2 -> {
+                "palabra" -> {
                     casilla.tag = "palabra"
+                    casilla.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.palabra, null))
                 }
 
-                3 -> {
+                "test" -> {
                     casilla.tag = "test"
+                    casilla.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.test, null))
                 }
 
-                4 -> {
+                "parejas" -> {
                     casilla.tag = "parejas"
+                    casilla.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.parejas, null))
                 }
+            }
 
-            }
-            if (i == 0) {
-                casilla.tag = "inicio"
-            }
-            if (i == 20) {
-                casilla.tag = "preguntaFinal"
-            }
             casilla.layoutParams = params
             tableroGrid.addView(casilla)
         }
 
         return view
     }
+
 
     private fun crearCasilla(context: Context, id: Int): View {
         val casillaView = LayoutInflater.from(context).inflate(R.layout.layout_casilla, null)
@@ -213,11 +246,7 @@ class TableroFragment : Fragment() {
             jugador1.background = context.getDrawable(R.drawable.jugador1)
             jugador2.background = context.getDrawable(R.drawable.jugador2)
 
-        } else if (id == 20) {
-            jugador1.background = context.getDrawable(R.drawable.meta)
-            jugador2.background = context.getDrawable(R.drawable.meta)
         }
-
         return casillaView
     }
 
@@ -268,7 +297,6 @@ class TableroFragment : Fragment() {
         for (i in 0 until pos_jugador1) {
             casilla = tablero.getChildAt(i)
             jugador1 = casilla.findViewById(R.id.jugador1)
-            jugador1.background = context?.getDrawable(R.color.colorJugador1)
             if (i == pos_jugador1 - 1) {
                 jugador1.background = context?.getDrawable(R.drawable.jugador1)
             }
@@ -276,7 +304,6 @@ class TableroFragment : Fragment() {
         for (i in 0 until pos_jugador2) {
             casilla = tablero.getChildAt(i)
             jugador2 = casilla.findViewById(R.id.jugador2)
-            jugador2.background = context?.getDrawable(R.color.colorJugador2)
             if (i == pos_jugador2 - 1) {
                 jugador2.background = context?.getDrawable(R.drawable.jugador2)
             }

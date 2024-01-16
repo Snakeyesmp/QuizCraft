@@ -36,10 +36,12 @@ class JuegoFragment : Fragment() {
         // Inicialización del ViewModel compartido
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
 
+
+
         // Obtener referencia al botón de avance y asignar un Listener
         val botonAvanzar: ImageView = view.findViewById(R.id.botonAvanzar)
-        botonAvanzar.setOnClickListener {
 
+        botonAvanzar.setOnClickListener {
             val sharedPref = activity?.getSharedPreferences("Prefs_File", 0)
             val vibration = sharedPref?.getBoolean(MainActivity.VIBRATION_MODE, true)
             if (vibration == true) {
