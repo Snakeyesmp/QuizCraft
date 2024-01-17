@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.example.proyectofinaltrivial.PreguntaActivity
 import com.example.proyectofinaltrivial.R
 import com.example.proyectofinaltrivial.utils.Parejas
 import com.example.proyectofinaltrivial.utils.PreguntaParejas
@@ -23,8 +24,8 @@ class FragmentParejas : Fragment() {
     private var selectedButtonLeft: Button? = null
     private var selectedButtonRight: Button? = null
 
-    private val consultas = Consultas()
-
+    private var parejas: String = ""
+    private var intentos = 3
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,11 +40,12 @@ class FragmentParejas : Fragment() {
         buttonRight3 = view.findViewById(R.id.button6)
 
         loadParejasData()
+        setButtonListeners()
 
         return view
     }
 
-   /* private fun setButtonListeners() {
+    private fun setButtonListeners() {
         buttonLeft1.setOnClickListener { onLeftButtonClick(buttonLeft1) }
         buttonLeft2.setOnClickListener { onLeftButtonClick(buttonLeft2) }
         buttonLeft3.setOnClickListener { onLeftButtonClick(buttonLeft3) }
@@ -54,24 +56,85 @@ class FragmentParejas : Fragment() {
     }
 
     private fun onLeftButtonClick(button: Button) {
+        parejas=""
         selectedButtonLeft?.isSelected = false
         selectedButtonLeft = button
         button.isSelected = true
-        checkForMatch()
+        parejas += button.text.toString()+"_"
     }
 
     private fun onRightButtonClick(button: Button) {
         selectedButtonRight?.isSelected = false
         selectedButtonRight = button
         button.isSelected = true
-        checkForMatch()
+        parejas += button.text.toString()
+        checkForMatch(parejas)
     }
-*/
 
+    private fun checkForMatch(pareja: String) {
+        val pareja1 = arguments?.getString("pregunta_0")
+        val pareja2 = arguments?.getString("pregunta_1")
+        val pareja3 = arguments?.getString("pregunta_2")
+
+        if (pareja == pareja1 || pareja == pareja2 || pareja == pareja3) {
+            selectedButtonLeft?.isEnabled = false
+            selectedButtonRight?.isEnabled = false
+            selectedButtonLeft?.isSelected = false
+            selectedButtonRight?.isSelected = false
+            selectedButtonLeft = null
+            selectedButtonRight = null
+            parejas = ""
+            // Check if all buttons are disabled
+            if (isCheckAllButtonsDisabled()) {
+                val preguntaActivity = activity as? PreguntaActivity
+                preguntaActivity?.devolverResultado(true)
+            }
+
+
+        } else {
+            // Enable all buttons
+            enableAllButtons()
+
+            selectedButtonLeft?.isSelected = true
+            selectedButtonRight?.isSelected = true
+            selectedButtonLeft = null
+            selectedButtonRight = null
+            parejas = ""
+            intentos--
+            if (intentos == 0) {
+                val preguntaActivity = activity as? PreguntaActivity
+                preguntaActivity?.devolverResultado(false)
+            }
+        }
+    }
+    private fun isCheckAllButtonsDisabled(): Boolean {
+        return !buttonLeft1.isEnabled && !buttonLeft2.isEnabled && !buttonLeft3.isEnabled && !buttonRight1.isEnabled && !buttonRight2.isEnabled && !buttonRight3.isEnabled
+    }
+    private fun enableAllButtons() {
+        buttonLeft1.isEnabled = true
+        buttonLeft2.isEnabled = true
+        buttonLeft3.isEnabled = true
+        buttonRight1.isEnabled = true
+        buttonRight2.isEnabled = true
+        buttonRight3.isEnabled = true
+    }
 
 
 
     private fun loadParejasData() {
 
+        val pregunta0 = arguments?.getString("pregunta_0")
+        val pregunta1 = arguments?.getString("pregunta_1")
+        val pregunta2 = arguments?.getString("pregunta_2")
+
+        // Pareja 1
+        buttonLeft1.text = pregunta0?.split("_")?.get(0) ?: ""
+        buttonRight3.text = pregunta0?.split("_")?.get(1) ?: ""
+        // Pareja 2
+        buttonLeft3.text = pregunta1?.split("_")?.get(0) ?: ""
+        buttonRight2.text = pregunta1?.split("_")?.get(1) ?: ""
+        // Pareja 3
+        buttonLeft2.text = pregunta2?.split("_")?.get(0) ?: ""
+        buttonRight1.text = pregunta2?.split("_")?.get(1) ?: ""
     }
 }

@@ -253,7 +253,7 @@ class TableroFragment : Fragment() {
 
 
             // Distribuir las casillas de manera equitativa por cada tipo tiposCasillas[i % tiposCasillas.size]
-            when ("parejas") {
+            when (tiposCasillas[i % tiposCasillas.size]) {
 
                 "repaso" -> {
                     casilla.tag = "repaso"
