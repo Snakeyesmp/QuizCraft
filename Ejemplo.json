@@ -3,7 +3,7 @@
     {
       "preguntas": [
         {
-          "enunciado": "La capital de Francia es _____",
+          "enunciado": "La respuestaCorrecta de Francia es _____",
           "respuestaCorrecta": "París"
         },
         {
@@ -47,7 +47,7 @@
           "respuestaCorrecta": "Miguel de Cervantes"
         },
         {
-          "enunciado": "La capital de Australia es ________.",
+          "enunciado": "La respuestaCorrecta de Australia es ________.",
           "respuestaCorrecta": "Canberra"
         }
       ],
@@ -64,7 +64,7 @@
           "respuestaCorrecta": "Declaración de Independencia"
         },
         {
-          "enunciado": "País europeo cuya capital es Atenas.",
+          "enunciado": "País europeo cuya respuestaCorrecta es Atenas.",
           "respuestaCorrecta": "Grecia"
         },
         {
@@ -219,141 +219,88 @@
       ],
       "tipo": "test"
     },
-    {
-      "preguntas": [
-        {
-          "enunciado": "Capital de Francia",
-          "respuestaCorrecta": "París"
-        },
-        {
-          "enunciado": "Descubridor de América",
-          "respuestaCorrecta": "Cristóbal Colón"
-        },
-        {
-          "enunciado": "Río más largo del mundo",
-          "respuestaCorrecta": "Nilo"
-        },
-        {
-          "enunciado": "Montaña más alta del mundo",
-          "respuestaCorrecta": "Everest"
-        },
-        {
-          "enunciado": "Guerra entre Atenas y Esparta en la antigua Grecia",
-          "respuestaCorrecta": "Guerra del Peloponeso"
-        },
-        {
-          "enunciado": "Ciudad conocida como la 'Ciudad Eterna'",
-          "respuestaCorrecta": "Roma"
-        },
-        {
-          "enunciado": "Inventor de la bombilla eléctrica",
-          "respuestaCorrecta": "Thomas Edison"
-        },
-        {
-          "enunciado": "Desierto más grande del mundo",
-          "respuestaCorrecta": "Sahara"
-        },
-        {
-          "enunciado": "País con la población más grande del mundo",
-          "respuestaCorrecta": "China"
-        },
-        {
-          "enunciado": "Conflicto bélico que tuvo lugar entre 1939 y 1945",
-          "respuestaCorrecta": "Segunda Guerra Mundial"
-        },
-        {
-          "enunciado": "Ciudad donde se encuentra la Torre Eiffel",
-          "respuestaCorrecta": "París"
-        },
-        {
-          "enunciado": "Descubridor de la teoría de la relatividad",
-          "respuestaCorrecta": "Albert Einstein"
-        },
-        {
-          "enunciado": "Río que atraviesa la ciudad de Nueva York",
-          "respuestaCorrecta": "Hudson"
-        },
-        {
-          "enunciado": "País donde se encuentra el Taj Mahal",
-          "respuestaCorrecta": "India"
-        },
-        {
-          "enunciado": "Evento histórico que marcó el inicio de la Edad Moderna en Europa",
-          "respuestaCorrecta": "Caída del Imperio Romano de Occidente"
-        },
-        {
-          "enunciado": "Albert Einstein",
-          "respuestaCorrecta": "Físico teórico"
-        },
-        {
-          "enunciado": "Leonardo da Vinci",
-          "respuestaCorrecta": "Artista e inventor"
-        },
-        {
-          "enunciado": "Marie Curie",
-          "respuestaCorrecta": "Científica"
-        },
-        {
-          "enunciado": "Nelson Mandela",
-          "respuestaCorrecta": "Político y activista"
-        },
-        {
-          "enunciado": "Ada Lovelace",
-          "respuestaCorrecta": "Matemática y escritora"
-        },
-        {
-          "enunciado": "Mahatma Gandhi",
-          "respuestaCorrecta": "Líder político y pacifista"
-        },
-        {
-          "enunciado": "Isaac Newton",
-          "respuestaCorrecta": "Científico y matemático"
-        },
-        {
-          "enunciado": "Cleopatra",
-          "respuestaCorrecta": "Reina de Egipto"
-        },
-        {
-          "enunciado": "Wolfgang Amadeus Mozart",
-          "respuestaCorrecta": "Compositor y músico"
-        },
-        {
-          "enunciado": "Marco Polo",
-          "respuestaCorrecta": "Explorador y comerciante"
-        },
-        {
-          "enunciado": "Joan of Arc",
-          "respuestaCorrecta": "Heroína militar"
-        },
-        {
-          "enunciado": "Charles Darwin",
-          "respuestaCorrecta": "Naturalista y biólogo"
-        },
-        {
-          "enunciado": "Galileo Galilei",
-          "respuestaCorrecta": "Científico y astrónomo"
-        },
-        {
-          "enunciado": "Queen Elizabeth I",
-          "respuestaCorrecta": "Reina de Inglaterra"
-        },
-        {
-          "enunciado": "Vincent van Gogh",
-          "respuestaCorrecta": "Pintor postimpresionista"
-        },
-        {
-          "enunciado": "Alexander the Great",
-          "respuestaCorrecta": "Rey y conquistador"
-        },
-        {
-          "enunciado": "Marie Antoinette",
-          "respuestaCorrecta": "Reina de Francia"
-        },
-        {
-          "enunciado": "Alan Turing",
-          "respuestaCorrecta": "Matemático y científico de la computación"
-        }
-      ],
+    {"preguntas":[
+      {
+         "enunciado":"FRANCIA",
+         "respuestaCorrecta":"París"
+      },
+      {
+         "enunciado":"ESTADOS UNIDOS",
+         "respuestaCorrecta":"Washington, D.C."
+      },
+      {
+         "enunciado":"JAPÓN",
+         "respuestaCorrecta":"Tokio"
+      },
+      {
+         "enunciado":"INDIA",
+         "respuestaCorrecta":"Nueva Delhi"
+      },
+      {
+         "enunciado":"ITALIA",
+         "respuestaCorrecta":"Roma"
+      },
+      {
+         "enunciado":"BRASIL",
+         "respuestaCorrecta":"Brasilia"
+      },
+      {
+         "enunciado":"ALEMANIA",
+         "respuestaCorrecta":"Berlín"
+      },
+      {
+         "enunciado":"AUSTRALIA",
+         "respuestaCorrecta":"Canberra"
+      },
+      {
+         "enunciado":"CHINA",
+         "respuestaCorrecta":"Pekín"
+      },
+      {
+         "enunciado":"CANADÁ",
+         "respuestaCorrecta":"Ottawa"
+      },
+      {
+         "enunciado":"RUSIA",
+         "respuestaCorrecta":"Moscú"
+      },
+      {
+         "enunciado":"ESPAÑA",
+         "respuestaCorrecta":"Madrid"
+      },
+      {
+         "enunciado":"MÉXICO",
+         "respuestaCorrecta":"Ciudad de México"
+      },
+      {
+         "enunciado":"COREA DEL SUR",
+         "respuestaCorrecta":"Seúl"
+      },
+      {
+         "enunciado":"ARGENTINA",
+         "respuestaCorrecta":"Buenos Aires"
+      },
+      {
+         "enunciado":"EGIPTO",
+         "respuestaCorrecta":"El Cairo"
+      },
+      {
+         "enunciado":"TURQUÍA",
+         "respuestaCorrecta":"Ankara"
+      },
+      {
+         "enunciado":"SUIZA",
+         "respuestaCorrecta":"Berna"
+      },
+      {
+         "enunciado":"NORUEGA",
+         "respuestaCorrecta":"Oslo"
+      },
+      {
+         "enunciado":"PORTUGAL",
+         "respuestaCorrecta":"Lisboa"
+      }
+       ],
       "tipo": "parejas"
     }
   ]
