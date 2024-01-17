@@ -1,58 +1,94 @@
-
 package com.example.proyectofinaltrivial.minijuegos
-/*
-class AhorcadoActivity : AppCompatActivity() {
 
-    private lateinit var ahorcado: Ahorcado
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.example.proyectofinaltrivial.R
+import java.util.*
+
+class AhorcadoGame : AppCompatActivity() {
+
+    private val images = listOf(
+        R.drawable.ahorcado_0,
+        R.drawable.ahorcado_1,
+        R.drawable.ahorcado_2,
+        R.drawable.ahorcado_3,
+        R.drawable.ahorcado_4,
+        R.drawable.ahorcado_5,
+        R.drawable.ahorcado_6
+    )
+    private var imagenActualIndice = 0
+
+
+    private lateinit var wordToGuess: String
+    private lateinit var guessedWord: CharArray
+    private var lives = 5
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ahorcado)
+        setContentView(R.layout.minijuego_ahorcado)
 
-        // Aquí deberías inicializar la instancia de Ahorcado con la palabra deseada
-        ahorcado = Ahorcado("ANDROID")
+        val wordTextView = findViewById<TextView>(R.id.wordTextView)
+        val livesTextView = findViewById<TextView>(R.id.livesTextView)
+        val guessEditText = findViewById<EditText>(R.id.guessEditText)
+        val confirmButton = findViewById<Button>(R.id.confirmButton)
 
-        actualizarVista()
+        // Generar una palabra aleatoria
+        wordToGuess = generateRandomWord()
+        guessedWord = CharArray(wordToGuess.length) { '_' }
 
-        val gridLayoutLetras: GridLayout = findViewById(R.id.gridLayoutLetras)
+        wordTextView.text = String(guessedWord)
+        livesTextView.text = "Vidas: $lives"
 
-        // Generar botones para cada letra del abecedario
-        for (letra in 'A'..'Z') {
-            val button = Button(this)
-            button.text = letra.toString()
-            button.setOnClickListener {
-                // Manejar el clic del botón
-                onLetraClick(letra)
+        confirmButton.setOnClickListener {
+            val guess = guessEditText.text.toString().toLowerCase(Locale.ROOT)
+            if (guess.isNotEmpty()) {
+                manejarAcierto(guess[0], wordTextView, livesTextView)
+                guessEditText.text.clear()
             }
-
-            // Agregar el botón al GridLayout
-            gridLayoutLetras.addView(button)
         }
     }
 
-    private fun onLetraClick(letra: Char) {
-        val estado = ahorcado.intento(letra)
-        actualizarVista()
-
-        // Aquí puedes manejar el estado del juego según lo que devuelva Ahorcado
-        when (estado) {
-            EstadoJuego.LETRA_CORRECTA -> {
-                // Letra correcta, podrías cambiar el color del botón a verde
-                // (puedes acceder al botón correspondiente mediante su letra)
-            }
-            EstadoJuego.LETRA_INCORRECTA -> {
-                // Letra incorrecta, podrías cambiar el color del botón a rojo
-                // (puedes acceder al botón correspondiente mediante su letra)
-            }
-            // ... (manejar otros casos según sea necesario)
-        }
+    private fun generateRandomWord(): String {
+        // Aquí puedes generar una palabra aleatoria de la forma que prefieras
+        // En este ejemplo, simplemente devolvemos una palabra fija
+        return "android"
     }
 
-    private fun actualizarVista() {
-        // Actualizar la vista con la palabra actual y otras informaciones del juego
-        val textViewPalabra: TextView = findViewById(R.id.textViewPalabra)
-        textViewPalabra.text = ahorcado.obtenerPalabraActual()
+    private fun manejarAcierto(guess: Char, wordTextView: TextView, livesTextView: TextView) {
+        var guessedCorrectly = false
+
+        for (i in wordToGuess.indices) {
+            if (wordToGuess[i] == guess) {
+                guessedWord[i] = guess
+                guessedCorrectly = true
+            }
+        }
+
+        val imageView = findViewById<ImageView>(R.id.imageView)
+
+        if (guessedCorrectly) {
+            wordTextView.text = String(guessedWord)
+            if (!guessedWord.contains('_')) {
+                // El usuario ha adivinado la palabra completa
+                livesTextView.text = "¡Has ganado!"
+            }
+        } else {
+            lives--
+            if (lives > 0) {
+                livesTextView.text = "Vidas: $lives"
+                // Cambia la imagen si el usuario adivina incorrectamente
+                imagenActualIndice++
+                if (imagenActualIndice < images.size) {
+                    imageView.setImageResource(images[imagenActualIndice])
+                }
+            } else {
+                // El usuario ha perdido todas las vidas
+                livesTextView.text = "¡Has perdido!"
+            }
+        }
     }
 }
-
- */

@@ -251,8 +251,10 @@ class TableroFragment : Fragment() {
             params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
             params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
 
+
             // Distribuir las casillas de manera equitativa por cada tipo tiposCasillas[i % tiposCasillas.size]
             when ("parejas") {
+
                 "repaso" -> {
                     casilla.tag = "repaso"
                     casilla.setBackgroundColor(

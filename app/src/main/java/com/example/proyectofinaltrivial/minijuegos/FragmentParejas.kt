@@ -1,15 +1,18 @@
 package com.example.proyectofinaltrivial.minijuegos
 
 import Consultas
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.proyectofinaltrivial.R
 import com.example.proyectofinaltrivial.utils.Parejas
 import com.example.proyectofinaltrivial.utils.PreguntaParejas
+import java.util.Locale
 
 class FragmentParejas : Fragment() {
 
@@ -38,12 +41,33 @@ class FragmentParejas : Fragment() {
         buttonRight2 = view.findViewById(R.id.button5)
         buttonRight3 = view.findViewById(R.id.button6)
 
-        loadParejasData()
-
         return view
     }
 
-   /* private fun setButtonListeners() {
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Obtén las parejas de preguntas desde Firebase
+        consultas.obtenerPreguntaPorTipo("parejas") { pregunta ->
+            if (pregunta is Parejas) {
+                // Asigna los textos a los botones
+                buttonLeft1.text = pregunta.preguntas[0]["enunciado"]
+                buttonRight1.text = pregunta.preguntas[0]["respuestaCorrecta"]
+
+                buttonLeft2.text = pregunta.preguntas[1]["enunciado"]
+                buttonRight2.text = pregunta.preguntas[1]["respuestaCorrecta"]
+
+                buttonLeft3.text = pregunta.preguntas[2]["enunciado"]
+                buttonRight3.text = pregunta.preguntas[2]["respuestaCorrecta"]
+            }
+        }
+
+        // Configura los listeners de los botones
+        setButtonListeners()
+    }
+
+    private fun setButtonListeners() {
         buttonLeft1.setOnClickListener { onLeftButtonClick(buttonLeft1) }
         buttonLeft2.setOnClickListener { onLeftButtonClick(buttonLeft2) }
         buttonLeft3.setOnClickListener { onLeftButtonClick(buttonLeft3) }
@@ -54,24 +78,33 @@ class FragmentParejas : Fragment() {
     }
 
     private fun onLeftButtonClick(button: Button) {
-        selectedButtonLeft?.isSelected = false
         selectedButtonLeft = button
-        button.isSelected = true
         checkForMatch()
     }
 
     private fun onRightButtonClick(button: Button) {
-        selectedButtonRight?.isSelected = false
         selectedButtonRight = button
-        button.isSelected = true
         checkForMatch()
     }
-*/
 
+    private fun checkForMatch() {
+        if (selectedButtonLeft != null && selectedButtonRight != null) {
+            val leftText = selectedButtonLeft!!.text.toString().trim().toLowerCase(Locale.ROOT)
+            val rightText = selectedButtonRight!!.text.toString().trim().toLowerCase(Locale.ROOT)
 
-
-
-    private fun loadParejasData() {
-
+            if (leftText == rightText) {
+                // Los botones coinciden
+                selectedButtonLeft!!.isEnabled = false
+                selectedButtonRight!!.isEnabled = false
+                selectedButtonLeft!!.setBackgroundColor(Color.GREEN)
+                selectedButtonRight!!.setBackgroundColor(Color.GREEN)
+            } else {
+                // Los botones no coinciden
+                Toast.makeText(context, "Los elementos seleccionados no coinciden", Toast.LENGTH_SHORT).show()
+            }
+            // Reinicia los botones seleccionados
+            selectedButtonLeft = null
+            selectedButtonRight = null
+        }
     }
 }

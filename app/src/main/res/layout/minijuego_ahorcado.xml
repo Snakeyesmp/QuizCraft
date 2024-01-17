@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
-    <!-- TextView para mostrar la palabra actual -->
-    <TextView
-        android:id="@+id/textViewPalabra"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:text=""
+        android:layout_centerInParent="true"
+        />
+
+    <TextView
+        android:id="@+id/wordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textSize="24sp" />
 
-    <!-- Botones para cada letra del abecedario -->
-    <GridLayout
-        android:id="@+id/gridLayoutLetras"
+    <EditText
+        android:id="@+id/guessEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textViewPalabra"
-        android:layout_marginTop="16dp"
-        android:columnCount="6"
-        android:orientation="horizontal"
-        android:rowCount="5">
+        android:hint="Introduce una letra" />
 
-        <!-- Puedes generar botones en tu código Java/Kotlin según las letras del abecedario -->
+    <Button
+        android:id="@+id/confirmButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirmar" />
 
-    </GridLayout>
+    <TextView
+        android:id="@+id/livesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
 
-</RelativeLayout>
+</LinearLayout>
