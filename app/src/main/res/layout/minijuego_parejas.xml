@@ -9,57 +9,75 @@
     android:paddingBottom="16dp">
 
     <!-- Botones en el lado izquierdo -->
+
     <Button
         android:id="@+id/button1"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:text="Botón 1"
         android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"/>
+        android:fontFamily="@font/bad_script"
+        android:text="Botón 1"
+        android:textColor="#FFEB3B"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:text="Botón 2"
         android:layout_below="@+id/button1"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/bad_script"
+        android:textColor="#FFEB3B"
+        android:textStyle="bold"
+        android:text="Botón 2" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:text="Botón 3"
         android:layout_below="@+id/button2"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/bad_script"
+        android:textColor="#FFEB3B"
+        android:textStyle="bold"
+        android:text="Botón 3" />
 
     <!-- Botones en el lado derecho -->
+
     <Button
         android:id="@+id/button4"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:text="Botón 4"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"/>
+        android:fontFamily="@font/bad_script"
+        android:text="Botón 4"
+        android:textColor="#FFEB3B"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:text="Botón 5"
         android:layout_below="@+id/button4"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/bad_script"
+        android:textColor="#FFEB3B"
+        android:textStyle="bold"
+        android:text="Botón 5" />
 
     <Button
         android:id="@+id/button6"
-        android:layout_width="wrap_content"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:text="Botón 6"
         android:layout_below="@+id/button5"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/bad_script"
+        android:textColor="#FFEB3B"
+        android:textStyle="bold"
+        android:text="Botón 6" />
 
 </RelativeLayout>

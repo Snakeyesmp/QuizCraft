@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/audiowide"
         android:paddingTop="15dp"
-        android:text="@string/biologia"
+        android:text="@string/nomCategoria"
         android:textAlignment="center"
         android:textColor="#5D4037"
         android:textSize="24sp"

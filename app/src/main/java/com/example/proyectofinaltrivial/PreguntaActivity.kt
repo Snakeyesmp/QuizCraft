@@ -21,9 +21,10 @@ class PreguntaActivity : AppCompatActivity() {
         val enunciado = findViewById<TextView>(R.id.enunciado)
 
         val tipoPregunta = intent.getStringExtra("tipoPregunta")
+        Log.d("ParejasPre", "Tipo de pregunta: $tipoPregunta")
 
-        if (tipoPregunta != "parejas") {
-            enunciado.text = "Junta las parejas"
+        if (tipoPregunta == "parejas") {
+            enunciado.text = "Junta las parejas, a la izquierda los paises y a la derecha su capital"
         } else {
             val pregunta = intent.getStringExtra("pregunta")
             enunciado.text = pregunta        }
@@ -54,11 +55,6 @@ class PreguntaActivity : AppCompatActivity() {
             }
 
             "parejas" -> {
-
-                Log.d("ParejasPre", "Pregunta de tipo parejas")
-                Log.d("ParejasPre", "Pregunta: ${intent.getStringExtra("pregunta_0")}")
-                Log.d("ParejasPre", "Pregunta: ${intent.getStringExtra("pregunta_1")}")
-                Log.d("ParejasPre", "Pregunta: ${intent.getStringExtra("pregunta_2")}")
 
                 val fragmentParejas = FragmentParejas()
                 val datos = Bundle()

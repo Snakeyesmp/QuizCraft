@@ -14,7 +14,6 @@ import com.example.proyectofinaltrivial.R
 import com.example.proyectofinaltrivial.PreguntaActivity
 import kotlinx.coroutines.CoroutineScope
 
-// ... (código previo)
 
 class FragmentTest : Fragment() {
     override fun onCreateView(
