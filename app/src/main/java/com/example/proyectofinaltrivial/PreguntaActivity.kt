@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
+import com.example.proyectofinaltrivial.minijuegos.FragmentParejas
 import com.example.proyectofinaltrivial.respuestas_fragments.FragmentTest
 
 class PreguntaActivity : AppCompatActivity() {
@@ -19,14 +20,13 @@ class PreguntaActivity : AppCompatActivity() {
 
         val enunciado = findViewById<TextView>(R.id.enunciado)
 
-        val pregunta = intent.getStringExtra("pregunta")
         val tipoPregunta = intent.getStringExtra("tipoPregunta")
 
-    Log.d("FragmentTest", "TipoPregunta: $tipoPregunta")
-        Log.d("FragmentTest", "Pregunta: $pregunta")
-
-        enunciado.text = pregunta
-        Log.d("FragmentTest", "TipoPregunta: $tipoPregunta")
+        if (tipoPregunta != "parejas") {
+            enunciado.text = "Junta las parejas"
+        } else {
+            val pregunta = intent.getStringExtra("pregunta")
+            enunciado.text = pregunta        }
 
         when (tipoPregunta) {
             "repaso" -> {
@@ -54,7 +54,23 @@ class PreguntaActivity : AppCompatActivity() {
             }
 
             "parejas" -> {
-                devolverResultado(false)
+
+                Log.d("ParejasPre", "Pregunta de tipo parejas")
+                Log.d("ParejasPre", "Pregunta: ${intent.getStringExtra("pregunta_0")}")
+                Log.d("ParejasPre", "Pregunta: ${intent.getStringExtra("pregunta_1")}")
+                Log.d("ParejasPre", "Pregunta: ${intent.getStringExtra("pregunta_2")}")
+
+                val fragmentParejas = FragmentParejas()
+                val datos = Bundle()
+                datos.putString("pregunta_0", intent.getStringExtra("pregunta_0"))
+                datos.putString("pregunta_1", intent.getStringExtra("pregunta_1"))
+                datos.putString("pregunta_2", intent.getStringExtra("pregunta_2"))
+
+                fragmentParejas.arguments = datos
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_respuesta, fragmentParejas)
+                    .commit()
+
             }
 
         }

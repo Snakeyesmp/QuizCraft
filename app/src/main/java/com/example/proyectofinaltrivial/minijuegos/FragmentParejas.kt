@@ -38,13 +38,12 @@ class FragmentParejas : Fragment() {
         buttonRight2 = view.findViewById(R.id.button5)
         buttonRight3 = view.findViewById(R.id.button6)
 
-        setButtonListeners()
         loadParejasData()
 
         return view
     }
 
-    private fun setButtonListeners() {
+   /* private fun setButtonListeners() {
         buttonLeft1.setOnClickListener { onLeftButtonClick(buttonLeft1) }
         buttonLeft2.setOnClickListener { onLeftButtonClick(buttonLeft2) }
         buttonLeft3.setOnClickListener { onLeftButtonClick(buttonLeft3) }
@@ -67,45 +66,12 @@ class FragmentParejas : Fragment() {
         button.isSelected = true
         checkForMatch()
     }
+*/
 
-    private fun checkForMatch() {
-        if (selectedButtonLeft != null && selectedButtonRight != null) {
-            if (selectedButtonLeft?.text == selectedButtonRight?.text) {
-                // Coincidencia, puedes realizar acciones correspondientes
-                resetSelection()
-            } else {
-                // No coincidencia, puedes manejarlo según tus necesidades
-            }
-        }
-    }
 
-    private fun resetSelection() {
-        selectedButtonLeft?.isSelected = false
-        selectedButtonRight?.isSelected = false
-        selectedButtonLeft = null
-        selectedButtonRight = null
-    }
+
 
     private fun loadParejasData() {
-        consultas.obtenerPreguntaPorTipo("Parejas") { resultado ->
-            val parejas = resultado as Parejas
-            if (parejas != null) {
-                val listaDeParejas = parejas.preguntas
 
-                if (listaDeParejas != null && listaDeParejas.size >= 3) {
-                    buttonLeft1.text = listaDeParejas[0]["elemento1"].toString()
-                    buttonLeft2.text = listaDeParejas[1]["elemento1"].toString()
-                    buttonLeft3.text = listaDeParejas[2]["elemento1"].toString()
-
-                    buttonRight1.text = listaDeParejas[0]["elemento2"].toString()
-                    buttonRight2.text = listaDeParejas[1]["elemento2"].toString()
-                    buttonRight3.text = listaDeParejas[2]["elemento2"].toString()
-                } else {
-                    // Maneja el caso en el que los elementos sean nulos o no contengan suficientes elementos
-                }
-            } else {
-                // Maneja el caso en el que no se pueda obtener la información de parejas
-            }
-        }
     }
 }

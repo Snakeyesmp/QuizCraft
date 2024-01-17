@@ -21,6 +21,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AlertDialog
 import com.example.proyectofinaltrivial.main_package.MainActivity
+import com.example.proyectofinaltrivial.utils.Parejas
 
 
 class TableroFragment : Fragment() {
@@ -153,10 +154,59 @@ class TableroFragment : Fragment() {
 
     fun mostrarPregunta(
         pregunta: Any?,
+        tipoPregunta: String,
+        callback: (Boolean) -> Unit,
+        registry: ActivityResultRegistry,
+    ) {
+
+
+        when (tipoPregunta) {
+            "test" -> {
+                preguntaTest(pregunta as Pregunta?, tipoPregunta, callback, registry)
+            }
+
+            "parejas" -> {
+                preguntaParejas(pregunta as Parejas, tipoPregunta, callback, registry)
+            }
+
+            else -> {
+
+                Log.d("Consult", "Respuesta: $pregunta")
+            }
+
+        }
+    }
+
+    private fun preguntaParejas(
+        pregunta: Parejas,
         tipoPregunta: String, callback: (Boolean) -> Unit, registry: ActivityResultRegistry
     ) {
 
-        var pregunta = pregunta as Pregunta? // CASTEO PARA LA FUNCION QUE DEVUELVE VARIOS TIPOS
+        val startForResult =
+            registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                    val isRespuestaCorrecta =
+                        result.data?.getBooleanExtra("respuesta", false) ?: false
+                    Log.d("Consultas", "RespuestaCons: $isRespuestaCorrecta")
+                    callback(isRespuestaCorrecta)
+
+                }
+            }
+        val intent = Intent(context, PreguntaActivity::class.java)
+        intent.putExtra("tipoPregunta", tipoPregunta)
+        for (i in 0 until 3) {
+            intent.putExtra(
+                "pregunta_$i",
+                pregunta.preguntas[i]["enunciado"] + "_" + pregunta.preguntas[i]["respuestaCorrecta"]
+            )
+        }
+        startForResult.launch(intent)
+    }
+
+    private fun preguntaTest(
+        pregunta: Pregunta?,
+        tipoPregunta: String, callback: (Boolean) -> Unit, registry: ActivityResultRegistry
+    ) {
         val startForResult =
             registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == AppCompatActivity.RESULT_OK) {
@@ -168,15 +218,18 @@ class TableroFragment : Fragment() {
                 }
             }
 
+
         val intent = Intent(context, PreguntaActivity::class.java)
         intent.putExtra("tipoPregunta", tipoPregunta)
         intent.putExtra("pregunta", pregunta?.enunciado)
-        if (tipoPregunta == "test"){
+        if (tipoPregunta == "test") {
             intent.putStringArrayListExtra("opciones", ArrayList(pregunta?.opciones))
         }
         intent.putExtra("respuestaCorrecta", pregunta?.respuestaCorrecta)
         startForResult.launch(intent)
+
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -198,26 +251,50 @@ class TableroFragment : Fragment() {
             params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
             params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
 
-            // Distribuir las casillas de manera equitativa por cada tipo
-            when (tiposCasillas[i % tiposCasillas.size]) {
+            // Distribuir las casillas de manera equitativa por cada tipo tiposCasillas[i % tiposCasillas.size]
+            when ("parejas") {
                 "repaso" -> {
                     casilla.tag = "repaso"
-                    casilla.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.repaso, null))
+                    casilla.setBackgroundColor(
+                        ResourcesCompat.getColor(
+                            resources,
+                            R.color.repaso,
+                            null
+                        )
+                    )
                 }
 
                 "palabra" -> {
                     casilla.tag = "palabra"
-                    casilla.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.palabra, null))
+                    casilla.setBackgroundColor(
+                        ResourcesCompat.getColor(
+                            resources,
+                            R.color.palabra,
+                            null
+                        )
+                    )
                 }
 
                 "test" -> {
                     casilla.tag = "test"
-                    casilla.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.test, null))
+                    casilla.setBackgroundColor(
+                        ResourcesCompat.getColor(
+                            resources,
+                            R.color.test,
+                            null
+                        )
+                    )
                 }
 
                 "parejas" -> {
                     casilla.tag = "parejas"
-                    casilla.setBackgroundColor(ResourcesCompat.getColor(resources, R.color.parejas, null))
+                    casilla.setBackgroundColor(
+                        ResourcesCompat.getColor(
+                            resources,
+                            R.color.parejas,
+                            null
+                        )
+                    )
                 }
             }
 
