@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import com.example.proyectofinaltrivial.minijuegos.FragmentParejas
-import com.example.proyectofinaltrivial.respuestas_fragments.FragmentTest
+import com.example.proyectofinaltrivial.minijuegos.FragmentTest
 
 class PreguntaActivity : AppCompatActivity() {
 

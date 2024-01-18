@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
     private var tableroFragment: TableroFragment? = null
     private var dbHelper: DBHelper? = null
     private var botonSettings: ImageView? = null
-    private var primeraVez = true
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var sharedPref: SharedPreferences
     private var connectivityReceiver: ConnectivityReceiver? = null
@@ -78,6 +77,7 @@ class MainActivity : AppCompatActivity() {
 
             }
             .show()
+
 
 
         settingsDialog()
@@ -368,7 +368,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     override fun onDestroy() {
         super.onDestroy()
         // Desregistrar el receptor al destruir la actividad para evitar memory leaks
@@ -378,6 +377,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
 
     override fun onPause() {
         super.onPause()

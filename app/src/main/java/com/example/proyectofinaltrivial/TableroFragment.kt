@@ -168,6 +168,9 @@ class TableroFragment : Fragment() {
             "parejas" -> {
                 preguntaParejas(pregunta as Parejas, tipoPregunta, callback, registry)
             }
+            "palabra" -> {
+                preguntaPalabra(tipoPregunta)
+            }
 
             else -> {
 
@@ -175,6 +178,12 @@ class TableroFragment : Fragment() {
             }
 
         }
+    }
+
+    private fun preguntaPalabra(tipoPregunta: String) {
+        val intent = Intent(context, PreguntaActivity::class.java)
+        intent.putExtra("tipoPregunta", tipoPregunta)
+        startActivity(intent)
     }
 
     private fun preguntaParejas(
@@ -253,7 +262,7 @@ class TableroFragment : Fragment() {
 
 
             // Distribuir las casillas de manera equitativa por cada tipo tiposCasillas[i % tiposCasillas.size]
-            when (tiposCasillas[i % tiposCasillas.size]) {
+            when ("palabra") {
 
                 "repaso" -> {
                     casilla.tag = "repaso"

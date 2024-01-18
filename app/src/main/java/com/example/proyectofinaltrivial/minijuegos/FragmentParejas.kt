@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.proyectofinaltrivial.PreguntaActivity
 import com.example.proyectofinaltrivial.R
@@ -27,8 +28,7 @@ class FragmentParejas : Fragment() {
     private var parejas: String = ""
     private var intentos = 3
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.minijuego_parejas, container, false)
 
@@ -56,19 +56,27 @@ class FragmentParejas : Fragment() {
     }
 
     private fun onLeftButtonClick(button: Button) {
-        parejas=""
+        parejas = ""
         selectedButtonLeft?.isSelected = false
         selectedButtonLeft = button
         button.isSelected = true
-        parejas += button.text.toString()+"_"
+        parejas += button.text.toString() + "_"
     }
 
     private fun onRightButtonClick(button: Button) {
         selectedButtonRight?.isSelected = false
         selectedButtonRight = button
         button.isSelected = true
+
         parejas += button.text.toString()
-        checkForMatch(parejas)
+
+        if (parejas.contains("_")) {
+            checkForMatch(parejas)
+        } else {
+            Toast.makeText(
+                context, "Selecciona primero una opción de la izquierda", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     private fun checkForMatch(pareja: String) {
@@ -77,10 +85,12 @@ class FragmentParejas : Fragment() {
         val pareja3 = arguments?.getString("pregunta_2")
 
         if (pareja == pareja1 || pareja == pareja2 || pareja == pareja3) {
-            selectedButtonLeft?.isEnabled = false
-            selectedButtonRight?.isEnabled = false
             selectedButtonLeft?.isSelected = false
             selectedButtonRight?.isSelected = false
+            selectedButtonLeft?.isEnabled = false
+            selectedButtonRight?.isEnabled = false
+            selectedButtonLeft?.setBackgroundColor(resources.getColor(R.color.acierto))
+            selectedButtonRight?.setBackgroundColor(resources.getColor(R.color.acierto))
             selectedButtonLeft = null
             selectedButtonRight = null
             parejas = ""
@@ -100,17 +110,20 @@ class FragmentParejas : Fragment() {
             selectedButtonLeft = null
             selectedButtonRight = null
             parejas = ""
-            intentos--
             if (intentos == 0) {
                 val preguntaActivity = activity as? PreguntaActivity
                 preguntaActivity?.devolverResultado(false)
             }
         }
     }
+
     private fun isCheckAllButtonsDisabled(): Boolean {
         return !buttonLeft1.isEnabled && !buttonLeft2.isEnabled && !buttonLeft3.isEnabled && !buttonRight1.isEnabled && !buttonRight2.isEnabled && !buttonRight3.isEnabled
     }
+
     private fun enableAllButtons() {
+        intentos--
+        Toast.makeText(context, "Fallaste, te quedan $intentos intentos", Toast.LENGTH_SHORT).show()
         buttonLeft1.isEnabled = true
         buttonLeft2.isEnabled = true
         buttonLeft3.isEnabled = true
@@ -120,21 +133,29 @@ class FragmentParejas : Fragment() {
     }
 
 
-
     private fun loadParejasData() {
-
         val pregunta0 = arguments?.getString("pregunta_0")
         val pregunta1 = arguments?.getString("pregunta_1")
         val pregunta2 = arguments?.getString("pregunta_2")
 
-        // Pareja 1
-        buttonLeft1.text = pregunta0?.split("_")?.get(0) ?: ""
-        buttonRight3.text = pregunta0?.split("_")?.get(1) ?: ""
-        // Pareja 2
-        buttonLeft3.text = pregunta1?.split("_")?.get(0) ?: ""
-        buttonRight2.text = pregunta1?.split("_")?.get(1) ?: ""
-        // Pareja 3
-        buttonLeft2.text = pregunta2?.split("_")?.get(0) ?: ""
-        buttonRight1.text = pregunta2?.split("_")?.get(1) ?: ""
+        // Crear una lista de preguntas y mezclarla aleatoriamente
+        val preguntas = mutableListOf(
+            pregunta0?.split("_")?.toMutableList(),
+            pregunta1?.split("_")?.toMutableList(),
+            pregunta2?.split("_")?.toMutableList()
+        )
+
+        preguntas.shuffle()
+
+        // Asignar las preguntas a los botones de manera aleatoria
+        buttonLeft1.text = preguntas[0]?.get(0) ?: ""
+        buttonRight3.text = preguntas[0]?.get(1) ?: ""
+
+        buttonLeft3.text = preguntas[1]?.get(0) ?: ""
+        buttonRight2.text = preguntas[1]?.get(1) ?: ""
+
+        buttonLeft2.text = preguntas[2]?.get(0) ?: ""
+        buttonRight1.text = preguntas[2]?.get(1) ?: ""
     }
+
 }

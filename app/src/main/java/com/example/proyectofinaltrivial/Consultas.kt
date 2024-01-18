@@ -75,14 +75,18 @@ class Consultas {
 
     // Función para obtener pregunta de tipo "parejas"
     private fun obtenerPreguntaParejas(preguntas: MutableList<DataSnapshot>): Parejas {
-
         val listaParejas = ArrayList<Map<String, String>>()
 
+        val preguntasDisponibles = ArrayList(preguntas)
 
-        for( i in 0 until 3 ){
-            val random = (0 until preguntas.size).random()
-            val snapshot = preguntas[random]
+        for (i in 0 until 3) {
+            if (preguntasDisponibles.isEmpty()) {
+                // Si no quedan más preguntas, salir del bucle
+                break
+            }
 
+            val random = (0 until preguntasDisponibles.size).random()
+            val snapshot = preguntasDisponibles.removeAt(random)
 
             val elemento1 = snapshot.child("enunciado").getValue(String::class.java)
             val elemento2 = snapshot.child("respuestaCorrecta").getValue(String::class.java)
@@ -95,13 +99,13 @@ class Consultas {
             } else {
                 // Manejar el caso en que los valores son nulos
                 Log.e("Consultas", "Elemento 1 o Elemento 2 es nulo para algunas parejas")
-
             }
         }
 
         listaParejas.forEach() {
             Log.d("Parejas", "Pareja: ${it["enunciado"]} - ${it["respuestaCorrecta"]}")
         }
+
         return Parejas(listaParejas)
     }
 
