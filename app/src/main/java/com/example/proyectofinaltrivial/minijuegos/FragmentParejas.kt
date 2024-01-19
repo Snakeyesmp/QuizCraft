@@ -56,6 +56,8 @@ class FragmentParejas : Fragment() {
     }
 
     private fun onLeftButtonClick(button: Button) {
+        button.setBackgroundColor(resources.getColor(R.color.seleccionado))
+
         parejas = ""
         selectedButtonLeft?.isSelected = false
         selectedButtonLeft = button
@@ -71,6 +73,7 @@ class FragmentParejas : Fragment() {
         parejas += button.text.toString()
 
         if (parejas.contains("_")) {
+            button.setBackgroundColor(resources.getColor(R.color.seleccionado))
             checkForMatch(parejas)
         } else {
             Toast.makeText(
@@ -124,6 +127,13 @@ class FragmentParejas : Fragment() {
     private fun enableAllButtons() {
         intentos--
         Toast.makeText(context, "Fallaste, te quedan $intentos intentos", Toast.LENGTH_SHORT).show()
+        // Pner fondo por defecto
+        buttonLeft1.setBackgroundColor(resources.getColor(R.color.defecto))
+        buttonLeft2.setBackgroundColor(resources.getColor(R.color.defecto))
+        buttonLeft3.setBackgroundColor(resources.getColor(R.color.defecto))
+        buttonRight1.setBackgroundColor(resources.getColor(R.color.defecto))
+        buttonRight2.setBackgroundColor(resources.getColor(R.color.defecto))
+        buttonRight3.setBackgroundColor(resources.getColor(R.color.defecto))
         buttonLeft1.isEnabled = true
         buttonLeft2.isEnabled = true
         buttonLeft3.isEnabled = true
