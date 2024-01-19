@@ -1,10 +1,9 @@
-package com.example.proyectofinaltrivial.respuestas_fragments
+package com.example.proyectofinaltrivial.minijuegos
 
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.proyectofinaltrivial.R
 import com.example.proyectofinaltrivial.PreguntaActivity
-import kotlinx.coroutines.CoroutineScope
 
 
 class FragmentTest : Fragment() {
@@ -51,7 +49,7 @@ class FragmentTest : Fragment() {
         val isTrue = respuestaCorrecta == boton.text
 
         if (!isTrue) {
-            boton.setBackgroundColor(Color.parseColor("#bf3434"))
+            boton.setBackgroundColor(resources.getColor(R.color.fallo))
         }
         mostarResultado(respuestaCorrecta, botones)
 
@@ -68,7 +66,7 @@ class FragmentTest : Fragment() {
         opcionCorrecta?.let { correcta ->
             for (boton in botones) {
                 if (boton.text.toString() == correcta) {
-                    boton.setBackgroundColor(Color.parseColor("#34bf5b"))
+                    boton.setBackgroundColor(resources.getColor(R.color.acierto))
                     break
                 }
             }

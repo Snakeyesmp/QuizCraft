@@ -159,20 +159,57 @@ class TableroFragment : Fragment() {
         callback: (Boolean) -> Unit,
         registry: ActivityResultRegistry,
     ) {
+
+
         when (tipoPregunta) {
             "test" -> {
                 preguntaTest(pregunta as Pregunta?, tipoPregunta, callback, registry)
             }
+
             "parejas" -> {
                 preguntaParejas(pregunta as Parejas, tipoPregunta, callback, registry)
             }
-            "ahorcado" -> {
-                preguntaAhorcado(callback, registry)
-            }
+
             else -> {
+
                 Log.d("Consult", "Respuesta: $pregunta")
             }
+
         }
+    }
+
+    private fun preguntaPalabra(tipoPregunta: String) {
+        val intent = Intent(context, PreguntaActivity::class.java)
+        intent.putExtra("tipoPregunta", tipoPregunta)
+        startActivity(intent)
+    }
+
+    private fun preguntaRepaso(
+        pregunta: Pregunta?,
+        tipoPregunta: String,
+        callback: (Boolean) -> Unit,
+        registry: ActivityResultRegistry
+    ) {
+
+
+        val startForResult =
+            registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                    val isRespuestaCorrecta =
+                        result.data?.getBooleanExtra("respuesta", false) ?: false
+                    Log.d("Consultas", "RespuestaCons: $isRespuestaCorrecta")
+                    callback(isRespuestaCorrecta)
+
+                }
+            }
+
+        val intent = Intent(context, PreguntaActivity::class.java)
+        intent.putExtra("tipoPregunta", tipoPregunta)
+        intent.putExtra("pregunta", pregunta?.enunciado)
+        intent.putExtra("respuestaCorrecta", pregunta?.respuestaCorrecta)
+        startForResult.launch(intent)
+
+
     }
 
     private fun preguntaParejas(
@@ -267,7 +304,7 @@ class TableroFragment : Fragment() {
 
 
             // Distribuir las casillas de manera equitativa por cada tipo tiposCasillas[i % tiposCasillas.size]
-            when ("ahorcado") {
+            when (tiposCasillas[i % tiposCasillas.size]) {
 
                 "repaso" -> {
                     casilla.tag = "repaso"

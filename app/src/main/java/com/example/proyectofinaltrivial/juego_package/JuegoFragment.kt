@@ -25,6 +25,7 @@ class JuegoFragment : Fragment() {
     private var textoJugador: TextView? = null
     private var perfilJugador: ImageView? = null
     private lateinit var resultadoDados: TextView
+    private var botonAvanzarHabilitado = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -35,7 +36,6 @@ class JuegoFragment : Fragment() {
 
         // Inicialización del ViewModel compartido
         viewModel = ViewModelProvider(requireActivity())[SharedViewModel::class.java]
-
 
 
         // Obtener referencia al botón de avance y asignar un Listener
@@ -49,28 +49,31 @@ class JuegoFragment : Fragment() {
                 mainActivity.vibrar(requireContext())
             }
 
+            if (botonAvanzarHabilitado) {
+                botonAvanzarHabilitado = false
+                // Iniciar la animación de rotación del botón de avance
+                // (para simular el lanzamiento de un dado
+                val rotateAnimation = RotateAnimation(
+                    0f, 360f, // Grados de inicio y fin de la rotación
+                    Animation.RELATIVE_TO_SELF, 0.5f, // Punto de pivote (centro en este caso)
+                    Animation.RELATIVE_TO_SELF, 0.5f
+                )
+                rotateAnimation.interpolator =
+                    LinearInterpolator() // Interpolador lineal para una rotación suave
+                rotateAnimation.duration = 1000 // Duración de la animación en milisegundos
+                rotateAnimation.repeatCount = 0 // No repetir la animación
 
-            val rotateAnimation = RotateAnimation(
-                0f, 360f, // Grados de inicio y fin de la rotación
-                Animation.RELATIVE_TO_SELF, 0.5f, // Punto de pivote (centro en este caso)
-                Animation.RELATIVE_TO_SELF, 0.5f
-            )
-            rotateAnimation.interpolator =
-                LinearInterpolator() // Interpolador lineal para una rotación suave
-            rotateAnimation.duration = 1000 // Duración de la animación en milisegundos
-            rotateAnimation.repeatCount = 0 // No repetir la animación
+                // Iniciar la animación y ocultar la imagen después de 1 segundo
+                botonAvanzar.startAnimation(rotateAnimation)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    val dado = generarNumeroAleatorio() // Generar un número aleatorio entre 1 y 6
 
-            // Iniciar la animación y ocultar la imagen después de 1 segundo
-            botonAvanzar.startAnimation(rotateAnimation)
-            Handler(Looper.getMainLooper()).postDelayed({
-                val dado = generarNumeroAleatorio() // Generar un número aleatorio entre 1 y 6
+                    resultadoDados.text = dado.toString()
+                    Log.d("Consult", "Dado: $dado")
+                    avanzarJugador(dado) // Llamar a la función para avanzar el jugador
 
-                resultadoDados.text = dado.toString()
-                Log.d("Consult", "Dado: $dado")
-                avanzarJugador(dado) // Llamar a la función para avanzar el jugador
-
-            }, 1500)
-
+                }, 1500)
+            }
         }
 
 
@@ -102,6 +105,7 @@ class JuegoFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        botonAvanzarHabilitado = true
         resultadoDados.text = ""
 
     }

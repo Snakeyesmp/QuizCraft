@@ -6,5 +6,10 @@
     <color name="repaso">#eb6a5e</color>
     <color name="parejas">#5eeb60</color>
     <color name="palabra">#5e8feb</color>
+    <color name="fallo">#8a1d04</color>
+    <color name="acierto">#048a28</color>
+    <color name="transparent">#e3e4e6</color>
+    <color name="defecto">#6750a4</color>
+    <color name="seleccionado">#90d2e8</color>
     <color name="ahorcado">#B916D5</color>
 </resources>

@@ -4,32 +4,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:paddingLeft="25dp">
 
     <TextView
-        android:id="@+id/textPregunta"
+        android:id="@+id/intentos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pregunta: " />
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/respuesta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Escribe tu respuesta"
+        android:textColorHint="@color/black"
+        android:paddingLeft="15dp"
+        android:background="@drawable/borde_linear_layout"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:inputType="text"
+        android:minHeight="48dp" />
 
     <Button
-        android:id="@+id/btnOpcion1"
+        android:id="@+id/botonComprobar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Opción 1" />
-
-    <Button
-        android:id="@+id/btnOpcion2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Opción 2" />
-
-    <Button
-        android:id="@+id/btnOpcion3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Opción 3" />
-
-    <!-- Agrega más botones según sea necesario para tus preguntas -->
-
+        android:text="Comprobar" />
 </LinearLayout>
