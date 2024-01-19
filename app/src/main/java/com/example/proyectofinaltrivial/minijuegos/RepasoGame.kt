@@ -1,87 +1,87 @@
+package com.example.proyectofinaltrivial.minijuegos
+
+
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import org.json.JSONArray
-import org.json.JSONObject
-import java.io.IOException
-/*
-class RepasoActivity : AppCompatActivity() {
+import androidx.fragment.app.Fragment
+import com.example.proyectofinaltrivial.PreguntaActivity
+import com.example.proyectofinaltrivial.R
 
-    private lateinit var repasoGame: RepasoGame
-    private lateinit var preguntaActual: Pregunta
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_repaso)
+class RepasoGame : Fragment() {
 
-        val preguntasJSON = leerJSONPreguntas()
-        repasoGame = RepasoGame(preguntasJSON)
+    private var intentos = 3
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        // Mostrar la primera pregunta
-        mostrarNuevaPregunta()
+        val respuestaCorrecta = arguments?.getString("respuestaCorrecta")
+        val botonComprobar = view.findViewById<Button>(R.id.botonComprobar)
+        val respuesta = view.findViewById<EditText>(R.id.respuesta)
+        val inetntosText = view.findViewById<TextView>(R.id.intentos)
+        inetntosText.text = "Intentos restantes: $intentos"
+        botonComprobar.setOnClickListener {
+            if (comprobarRespuesta(respuesta.text.toString(), respuestaCorrecta)) {
 
-        // Configurar el botón para pasar a la siguiente pregunta
-        val siguientePreguntaButton: Button = findViewById(R.id.siguientePreguntaButton)
-        siguientePreguntaButton.setOnClickListener {
-            mostrarNuevaPregunta()
-        }
-    }
+                respuesta.setBackgroundColor(resources.getColor(R.color.acierto))
+                Toast.makeText(context, "Has acertado", Toast.LENGTH_SHORT).show()
 
-    private fun leerJSONPreguntas(): String {
-        try {
-            // Lee el archivo JSON desde assets
-            val inputStream = assets.open("nombre_del_archivo.json")
-            val size = inputStream.available()
-            val buffer = ByteArray(size)
-            inputStream.read(buffer)
-            inputStream.close()
-            return String(buffer, Charsets.UTF_8)
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+                Handler(Looper.getMainLooper()).postDelayed({
+                    val preguntaActivity = activity as? PreguntaActivity
+                    preguntaActivity?.devolverResultado(true)
+                    respuesta.background = resources.getDrawable(R.drawable.transparent_background)
+                }, 1500)
+            } else {
+                intentos--
+                if (intentos == 0) {
 
-        return ""
-    }
+                    respuesta.setBackgroundColor(resources.getColor(R.color.fallo))
+                    Toast.makeText(context, "Has fallado, no te quedan intentos", Toast.LENGTH_SHORT).show()
 
-    private fun mostrarNuevaPregunta() {
-        // Obtener nueva pregunta del juego
-        preguntaActual = repasoGame.obtenerNuevaPregunta()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        val preguntaActivity = activity as? PreguntaActivity
+                        preguntaActivity?.devolverResultado(false)
+                        respuesta.background = resources.getDrawable(R.drawable.borde_linear_layout)
 
-        // Actualizar la interfaz con las respuestas
-        mostrarRespuestas(preguntaActual)
-    }
+                    }, 1500)
+                } else {
+                    respuesta.setBackgroundColor(resources.getColor(R.color.fallo))
+                    Toast.makeText(context, "Has fallado, te quedan $intentos intentos", Toast.LENGTH_SHORT).show()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        respuesta.text.clear()
+                        respuesta.background = resources.getDrawable(R.drawable.borde_linear_layout)
+                        inetntosText.text = "Intentos restantes: $intentos"
 
-    private fun mostrarRespuestas(pregunta: Pregunta) {
-        val opcionesLayout: View = findViewById(R.id.opcionesLayout)
 
-        // Limpiar las opciones anteriores
-        opcionesLayout.removeAllViews()
-
-        // Crear botón por cada respuesta
-        for (i in 0 until pregunta.respuestas.length()) {
-            val respuesta = pregunta.respuestas.getString(i)
-            val button = Button(this)
-            button.text = respuesta
-            button.setOnClickListener {
-                verificarRespuesta(pregunta, respuesta)
+                    }, 1500)
+                }
             }
-            opcionesLayout.addView(button)
-        }
-    }
-
-    private fun verificarRespuesta(pregunta: Pregunta, respuesta: String) {
-        val esCorrecta = repasoGame.verificarRespuesta(pregunta, respuesta)
-        if (esCorrecta) {
-            Toast.makeText(this, "Respuesta Correcta", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(this, "Respuesta Incorrecta", Toast.LENGTH_SHORT).show()
         }
 
-        // Mostrar la siguiente pregunta
-        mostrarNuevaPregunta()
     }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+
+        return inflater.inflate(R.layout.minijuego_repaso, container, false)
+
+    }
+
+    private fun comprobarRespuesta(respuesta: String, respuestaCorrecta: String?): Boolean {
+
+        return respuesta == respuestaCorrecta
+    }
+
+
 }
 
- */

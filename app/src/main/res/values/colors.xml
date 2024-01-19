@@ -8,4 +8,5 @@
     <color name="palabra">#5e8feb</color>
     <color name="fallo">#8a1d04</color>
     <color name="acierto">#048a28</color>
+    <color name="transparent">#e3e4e6</color>
 </resources>

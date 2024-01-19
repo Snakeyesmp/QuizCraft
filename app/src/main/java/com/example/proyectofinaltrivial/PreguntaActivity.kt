@@ -10,6 +10,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import com.example.proyectofinaltrivial.minijuegos.FragmentParejas
 import com.example.proyectofinaltrivial.minijuegos.FragmentTest
+import com.example.proyectofinaltrivial.minijuegos.RepasoGame
 
 class PreguntaActivity : AppCompatActivity() {
 
@@ -31,7 +32,16 @@ class PreguntaActivity : AppCompatActivity() {
 
         when (tipoPregunta) {
             "repaso" -> {
-                devolverResultado(false)
+                mostrarDialogoInstrucciones()
+                val respuestaCorrecta = intent.getStringExtra("respuestaCorrecta")
+                val fragmentRellenar = RepasoGame()
+
+                val datos = Bundle()
+                datos.putString("respuestaCorrecta", respuestaCorrecta)
+                fragmentRellenar.arguments = datos
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_respuesta, fragmentRellenar)
+                    .commit()
 
             }
 
@@ -98,6 +108,16 @@ class PreguntaActivity : AppCompatActivity() {
         intent.putExtra("respuesta", isTrue)
         setResult(RESULT_OK, intent)
         finish()
+    }
+
+    private fun mostrarDialogoInstrucciones() {
+        AlertDialog.Builder(this)
+            .setTitle("Instrucciones")
+            .setMessage("Para completar correctamenta el minijuego debes introducir la palabra correcta en el campo de texto.\nIMPORTANTE: Las palabras que contengan tilde hay que poner tilde.")
+            .setCancelable(false)
+            .setPositiveButton("Ok") { _, _ ->
+                // No hacer nada
+            }.show()
     }
 
 }
