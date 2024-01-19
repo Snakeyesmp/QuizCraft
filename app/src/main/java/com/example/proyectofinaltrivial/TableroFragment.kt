@@ -3,6 +3,8 @@ package com.example.proyectofinaltrivial
 import Consultas
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,17 +13,16 @@ import android.view.ViewGroup
 import android.widget.GridLayout
 import androidx.activity.result.ActivityResultRegistry
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.proyectofinaltrivial.utils.Pregunta
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AlertDialog
 import com.example.proyectofinaltrivial.main_package.MainActivity
+import com.example.proyectofinaltrivial.minijuegos.AhorcadoGame
 import com.example.proyectofinaltrivial.utils.Parejas
+import com.example.proyectofinaltrivial.utils.Pregunta
 
 
 class TableroFragment : Fragment() {
@@ -158,22 +159,19 @@ class TableroFragment : Fragment() {
         callback: (Boolean) -> Unit,
         registry: ActivityResultRegistry,
     ) {
-
-
         when (tipoPregunta) {
             "test" -> {
                 preguntaTest(pregunta as Pregunta?, tipoPregunta, callback, registry)
             }
-
             "parejas" -> {
                 preguntaParejas(pregunta as Parejas, tipoPregunta, callback, registry)
             }
-
+            "ahorcado" -> {
+                preguntaAhorcado(callback, registry)
+            }
             else -> {
-
                 Log.d("Consult", "Respuesta: $pregunta")
             }
-
         }
     }
 
@@ -230,6 +228,22 @@ class TableroFragment : Fragment() {
 
     }
 
+    fun preguntaAhorcado(
+        callback: (Boolean) -> Unit,
+        registry: ActivityResultRegistry
+    ) {
+        val startForResult =
+            registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                    val isRespuestaCorrecta =
+                        result.data?.getBooleanExtra("respuesta", false) ?: false
+                    callback(isRespuestaCorrecta)
+                }
+            }
+        val intent = Intent(context, AhorcadoGame::class.java)
+        startForResult.launch(intent)
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -238,7 +252,7 @@ class TableroFragment : Fragment() {
         val tableroGrid: GridLayout = view.findViewById(R.id.tableroGrid)
 
         // Definir la cantidad de tipos de casillas
-        val tiposCasillas = listOf("repaso", "palabra", "test", "parejas")
+        val tiposCasillas = listOf("repaso", "palabra", "test", "parejas","ahorcado")
 
 
         for (i in 0 until 21) {
@@ -253,7 +267,7 @@ class TableroFragment : Fragment() {
 
 
             // Distribuir las casillas de manera equitativa por cada tipo tiposCasillas[i % tiposCasillas.size]
-            when (tiposCasillas[i % tiposCasillas.size]) {
+            when ("ahorcado") {
 
                 "repaso" -> {
                     casilla.tag = "repaso"
@@ -298,6 +312,19 @@ class TableroFragment : Fragment() {
                         )
                     )
                 }
+
+                // Comprueba si la casilla actual es el juego de Ahorcado
+                "ahorcado" -> {
+                    casilla.tag = "ahorcado"
+                    casilla.setBackgroundColor(
+                        ResourcesCompat.getColor(
+                            resources,
+                            R.color.ahorcado,
+                            null
+                        )
+                    )
+                }
+
             }
 
             casilla.layoutParams = params
