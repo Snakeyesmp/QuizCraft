@@ -29,8 +29,8 @@ import com.example.proyectofinaltrivial.utils.Pregunta
 class TableroFragment : Fragment() {
     private lateinit var consulta: Consultas
     private lateinit var viewModel: SharedViewModel
-    private var pos_jugador1: Int = 15
-    private var pos_jugador2: Int = 15
+    private var pos_jugador1: Int = 0
+    private var pos_jugador2: Int = 0
     private var turno: Boolean = true
     private var aciertosPorTipoPreguntaJugador1: MutableMap<String, Int> = mutableMapOf()
     private var aciertosPorTipoPreguntaJugador2: MutableMap<String, Int> = mutableMapOf()
