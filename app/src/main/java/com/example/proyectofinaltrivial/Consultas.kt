@@ -55,7 +55,6 @@ class Consultas {
     }
 
 
-
     // Función para obtener pregunta de tipo "test"
     private fun obtenerPreguntaTest(preguntas: MutableList<DataSnapshot>): Pregunta {
         val random = (0 until preguntas.size).random()
@@ -63,10 +62,12 @@ class Consultas {
 
 
         val enunciado = preguntaSnapshot.child("enunciado").getValue(String::class.java)!!
-        val respuestaCorrecta = preguntaSnapshot.child("respuestaCorrecta").getValue(String::class.java)!!
+        val respuestaCorrecta =
+            preguntaSnapshot.child("respuestaCorrecta").getValue(String::class.java)!!
         val opcionesSnapshot = preguntaSnapshot.child("opciones")
         val opciones = ArrayList<String>()
-
+        Log.d("Consultas", "Enunciado: $enunciado")
+        Log.d("Consultas", "Respuesta correcta: $respuestaCorrecta")
         for (opcionSnapshot in opcionesSnapshot.children) {
             val opcion = opcionSnapshot.getValue(String::class.java)
             if (opcion != null) {

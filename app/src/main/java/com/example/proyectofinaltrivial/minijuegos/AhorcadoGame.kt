@@ -48,8 +48,11 @@ class AhorcadoGame : Fragment() {
         view.findViewById<Button>(R.id.buttonComprobar).setOnClickListener {
             val letra = view.findViewById<EditText>(R.id.letra).text.toString()
             Log.d("Consultas", "Letra: $letra")
-            comprobarLetra(letra, view)
-
+            if (letra.isNotEmpty()) {
+                comprobarLetra(letra, view)
+            }else{
+                Toast.makeText(context, "Introduce una letra", Toast.LENGTH_SHORT).show()
+            }
         }
         return view
     }
@@ -63,7 +66,8 @@ class AhorcadoGame : Fragment() {
             val palabraActual = palabra?.text.toString().toCharArray()
             respuestaCorrecta?.forEachIndexed { index, c ->
                 if (c == letra[0]) {
-                    palabraActual[index * 2] = letra[0] // Multiplicamos por 2 para tener en cuenta los espacios "_ "
+                    palabraActual[index * 2] =
+                        letra[0] // Multiplicamos por 2 para tener en cuenta los espacios "_ "
                 }
             }
             view?.findViewById<EditText>(R.id.letra)?.text?.clear()
