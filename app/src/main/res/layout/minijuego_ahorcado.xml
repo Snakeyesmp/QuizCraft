@@ -1,39 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btnComprobar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        />
+        android:id="@+id/imagenAhorcado"
+        android:layout_width="160dp"
+        android:layout_height="129dp"
+        android:layout_marginTop="40dp"
+        android:contentDescription="@string/imagen_ahorcado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ahorcado_0" />
 
     <TextView
-        android:id="@+id/wordTextView"
+        android:id="@+id/letrasFalladas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:text="Letras Falladas: "
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagenAhorcado"
+        tools:ignore="HardcodedText" />
 
     <EditText
-        android:id="@+id/guessEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Introduce una letra" />
-
-    <Button
-        android:id="@+id/confirmButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirmar" />
+        android:id="@+id/letra"
+        android:layout_width="80dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="56dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/escribe_una_letra"
+        android:inputType="text"
+        android:maxLength="1"
+        android:minHeight="48dp"
+        android:textColorHint="#8D6E63"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintStart_toEndOf="@+id/imagenAhorcado"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/livesTextView"
+        android:id="@+id/palabra"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp" />
+        android:layout_marginTop="48dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/letrasFalladas" />
 
-</LinearLayout>
+    <Button
+        android:id="@+id/buttonComprobar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Comprobar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imagenAhorcado"
+        app:layout_constraintTop_toBottomOf="@+id/letra" />
+
+    <TextView
+        android:id="@+id/vidas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Intentos restantes:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

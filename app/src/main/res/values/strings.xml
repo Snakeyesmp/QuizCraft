@@ -18,4 +18,6 @@
     <string name="imagenpersonaje">imagenPersonaje</string>
     <string name="nomCategoria">Geofrafia e Historia</string>
     <string name="descripcion_opcion">Descripcion opcion</string>
+    <string name="imagen_ahorcado">Imagen Ahorcado</string>
+    <string name="escribe_una_letra">Letra</string>
 </resources>

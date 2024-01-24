@@ -38,6 +38,7 @@ class Consultas {
                     "test" -> obtenerPreguntaTest(preguntas)
                     "parejas" -> obtenerPreguntaParejas(preguntas)
                     "repaso" -> obtenerPreguntaRellenar(preguntas)
+                    "palabra" -> obtenerPreguntaRellenar(preguntas)
                     // Puedes agregar más casos según los diferentes tipos de preguntas
                     else -> Log.e("Consultas", "Tipo de pregunta no reconocido")
                 }
@@ -53,6 +54,8 @@ class Consultas {
         })
     }
 
+
+
     // Función para obtener pregunta de tipo "test"
     private fun obtenerPreguntaTest(preguntas: MutableList<DataSnapshot>): Pregunta {
         val random = (0 until preguntas.size).random()
@@ -60,8 +63,7 @@ class Consultas {
 
 
         val enunciado = preguntaSnapshot.child("enunciado").getValue(String::class.java)!!
-        val respuestaCorrecta =
-            preguntaSnapshot.child("respuestaCorrecta").getValue(String::class.java)!!
+        val respuestaCorrecta = preguntaSnapshot.child("respuestaCorrecta").getValue(String::class.java)!!
         val opcionesSnapshot = preguntaSnapshot.child("opciones")
         val opciones = ArrayList<String>()
 

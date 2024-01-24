@@ -170,290 +170,275 @@ class TableroFragment : Fragment() {
                 preguntaParejas(pregunta as Parejas, tipoPregunta, callback, registry)
             }
 
-            else -> {
-
-                Log.d("Consult", "Respuesta: $pregunta")
+            "repaso" -> {
+                preguntaRepaso(pregunta as Pregunta?, tipoPregunta, callback, registry)
             }
+
+            "palabra" -> {
+              preguntaRepaso(pregunta as Pregunta?, tipoPregunta, callback, registry)
+
+            }
+                else -> {
+
+                    Log.d("Consult", "Respuesta: $pregunta")
+                }
+
+            }
+        }
+
+
+
+        private fun preguntaRepaso(
+            pregunta: Pregunta?,
+            tipoPregunta: String,
+            callback: (Boolean) -> Unit,
+            registry: ActivityResultRegistry
+        ) {
+
+
+            val startForResult =
+                registry.register(
+                    "key",
+                    ActivityResultContracts.StartActivityForResult()
+                ) { result ->
+                    if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                        val isRespuestaCorrecta =
+                            result.data?.getBooleanExtra("respuesta", false) ?: false
+                        Log.d("Consultas", "RespuestaCons: $isRespuestaCorrecta")
+                        callback(isRespuestaCorrecta)
+
+                    }
+                }
+
+            val intent = Intent(context, PreguntaActivity::class.java)
+            intent.putExtra("tipoPregunta", tipoPregunta)
+            intent.putExtra("pregunta", pregunta?.enunciado)
+            intent.putExtra("respuestaCorrecta", pregunta?.respuestaCorrecta)
+            startForResult.launch(intent)
+
 
         }
-    }
 
-    private fun preguntaPalabra(tipoPregunta: String) {
-        val intent = Intent(context, PreguntaActivity::class.java)
-        intent.putExtra("tipoPregunta", tipoPregunta)
-        startActivity(intent)
-    }
+        private fun preguntaParejas(
+            pregunta: Parejas,
+            tipoPregunta: String, callback: (Boolean) -> Unit, registry: ActivityResultRegistry
+        ) {
 
-    private fun preguntaRepaso(
-        pregunta: Pregunta?,
-        tipoPregunta: String,
-        callback: (Boolean) -> Unit,
-        registry: ActivityResultRegistry
-    ) {
+            val startForResult =
+                registry.register(
+                    "key",
+                    ActivityResultContracts.StartActivityForResult()
+                ) { result ->
+                    if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                        val isRespuestaCorrecta =
+                            result.data?.getBooleanExtra("respuesta", false) ?: false
+                        Log.d("Consultas", "RespuestaCons: $isRespuestaCorrecta")
+                        callback(isRespuestaCorrecta)
 
-
-        val startForResult =
-            registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == AppCompatActivity.RESULT_OK) {
-                    val isRespuestaCorrecta =
-                        result.data?.getBooleanExtra("respuesta", false) ?: false
-                    Log.d("Consultas", "RespuestaCons: $isRespuestaCorrecta")
-                    callback(isRespuestaCorrecta)
-
+                    }
                 }
+            val intent = Intent(context, PreguntaActivity::class.java)
+            intent.putExtra("tipoPregunta", tipoPregunta)
+            for (i in 0 until 3) {
+                intent.putExtra(
+                    "pregunta_$i",
+                    pregunta.preguntas[i]["enunciado"] + "_" + pregunta.preguntas[i]["respuestaCorrecta"]
+                )
             }
-
-        val intent = Intent(context, PreguntaActivity::class.java)
-        intent.putExtra("tipoPregunta", tipoPregunta)
-        intent.putExtra("pregunta", pregunta?.enunciado)
-        intent.putExtra("respuestaCorrecta", pregunta?.respuestaCorrecta)
-        startForResult.launch(intent)
-
-
-    }
-
-    private fun preguntaParejas(
-        pregunta: Parejas,
-        tipoPregunta: String, callback: (Boolean) -> Unit, registry: ActivityResultRegistry
-    ) {
-
-        val startForResult =
-            registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == AppCompatActivity.RESULT_OK) {
-                    val isRespuestaCorrecta =
-                        result.data?.getBooleanExtra("respuesta", false) ?: false
-                    Log.d("Consultas", "RespuestaCons: $isRespuestaCorrecta")
-                    callback(isRespuestaCorrecta)
-
-                }
-            }
-        val intent = Intent(context, PreguntaActivity::class.java)
-        intent.putExtra("tipoPregunta", tipoPregunta)
-        for (i in 0 until 3) {
-            intent.putExtra(
-                "pregunta_$i",
-                pregunta.preguntas[i]["enunciado"] + "_" + pregunta.preguntas[i]["respuestaCorrecta"]
-            )
+            startForResult.launch(intent)
         }
-        startForResult.launch(intent)
-    }
 
-    private fun preguntaTest(
-        pregunta: Pregunta?,
-        tipoPregunta: String, callback: (Boolean) -> Unit, registry: ActivityResultRegistry
-    ) {
-        val startForResult =
-            registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == AppCompatActivity.RESULT_OK) {
-                    val isRespuestaCorrecta =
-                        result.data?.getBooleanExtra("respuesta", false) ?: false
-                    Log.d("Consultas", "RespuestaCons: $isRespuestaCorrecta")
-                    callback(isRespuestaCorrecta)
+        private fun preguntaTest(
+            pregunta: Pregunta?,
+            tipoPregunta: String, callback: (Boolean) -> Unit, registry: ActivityResultRegistry
+        ) {
+            val startForResult =
+                registry.register(
+                    "key",
+                    ActivityResultContracts.StartActivityForResult()
+                ) { result ->
+                    if (result.resultCode == AppCompatActivity.RESULT_OK) {
+                        val isRespuestaCorrecta =
+                            result.data?.getBooleanExtra("respuesta", false) ?: false
+                        Log.d("Consultas", "RespuestaCons: $isRespuestaCorrecta")
+                        callback(isRespuestaCorrecta)
 
+                    }
                 }
+
+
+            val intent = Intent(context, PreguntaActivity::class.java)
+            intent.putExtra("tipoPregunta", tipoPregunta)
+            intent.putExtra("pregunta", pregunta?.enunciado)
+            if (tipoPregunta == "test") {
+                intent.putStringArrayListExtra("opciones", ArrayList(pregunta?.opciones))
             }
+            intent.putExtra("respuestaCorrecta", pregunta?.respuestaCorrecta)
+            startForResult.launch(intent)
 
-
-        val intent = Intent(context, PreguntaActivity::class.java)
-        intent.putExtra("tipoPregunta", tipoPregunta)
-        intent.putExtra("pregunta", pregunta?.enunciado)
-        if (tipoPregunta == "test") {
-            intent.putStringArrayListExtra("opciones", ArrayList(pregunta?.opciones))
         }
-        intent.putExtra("respuestaCorrecta", pregunta?.respuestaCorrecta)
-        startForResult.launch(intent)
-
-    }
-
-    fun preguntaAhorcado(
-        callback: (Boolean) -> Unit,
-        registry: ActivityResultRegistry
-    ) {
-        val startForResult =
-            registry.register("key", ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == AppCompatActivity.RESULT_OK) {
-                    val isRespuestaCorrecta =
-                        result.data?.getBooleanExtra("respuesta", false) ?: false
-                    callback(isRespuestaCorrecta)
-                }
-            }
-        val intent = Intent(context, AhorcadoGame::class.java)
-        startForResult.launch(intent)
-    }
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_tablero, container, false)
-        val tableroGrid: GridLayout = view.findViewById(R.id.tableroGrid)
 
-        // Definir la cantidad de tipos de casillas
-        val tiposCasillas = listOf("repaso", "palabra", "test", "parejas","ahorcado")
+        override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        ): View? {
+            val view = inflater.inflate(R.layout.fragment_tablero, container, false)
+            val tableroGrid: GridLayout = view.findViewById(R.id.tableroGrid)
 
-
-        for (i in 0 until 21) {
-            val casilla = crearCasilla(requireContext(), i)
-            val params = GridLayout.LayoutParams()
-
-            // Configuración de tamaño para las casillas
-            params.width = 0
-            params.height = GridLayout.LayoutParams.WRAP_CONTENT
-            params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
-            params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+            // Definir la cantidad de tipos de casillas
+            val tiposCasillas = listOf("repaso", "palabra", "test", "parejas")
 
 
-            // Distribuir las casillas de manera equitativa por cada tipo tiposCasillas[i % tiposCasillas.size]
-            when (tiposCasillas[i % tiposCasillas.size]) {
+            for (i in 0 until 21) {
+                val casilla = crearCasilla(requireContext(), i)
+                val params = GridLayout.LayoutParams()
 
-                "repaso" -> {
-                    casilla.tag = "repaso"
-                    casilla.setBackgroundColor(
-                        ResourcesCompat.getColor(
-                            resources,
-                            R.color.repaso,
-                            null
+                // Configuración de tamaño para las casillas
+                params.width = 0
+                params.height = GridLayout.LayoutParams.WRAP_CONTENT
+                params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+                params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+
+
+                // Distribuir las casillas de manera equitativa por cada tipo tiposCasillas[i % tiposCasillas.size]
+                when ("palabra") {
+                    // Minijuego de repaso
+                    "repaso" -> {
+                        casilla.tag = "repaso"
+                        casilla.setBackgroundColor(
+                            ResourcesCompat.getColor(
+                                resources,
+                                R.color.repaso,
+                                null
+                            )
                         )
-                    )
-                }
-
-                "palabra" -> {
-                    casilla.tag = "palabra"
-                    casilla.setBackgroundColor(
-                        ResourcesCompat.getColor(
-                            resources,
-                            R.color.palabra,
-                            null
+                    }
+                    // Minijuego de ahorcado
+                    "palabra" -> {
+                        casilla.tag = "palabra"
+                        casilla.setBackgroundColor(
+                            ResourcesCompat.getColor(
+                                resources,
+                                R.color.palabra,
+                                null
+                            )
                         )
-                    )
-                }
-
-                "test" -> {
-                    casilla.tag = "test"
-                    casilla.setBackgroundColor(
-                        ResourcesCompat.getColor(
-                            resources,
-                            R.color.test,
-                            null
+                    }
+                    // Minijuego de test
+                    "test" -> {
+                        casilla.tag = "test"
+                        casilla.setBackgroundColor(
+                            ResourcesCompat.getColor(
+                                resources,
+                                R.color.test,
+                                null
+                            )
                         )
-                    )
-                }
-
-                "parejas" -> {
-                    casilla.tag = "parejas"
-                    casilla.setBackgroundColor(
-                        ResourcesCompat.getColor(
-                            resources,
-                            R.color.parejas,
-                            null
+                    }
+                    // Minijuego de parejas
+                    "parejas" -> {
+                        casilla.tag = "parejas"
+                        casilla.setBackgroundColor(
+                            ResourcesCompat.getColor(
+                                resources,
+                                R.color.parejas,
+                                null
+                            )
                         )
-                    )
+                    }
                 }
 
-                // Comprueba si la casilla actual es el juego de Ahorcado
-                "ahorcado" -> {
-                    casilla.tag = "ahorcado"
-                    casilla.setBackgroundColor(
-                        ResourcesCompat.getColor(
-                            resources,
-                            R.color.ahorcado,
-                            null
-                        )
-                    )
-                }
-
+                casilla.layoutParams = params
+                tableroGrid.addView(casilla)
             }
 
-            casilla.layoutParams = params
-            tableroGrid.addView(casilla)
+            return view
         }
 
-        return view
-    }
 
+        private fun crearCasilla(context: Context, id: Int): View {
+            val casillaView = LayoutInflater.from(context).inflate(R.layout.layout_casilla, null)
+            val jugador1 = casillaView.findViewById<View>(R.id.jugador1)
+            val jugador2 = casillaView.findViewById<View>(R.id.jugador2)
 
-    private fun crearCasilla(context: Context, id: Int): View {
-        val casillaView = LayoutInflater.from(context).inflate(R.layout.layout_casilla, null)
-        val jugador1 = casillaView.findViewById<View>(R.id.jugador1)
-        val jugador2 = casillaView.findViewById<View>(R.id.jugador2)
+            // Establecer tamaño fijo para las casillas (por ejemplo, 100dp x 100dp)
+            val casillaSize = 100 // Obtener el tamaño desde resources
 
-        // Establecer tamaño fijo para las casillas (por ejemplo, 100dp x 100dp)
-        val casillaSize = 100 // Obtener el tamaño desde resources
+            // Configurar el ancho y alto de las casillas
+            jugador1.layoutParams.height = casillaSize
+            jugador2.layoutParams.height = casillaSize
 
-        // Configurar el ancho y alto de las casillas
-        jugador1.layoutParams.height = casillaSize
-        jugador2.layoutParams.height = casillaSize
+            // Configuración inicial de las casillas
+            if (id == 0) {
+                jugador1.background = context.getDrawable(R.drawable.jugador1)
+                jugador2.background = context.getDrawable(R.drawable.jugador2)
 
-        // Configuración inicial de las casillas
-        if (id == 0) {
-            jugador1.background = context.getDrawable(R.drawable.jugador1)
-            jugador2.background = context.getDrawable(R.drawable.jugador2)
-
-        }
-        return casillaView
-    }
-
-    fun guardarPartida(): ArrayList<String> {
-        val datos = ArrayList<String>()
-        val posicion1 = pos_jugador1 // Ejemplo, sustituye con tus datos reales
-        val posicion2 = pos_jugador2 // Ejemplo, sustituye con tus datos reales
-        val turnoGuardar = turno // Ejemplo, sustituye con tus datos reales
-        var tipoPregunta: ArrayList<String> = ArrayList()
-
-        val tablero = requireView().findViewById<GridLayout>(R.id.tableroGrid)
-        for (i in 0 until tablero.childCount) {
-            val casilla = tablero.getChildAt(i)
-            tipoPregunta.add(casilla.tag.toString())
-        }
-        Log.d("Consult", "Datos: $posicion1")
-        Log.d("Consult", "Datos: $posicion2")
-        Log.d("Consult", "Datos: $turnoGuardar")
-        Log.d("Consult", "Datos: $tipoPregunta")
-        datos.add(posicion1.toString())
-        datos.add(posicion2.toString())
-        datos.add(turnoGuardar.toString())
-        val preguntas = tipoPregunta.joinToString(",")
-        datos.add(preguntas)
-
-        return datos
-    }
-
-    fun cargarPartida(partidaSeleccionada: Partida) {
-
-        pos_jugador1 = partidaSeleccionada.posJugador1
-        pos_jugador2 = partidaSeleccionada.posJugador2
-        turno = partidaSeleccionada.turno.toBoolean()
-        Log.d("Consult", "Datos: ${partidaSeleccionada.tiposPreguntas}")
-        Log.d("Consult", "Datos: $pos_jugador1")
-        Log.d("Consult", "Datos: $pos_jugador2")
-        Log.d("Consult", "Datos: $turno")
-
-        val tablero = requireView().findViewById<GridLayout>(R.id.tableroGrid)
-        val tipoPreguntas = partidaSeleccionada.tiposPreguntas.split(",")
-        for (i in 0 until tablero.childCount) {
-            val casilla = tablero.getChildAt(i)
-            casilla.tag = tipoPreguntas[i]
-        }
-        var casilla: Any
-        var jugador1: View
-        var jugador2: View
-        for (i in 0 until pos_jugador1) {
-            casilla = tablero.getChildAt(i)
-            jugador1 = casilla.findViewById(R.id.jugador1)
-            if (i == pos_jugador1 - 1) {
-                jugador1.background = context?.getDrawable(R.drawable.jugador1)
             }
+            return casillaView
         }
-        for (i in 0 until pos_jugador2) {
-            casilla = tablero.getChildAt(i)
-            jugador2 = casilla.findViewById(R.id.jugador2)
-            if (i == pos_jugador2 - 1) {
-                jugador2.background = context?.getDrawable(R.drawable.jugador2)
+
+        fun guardarPartida(): ArrayList<String> {
+            val datos = ArrayList<String>()
+            val posicion1 = pos_jugador1 // Ejemplo, sustituye con tus datos reales
+            val posicion2 = pos_jugador2 // Ejemplo, sustituye con tus datos reales
+            val turnoGuardar = turno // Ejemplo, sustituye con tus datos reales
+            var tipoPregunta: ArrayList<String> = ArrayList()
+
+            val tablero = requireView().findViewById<GridLayout>(R.id.tableroGrid)
+            for (i in 0 until tablero.childCount) {
+                val casilla = tablero.getChildAt(i)
+                tipoPregunta.add(casilla.tag.toString())
             }
+            Log.d("Consult", "Datos: $posicion1")
+            Log.d("Consult", "Datos: $posicion2")
+            Log.d("Consult", "Datos: $turnoGuardar")
+            Log.d("Consult", "Datos: $tipoPregunta")
+            datos.add(posicion1.toString())
+            datos.add(posicion2.toString())
+            datos.add(turnoGuardar.toString())
+            val preguntas = tipoPregunta.joinToString(",")
+            datos.add(preguntas)
+
+            return datos
+        }
+
+        fun cargarPartida(partidaSeleccionada: Partida) {
+
+            pos_jugador1 = partidaSeleccionada.posJugador1
+            pos_jugador2 = partidaSeleccionada.posJugador2
+            turno = partidaSeleccionada.turno.toBoolean()
+            Log.d("Consult", "Datos: ${partidaSeleccionada.tiposPreguntas}")
+            Log.d("Consult", "Datos: $pos_jugador1")
+            Log.d("Consult", "Datos: $pos_jugador2")
+            Log.d("Consult", "Datos: $turno")
+
+            val tablero = requireView().findViewById<GridLayout>(R.id.tableroGrid)
+            val tipoPreguntas = partidaSeleccionada.tiposPreguntas.split(",")
+            for (i in 0 until tablero.childCount) {
+                val casilla = tablero.getChildAt(i)
+                casilla.tag = tipoPreguntas[i]
+            }
+            var casilla: Any
+            var jugador1: View
+            var jugador2: View
+            for (i in 0 until pos_jugador1) {
+                casilla = tablero.getChildAt(i)
+                jugador1 = casilla.findViewById(R.id.jugador1)
+                if (i == pos_jugador1 - 1) {
+                    jugador1.background = context?.getDrawable(R.drawable.jugador1)
+                }
+            }
+            for (i in 0 until pos_jugador2) {
+                casilla = tablero.getChildAt(i)
+                jugador2 = casilla.findViewById(R.id.jugador2)
+                if (i == pos_jugador2 - 1) {
+                    jugador2.background = context?.getDrawable(R.drawable.jugador2)
+                }
+            }
+
+
         }
 
 
     }
-
-
-}

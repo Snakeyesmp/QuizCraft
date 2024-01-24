@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
+import com.example.proyectofinaltrivial.minijuegos.AhorcadoGame
 import com.example.proyectofinaltrivial.minijuegos.FragmentParejas
 import com.example.proyectofinaltrivial.minijuegos.FragmentTest
 import com.example.proyectofinaltrivial.minijuegos.RepasoGame
@@ -22,7 +23,7 @@ class PreguntaActivity : AppCompatActivity() {
         val enunciado = findViewById<TextView>(R.id.enunciado)
 
         val tipoPregunta = intent.getStringExtra("tipoPregunta")
-        Log.d("ParejasPre", "Tipo de pregunta: $tipoPregunta")
+        Log.d("Consultas", "Tipo de pregunta: $tipoPregunta")
 
         if (tipoPregunta == "parejas") {
             enunciado.text = "Junta las parejas, a la izquierda los paises y a la derecha su capital"
@@ -31,6 +32,21 @@ class PreguntaActivity : AppCompatActivity() {
             enunciado.text = pregunta        }
 
         when (tipoPregunta) {
+
+            "palabra" -> {
+                val respuestaCorrecta = intent.getStringExtra("respuestaCorrecta")
+                val fragmentRellenar = AhorcadoGame()
+
+                val datos = Bundle()
+                datos.putString("respuestaCorrecta", respuestaCorrecta)
+                fragmentRellenar.arguments = datos
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_respuesta, fragmentRellenar)
+                    .commit()
+            }
+
+
+
             "repaso" -> {
                 mostrarDialogoInstrucciones()
                 val respuestaCorrecta = intent.getStringExtra("respuestaCorrecta")
@@ -43,10 +59,6 @@ class PreguntaActivity : AppCompatActivity() {
                     .replace(R.id.fragment_respuesta, fragmentRellenar)
                     .commit()
 
-            }
-
-            "palabra" -> {
-                devolverResultado(false)
             }
 
             "test" -> {
