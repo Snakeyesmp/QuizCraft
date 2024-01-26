@@ -313,8 +313,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         buttonBorrarPartidas?.setOnClickListener {
-            dbHelper = DBHelper(this)
-            dbHelper?.deleteAllPartidas()
+            borrarPartidas()
             alertDialog.dismiss()
         }
 
@@ -327,7 +326,41 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    private fun borrarPartidas() {
+        val dbHelper = DBHelper(this)
+        val partidas = dbHelper.getAllPartidas()
 
+
+        if (partidas.isEmpty()) {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("No hay partidas guardadas")
+            builder.setPositiveButton("OK") { _, _ ->
+            }
+            val dialog = builder.create()
+            dialog.show()
+        } else {
+            // Crear una lista de nombres de partidas para mostrar en el ListView
+            val nombresDePartidas = ArrayList<String>()
+            partidas.forEach { partida ->
+                nombresDePartidas.add(partida.nombrePartida)
+            }
+
+            // Crear un ArrayAdapter para mostrar los nombres de las partidas en un ListView
+            val adapter = ArrayAdapter(this, R.layout.partida_item_layout, nombresDePartidas)
+
+            // Crear un AlertDialog para mostrar el ListView de partidas
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Selecciona una partida")
+            builder.setAdapter(adapter) { _, partidaSelected ->
+                // Aquí se manejará la selección de la partida
+                val partidaSeleccionada = partidas[partidaSelected]
+                dbHelper.deletePartida(partidaSeleccionada)
+
+            }
+
+            val dialog = builder.create()
+            dialog.show()
+        }    }
     private fun cargarPartida() {
         val dbHelper = DBHelper(this)
         val partidas = dbHelper.getAllPartidas()

@@ -103,11 +103,12 @@ class DBHelper(context: Context) :
         return partidasList
     }
 
-    fun deleteAllPartidas() {
-        val db = this.writableDatabase
-        db.delete(TABLE_PARTIDAS, null, null)
-        db.close()
 
+
+    fun deletePartida(partidaSeleccionada: Partida) {
+        val db = this.writableDatabase
+        db.delete(TABLE_PARTIDAS, "$KEY_ID=?", arrayOf(partidaSeleccionada.id.toString()))
+        db.close()
     }
 
 

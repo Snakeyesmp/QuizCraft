@@ -6,7 +6,7 @@
     <string name="accion">¿Qué desea realizar?</string>
     <string name="mensaje">Mensaje</string>
     <string name="t_tulo">Título</string>
-    <string name="borrar_partidas_guardadas">Borrar Partidas Guardadas</string>
+    <string name="borrar_partidas_guardadas">Borrar Partida Guardada</string>
     <string name="cargar_partida">Cargar Partida</string>
     <string name="guardar_partida">Guardar Partida</string>
     <string name="reiniciar_partida">Reiniciar Partida</string>
