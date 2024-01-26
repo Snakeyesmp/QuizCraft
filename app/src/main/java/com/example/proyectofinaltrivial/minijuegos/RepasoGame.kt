@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.proyectofinaltrivial.PreguntaActivity
@@ -30,55 +31,64 @@ class RepasoGame : Fragment() {
         val inetntosText = view.findViewById<TextView>(R.id.intentos)
         inetntosText.text = "Intentos restantes: $intentos"
         if (intentos != 0) {
-            botonComprobar.setOnClickListener {
-                if (comprobarRespuesta(respuesta.text.toString(), respuestaCorrecta)) {
+            if (respuesta.text != null) {
+                botonComprobar.setOnClickListener {
+                    if (comprobarRespuesta(respuesta.text.toString(), respuestaCorrecta)) {
 
-                    respuesta.setBackgroundColor(resources.getColor(R.color.acierto))
-                    Toast.makeText(context, "Has acertado", Toast.LENGTH_SHORT).show()
-
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        val preguntaActivity = activity as? PreguntaActivity
-                        preguntaActivity?.devolverResultado(true)
-                        respuesta.background =
-                            resources.getDrawable(R.drawable.transparent_background)
-                    }, 1500)
-                } else {
-                    intentos--
-                    if (intentos == 0) {
-
-                        respuesta.setBackgroundColor(resources.getColor(R.color.fallo))
-                        Toast.makeText(
-                            context,
-                            "Has fallado, no te quedan intentos",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        respuesta.setBackgroundColor(resources.getColor(R.color.acierto))
+                        Toast.makeText(context, "Has acertado", Toast.LENGTH_SHORT).show()
 
                         Handler(Looper.getMainLooper()).postDelayed({
                             val preguntaActivity = activity as? PreguntaActivity
-                            preguntaActivity?.devolverResultado(false)
+                            preguntaActivity?.devolverResultado(true)
                             respuesta.background =
-                                resources.getDrawable(R.drawable.borde_linear_layout)
-
+                                resources.getDrawable(R.drawable.transparent_background)
                         }, 1500)
                     } else {
-                        respuesta.setBackgroundColor(resources.getColor(R.color.fallo))
-                        Toast.makeText(
-                            context,
-                            "Has fallado, te quedan $intentos intentos",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            respuesta.text.clear()
-                            respuesta.background =
-                                resources.getDrawable(R.drawable.borde_linear_layout)
-                            inetntosText.text = "Intentos restantes: $intentos"
+                        intentos--
+                        if (intentos <= 0) {
+                            botonComprobar.isEnabled = false
+                            respuesta.setBackgroundColor(resources.getColor(R.color.fallo))
+                            Toast.makeText(
+                                context,
+                                "Has fallado, no te quedan intentos",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                respuesta.background =
+                                    resources.getDrawable(R.drawable.borde_linear_layout)
+                                AlertDialog.Builder(requireContext())
+                                    .setTitle("Has perdido")
+                                    .setMessage("La respuesta correcta era $respuestaCorrecta")
+                                    .setPositiveButton("Aceptar") { _, _ ->
+                                        val preguntaActivity = activity as? PreguntaActivity
+                                        preguntaActivity?.devolverResultado(false)
+                                    }
+                                    .setCancelable(false)
+                                    .show()
+
+                            }, 1500)
+                        } else {
+                            respuesta.setBackgroundColor(resources.getColor(R.color.fallo))
+                            Toast.makeText(
+                                context,
+                                "Has fallado, te quedan $intentos intentos",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            Handler(Looper.getMainLooper()).postDelayed({
+                                respuesta.text.clear()
+                                respuesta.background =
+                                    resources.getDrawable(R.drawable.borde_linear_layout)
+                                inetntosText.text = "Intentos restantes: $intentos"
 
 
-                        }, 1500)
+                            }, 1500)
+                        }
                     }
                 }
-            }
 
+            }
         }
     }
 

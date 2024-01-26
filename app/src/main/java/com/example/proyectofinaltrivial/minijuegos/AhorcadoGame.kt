@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.proyectofinaltrivial.PreguntaActivity
@@ -50,7 +51,7 @@ class AhorcadoGame : Fragment() {
             Log.d("Consultas", "Letra: $letra")
             if (letra.isNotEmpty()) {
                 comprobarLetra(letra, view)
-            }else{
+            } else {
                 Toast.makeText(context, "Introduce una letra", Toast.LENGTH_SHORT).show()
             }
         }
@@ -89,13 +90,22 @@ class AhorcadoGame : Fragment() {
             Toast.makeText(context, "Has fallado", Toast.LENGTH_SHORT).show()
             view?.findViewById<EditText>(R.id.letra)?.text?.clear()
             if (intentos <= 0) {
-                val preguntaActivity = activity as? PreguntaActivity
-                preguntaActivity?.devolverResultado(false)
+                view?.findViewById<Button>(R.id.buttonComprobar)?.isEnabled = false
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Has perdido")
+                    .setMessage("La respuesta correcta era: $respuestaCorrecta")
+                    .setPositiveButton("Aceptar") { _, _ ->
+                        val preguntaActivity = activity as? PreguntaActivity
+                        preguntaActivity?.devolverResultado(false)
+
+                    }
+                    .setCancelable(false)
+                    .show()
             }
+
+
         }
 
 
     }
-
-
 }

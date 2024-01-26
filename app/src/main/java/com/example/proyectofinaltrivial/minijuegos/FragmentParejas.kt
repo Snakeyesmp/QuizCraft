@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.proyectofinaltrivial.PreguntaActivity
 import com.example.proyectofinaltrivial.R
@@ -77,7 +79,8 @@ class FragmentParejas : Fragment() {
             checkForMatch(parejas)
         } else {
             Toast.makeText(
-                context, "Selecciona primero una opción de la izquierda", Toast.LENGTH_SHORT).show()
+                context, "Selecciona primero una opción de la izquierda", Toast.LENGTH_SHORT
+            ).show()
         }
 
     }
@@ -114,58 +117,66 @@ class FragmentParejas : Fragment() {
             selectedButtonRight = null
             parejas = ""
             if (intentos == 0) {
-                val preguntaActivity = activity as? PreguntaActivity
-                preguntaActivity?.devolverResultado(false)
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Has perdido")
+                    .setMessage("Las parejas  son: \n$pareja1, \n$pareja2, \n$pareja3")
+                    .setPositiveButton("Aceptar") { _, _ ->
+                        val preguntaActivity = activity as? PreguntaActivity
+                        preguntaActivity?.devolverResultado(false)
+                    }
+                    .setCancelable(false)
+                    .show()
+
             }
         }
     }
+        private fun isCheckAllButtonsDisabled(): Boolean {
+            return !buttonLeft1.isEnabled && !buttonLeft2.isEnabled && !buttonLeft3.isEnabled && !buttonRight1.isEnabled && !buttonRight2.isEnabled && !buttonRight3.isEnabled
+        }
 
-    private fun isCheckAllButtonsDisabled(): Boolean {
-        return !buttonLeft1.isEnabled && !buttonLeft2.isEnabled && !buttonLeft3.isEnabled && !buttonRight1.isEnabled && !buttonRight2.isEnabled && !buttonRight3.isEnabled
+        private fun enableAllButtons() {
+            intentos--
+            Toast.makeText(context, "Fallaste, te quedan $intentos intentos", Toast.LENGTH_SHORT)
+                .show()
+            // Pner fondo por defecto
+            buttonLeft1.setBackgroundColor(resources.getColor(R.color.defecto))
+            buttonLeft2.setBackgroundColor(resources.getColor(R.color.defecto))
+            buttonLeft3.setBackgroundColor(resources.getColor(R.color.defecto))
+            buttonRight1.setBackgroundColor(resources.getColor(R.color.defecto))
+            buttonRight2.setBackgroundColor(resources.getColor(R.color.defecto))
+            buttonRight3.setBackgroundColor(resources.getColor(R.color.defecto))
+            buttonLeft1.isEnabled = true
+            buttonLeft2.isEnabled = true
+            buttonLeft3.isEnabled = true
+            buttonRight1.isEnabled = true
+            buttonRight2.isEnabled = true
+            buttonRight3.isEnabled = true
+        }
+
+
+        private fun loadParejasData() {
+            val pregunta0 = arguments?.getString("pregunta_0")
+            val pregunta1 = arguments?.getString("pregunta_1")
+            val pregunta2 = arguments?.getString("pregunta_2")
+
+            // Crear una lista de preguntas y mezclarla aleatoriamente
+            val preguntas = mutableListOf(
+                pregunta0?.split("_")?.toMutableList(),
+                pregunta1?.split("_")?.toMutableList(),
+                pregunta2?.split("_")?.toMutableList()
+            )
+
+            preguntas.shuffle()
+
+            // Asignar las preguntas a los botones de manera aleatoria
+            buttonLeft1.text = preguntas[0]?.get(0) ?: ""
+            buttonRight3.text = preguntas[0]?.get(1) ?: ""
+
+            buttonLeft3.text = preguntas[1]?.get(0) ?: ""
+            buttonRight2.text = preguntas[1]?.get(1) ?: ""
+
+            buttonLeft2.text = preguntas[2]?.get(0) ?: ""
+            buttonRight1.text = preguntas[2]?.get(1) ?: ""
+        }
+
     }
-
-    private fun enableAllButtons() {
-        intentos--
-        Toast.makeText(context, "Fallaste, te quedan $intentos intentos", Toast.LENGTH_SHORT).show()
-        // Pner fondo por defecto
-        buttonLeft1.setBackgroundColor(resources.getColor(R.color.defecto))
-        buttonLeft2.setBackgroundColor(resources.getColor(R.color.defecto))
-        buttonLeft3.setBackgroundColor(resources.getColor(R.color.defecto))
-        buttonRight1.setBackgroundColor(resources.getColor(R.color.defecto))
-        buttonRight2.setBackgroundColor(resources.getColor(R.color.defecto))
-        buttonRight3.setBackgroundColor(resources.getColor(R.color.defecto))
-        buttonLeft1.isEnabled = true
-        buttonLeft2.isEnabled = true
-        buttonLeft3.isEnabled = true
-        buttonRight1.isEnabled = true
-        buttonRight2.isEnabled = true
-        buttonRight3.isEnabled = true
-    }
-
-
-    private fun loadParejasData() {
-        val pregunta0 = arguments?.getString("pregunta_0")
-        val pregunta1 = arguments?.getString("pregunta_1")
-        val pregunta2 = arguments?.getString("pregunta_2")
-
-        // Crear una lista de preguntas y mezclarla aleatoriamente
-        val preguntas = mutableListOf(
-            pregunta0?.split("_")?.toMutableList(),
-            pregunta1?.split("_")?.toMutableList(),
-            pregunta2?.split("_")?.toMutableList()
-        )
-
-        preguntas.shuffle()
-
-        // Asignar las preguntas a los botones de manera aleatoria
-        buttonLeft1.text = preguntas[0]?.get(0) ?: ""
-        buttonRight3.text = preguntas[0]?.get(1) ?: ""
-
-        buttonLeft3.text = preguntas[1]?.get(0) ?: ""
-        buttonRight2.text = preguntas[1]?.get(1) ?: ""
-
-        buttonLeft2.text = preguntas[2]?.get(0) ?: ""
-        buttonRight1.text = preguntas[2]?.get(1) ?: ""
-    }
-
-}

@@ -34,6 +34,7 @@ class PreguntaActivity : AppCompatActivity() {
         when (tipoPregunta) {
 
             "palabra" -> {
+                mostrarDialogoInstrucciones()
                 val respuestaCorrecta = intent.getStringExtra("respuestaCorrecta")
                 val fragmentRellenar = AhorcadoGame()
 
