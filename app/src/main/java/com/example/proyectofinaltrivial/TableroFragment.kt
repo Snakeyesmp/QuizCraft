@@ -379,6 +379,8 @@ class TableroFragment : Fragment() {
     }
 
     fun guardarPartida(): ArrayList<String> {
+
+
         val datos = ArrayList<String>()
         val posicion1 = pos_jugador1 // Ejemplo, sustituye con tus datos reales
         val posicion2 = pos_jugador2 // Ejemplo, sustituye con tus datos reales
@@ -405,6 +407,7 @@ class TableroFragment : Fragment() {
 
     fun cargarPartida(partidaSeleccionada: Partida) {
 
+
         pos_jugador1 = partidaSeleccionada.posJugador1
         pos_jugador2 = partidaSeleccionada.posJugador2
         turno = partidaSeleccionada.turno.toBoolean()
@@ -416,6 +419,13 @@ class TableroFragment : Fragment() {
         val tablero = requireView().findViewById<GridLayout>(R.id.tableroGrid)
         val tipoPreguntas = partidaSeleccionada.tiposPreguntas.split(",")
         for (i in 0 until tablero.childCount) {
+            if (i == 0) {
+                val casilla = tablero.getChildAt(i)
+                val jugador1 = casilla.findViewById<View>(R.id.jugador1)
+                val jugador2 = casilla.findViewById<View>(R.id.jugador2)
+                jugador1.background = null
+                jugador2.background = null
+            }
             val casilla = tablero.getChildAt(i)
             casilla.tag = tipoPreguntas[i]
         }

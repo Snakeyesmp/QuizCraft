@@ -393,6 +393,9 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager.findFragmentById(R.id.fragmentTablero) as TableroFragment?
                 tableroFragment?.cargarPartida(partidaSeleccionada)
 
+                val juegoFragment = supportFragmentManager.findFragmentById(R.id.fragmentJuego) as JuegoFragment?
+                juegoFragment?.cargarPartida(partidaSeleccionada)
+
             }
 
             val dialog = builder.create()
@@ -422,20 +425,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.onResume()
     }
 
-    /**
-     * Obtiene la fecha y hora actual en un formato específico y lo devuelve como una cadena de texto.
-     * @return Cadena de texto que representa la fecha y hora actuales en el formato "yyyyMMdd_HHmmss".
-     */
-    private fun obtenerFechaYHora(): String {
-        // Obtener una instancia del calendario con la fecha y hora actuales
-        val cal = Calendar.getInstance()
-
-        // Crear un formato de fecha específico ("yyyyMMdd_HHmmss") usando el idioma por defecto del dispositivo
-        val dateFormat = SimpleDateFormat("yyyy/MM/dd_HH:mm", Locale.getDefault())
-
-        // Formatear la fecha y hora actuales y devolverla como una cadena de texto
-        return dateFormat.format(cal.time)
-    }
 
     /**
      * Hace vibrar el dispositivo por una duración determinada, usando los servicios de vibración disponibles.

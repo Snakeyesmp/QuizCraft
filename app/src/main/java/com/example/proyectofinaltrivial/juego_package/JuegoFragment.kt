@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.proyectofinaltrivial.Partida
 import com.example.proyectofinaltrivial.R
 import com.example.proyectofinaltrivial.SharedViewModel
 import com.example.proyectofinaltrivial.main_package.MainActivity
@@ -123,6 +124,14 @@ class JuegoFragment : Fragment() {
     private fun cambiarTurno() {
         val turnoActual = viewModel.turnoJugador.value ?: false
         viewModel.cambiarTurno(!turnoActual)
+    }
+
+    fun cargarPartida(partidaSeleccionada: Partida) {
+        if (partidaSeleccionada.turno.toBoolean()) {
+            viewModel.cambiarTurno(true)
+        } else {
+            viewModel.cambiarTurno(false)
+        }
     }
 
 }
