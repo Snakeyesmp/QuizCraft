@@ -106,6 +106,10 @@ class PreguntaActivity : AppCompatActivity() {
 
     }
 
+
+    /**
+     * Muestra un diálogo de confirmación antes de salir de la aplicación.
+     */
     private fun showAreYouSureDialog() {
         AlertDialog.Builder(this).setMessage("¿Salir de la aplicación?").setCancelable(false)
             .setPositiveButton("Si") { _, _ ->
@@ -115,7 +119,11 @@ class PreguntaActivity : AppCompatActivity() {
             }.show()
     }
 
-
+    /**
+     * Devuelve el resultado del minijuego a la actividad que lo ha llamado.
+     *
+     * @param isTrue true si el minijuego se ha completado correctamente, false en caso contrario.
+     */
     fun devolverResultado(isTrue: Boolean) {
         val intent = Intent()
         intent.putExtra("respuesta", isTrue)
@@ -123,6 +131,9 @@ class PreguntaActivity : AppCompatActivity() {
         finish()
     }
 
+    /**
+     * Muestra un diálogo con las instrucciones del minijuego.
+     */
     private fun mostrarDialogoInstrucciones() {
         AlertDialog.Builder(this)
             .setTitle("Instrucciones")

@@ -95,7 +95,6 @@ class JuegoFragment : Fragment() {
         cambiarTurno()
     }
 
-    // Inflar el layout del fragmento
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -111,16 +110,27 @@ class JuegoFragment : Fragment() {
 
     }
 
-    // Función para avanzar el jugador
+    /**
+     * Función para avanzar el jugador.
+     *
+     * @param numero El número de pasos a avanzar.
+     */
     private fun avanzarJugador(numero: Int) {
         viewModel.actualizarPosicionJugador(numero)
     }
 
-    // Función para generar un número aleatorio entre 1 y 6
+    /**
+     * Función para generar un número aleatorio entre 1 y 6.
+     *
+     * @return El número aleatorio generado.
+     */
     private fun generarNumeroAleatorio(): Int {
         return (1..6).random()
     }
 
+    /**
+     * Cambia el turno del jugador actual.
+     */
     private fun cambiarTurno() {
         val turnoActual = viewModel.turnoJugador.value ?: false
         viewModel.cambiarTurno(!turnoActual)

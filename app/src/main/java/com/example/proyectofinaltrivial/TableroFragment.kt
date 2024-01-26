@@ -47,6 +47,13 @@ class TableroFragment : Fragment() {
         })
     }
 
+
+    /**
+     * Actualiza la posición del jugador
+     *
+     * @param posicion Posición del jugador
+     *
+     */
     private fun actualizarPosicion(posicion: Int) {
         val tableroGrid: GridLayout = requireView().findViewById(R.id.tableroGrid)
         Log.d("Consult", "Posicion: $posicion")
@@ -170,6 +177,14 @@ class TableroFragment : Fragment() {
         }
     }
 
+    /**
+     * Muestra una pregunta
+     *
+     * @param pregunta Pregunta a mostrar
+     * @param tipoPregunta Tipo de pregunta
+     * @param callback Función de callback para la respuesta
+     * @param registry Registro de actividad
+     */
     private fun mostrarPregunta(
         pregunta: Any?,
         tipoPregunta: String,
@@ -204,6 +219,14 @@ class TableroFragment : Fragment() {
         }
     }
 
+    /**
+     * Muestra una pregunta de tipo repaso o palabra
+     *
+     * @param pregunta Pregunta a mostrar
+     * @param tipoPregunta Tipo de pregunta
+     * @param callback Función de callback para la respuesta
+     * @param registry Registro de actividad
+     */
     private fun preguntaRepaso(
         pregunta: Pregunta?,
         tipoPregunta: String,
@@ -232,6 +255,14 @@ class TableroFragment : Fragment() {
 
     }
 
+    /**
+     * Muestra una pregunta de tipo parejas
+     *
+     * @param pregunta Pregunta a mostrar
+     * @param tipoPregunta Tipo de pregunta
+     * @param callback Función de callback para la respuesta
+     * @param registry Registro de actividad
+     */
     private fun preguntaParejas(
         pregunta: Parejas,
         tipoPregunta: String,
@@ -260,6 +291,14 @@ class TableroFragment : Fragment() {
         startForResult.launch(intent)
     }
 
+    /**
+     * Muestra una pregunta de tipo test
+     *
+     * @param pregunta Pregunta a mostrar
+     * @param tipoPregunta Tipo de pregunta
+     * @param callback Función de callback para la respuesta
+     * @param registry Registro de actividad
+     */
     private fun preguntaTest(
         pregunta: Pregunta?,
         tipoPregunta: String,
@@ -289,6 +328,14 @@ class TableroFragment : Fragment() {
 
     }
 
+    /**
+     * Crea la vista del tablero
+     *
+     * @param inflater Inflador del layout
+     * @param container Contenedor del layout
+     * @param savedInstanceState Estado de la instancia
+     * @return Vista del tablero
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -357,6 +404,13 @@ class TableroFragment : Fragment() {
         return view
     }
 
+    /**
+     * Crea una casilla para el tablero
+     *
+     * @param context Contexto de la aplicación
+     * @param id Identificador de la casilla
+     * @return Casilla creada
+     */
     private fun crearCasilla(context: Context, id: Int): View {
         val casillaView = LayoutInflater.from(context).inflate(R.layout.layout_casilla, null)
         val jugador1 = casillaView.findViewById<View>(R.id.jugador1)
@@ -377,7 +431,13 @@ class TableroFragment : Fragment() {
         }
         return casillaView
     }
-
+    /**
+     * Guarda los datos de la partida actual
+     *
+     * @param partidaSeleccionada Partida seleccionada
+     * @return datos de la partida
+     *
+     */
     fun guardarPartida(): ArrayList<String> {
 
 
@@ -404,7 +464,12 @@ class TableroFragment : Fragment() {
 
         return datos
     }
-
+    /**
+     * Carga los datos de la partida seleccionada
+     *
+     * @param partidaSeleccionada Partida seleccionada
+     *
+     */
     fun cargarPartida(partidaSeleccionada: Partida) {
 
 

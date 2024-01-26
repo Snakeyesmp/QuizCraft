@@ -100,6 +100,12 @@ class RepasoGame : Fragment() {
 
     }
 
+    /**
+     * Comprueba si la respuesta introducida por el usuario es correcta
+     * @param respuesta Respuesta introducida por el usuario
+     * @param respuestaCorrecta Respuesta correcta
+     * @return true si la respuesta es correcta, false si no lo es
+     */
     private fun comprobarRespuesta(respuesta: String, respuestaCorrecta: String?): Boolean {
 
         return respuesta == respuestaCorrecta

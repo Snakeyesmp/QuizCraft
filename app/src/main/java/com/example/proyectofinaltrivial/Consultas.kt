@@ -11,6 +11,8 @@ class Consultas {
     /**
      * Devuelve una pregunta según el tipo especificado
      */
+
+
     fun obtenerPreguntaPorTipo(
         tipoPregunta: String,
         callback: (Any?) -> Unit
@@ -55,7 +57,12 @@ class Consultas {
     }
 
 
-    // Función para obtener pregunta de tipo "test"
+    /**
+     * Devuelve una pregunta de tipo test
+     *
+     * @param preguntas Lista de preguntas de tipo test
+     * @return Pregunta de tipo test
+     */
     private fun obtenerPreguntaTest(preguntas: MutableList<DataSnapshot>): Pregunta {
         val random = (0 until preguntas.size).random()
         val preguntaSnapshot = preguntas[random]
@@ -78,6 +85,12 @@ class Consultas {
         return Pregunta(enunciado, respuestaCorrecta, opciones)
     }
 
+    /**
+     * Devuelve una pregunta de tipo parejas
+     *
+     * @param preguntas Lista de preguntas de tipo parejas
+     * @return Pregunta de tipo parejas
+     */
     private fun obtenerPreguntaParejas(preguntas: MutableList<DataSnapshot>): Parejas {
         val listaParejas = ArrayList<Map<String, String>>()
 
@@ -113,6 +126,12 @@ class Consultas {
         return Parejas(listaParejas)
     }
 
+    /**
+     * Devuelve una pregunta de tipo rellenar
+     *
+     * @param preguntas Lista de preguntas de tipo rellenar
+     * @return Pregunta de tipo rellenar
+     */
     private fun obtenerPreguntaRellenar(preguntas: MutableList<DataSnapshot>): Pregunta {
         val random = (0 until preguntas.size).random()
         val preguntaSnapshot = preguntas[random]

@@ -41,6 +41,13 @@ class FragmentTest : Fragment() {
         return view
     }
 
+
+    /**
+     * Función que se encarga de manejar el click en un botón de respuesta.
+     * @param boton Botón que ha sido pulsado.
+     * @param respuestaCorrecta Respuesta correcta de la pregunta.
+     * @param botones Lista de botones de respuesta.
+     */
     private fun handleButtonClick(
         boton: Button,
         respuestaCorrecta: String?,
@@ -59,6 +66,11 @@ class FragmentTest : Fragment() {
         }, 1500)
     }
 
+    /**
+     * Función que se encarga de mostrar el resultado de la pregunta.
+     * @param opcionCorrecta Opción correcta de la pregunta.
+     * @param botones Lista de botones de respuesta.
+     */
     private fun mostarResultado(
         opcionCorrecta: String?,
         botones: List<Button>

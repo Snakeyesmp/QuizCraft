@@ -7,7 +7,6 @@ import com.example.proyectofinaltrivial.main_package.MainActivity
 
 class ConnectivityReceiver(private val activity: MainActivity) : BroadcastReceiver() {
 
-    constructor() : this(MainActivity()) // Puedes proporcionar una instancia de MainActivity aquí
 
 
     override fun onReceive(context: Context?, intent: Intent?) {

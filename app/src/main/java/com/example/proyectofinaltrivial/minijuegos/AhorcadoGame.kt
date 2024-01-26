@@ -58,6 +58,13 @@ class AhorcadoGame : Fragment() {
         return view
     }
 
+
+    /**
+     * Método que comprueba si la letra introducida está presente en la palabra correcta.
+     *
+     * @param letra La letra introducida por el usuario.
+     * @param view La vista del fragmento.
+     */
     private fun comprobarLetra(letra: String, view: View?) {
         var palabra = view?.findViewById<TextView>(R.id.palabra)
         val contiene = respuestaCorrecta?.contains(letra)

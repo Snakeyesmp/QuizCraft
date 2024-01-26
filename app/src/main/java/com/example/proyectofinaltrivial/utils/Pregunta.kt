@@ -6,7 +6,7 @@ class Pregunta {
     var opciones: ArrayList<String>? = null
 
 
-    // Constructor con enunciado y respuesta correcta
+
     constructor(enunciadoVal: String?, respuestaCorrectaVal: String?) {
         this.enunciado = enunciadoVal
         this.respuestaCorrecta = respuestaCorrectaVal
@@ -19,6 +19,5 @@ class Pregunta {
         this.opciones = opcionesVal
     }
 
-    // Constructor solo con elemento 1 y elemento 2
 
 }

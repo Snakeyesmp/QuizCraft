@@ -47,6 +47,10 @@ class FragmentParejas : Fragment() {
         return view
     }
 
+
+    /**
+     * Configura los listeners para los botones.
+     */
     private fun setButtonListeners() {
         buttonLeft1.setOnClickListener { onLeftButtonClick(buttonLeft1) }
         buttonLeft2.setOnClickListener { onLeftButtonClick(buttonLeft2) }
@@ -57,6 +61,12 @@ class FragmentParejas : Fragment() {
         buttonRight3.setOnClickListener { onRightButtonClick(buttonRight3) }
     }
 
+
+    /**
+     * Maneja el clic en los botones de la izquierda.
+     *
+     * @param button El botón de la izquierda que se ha clicado.
+     */
     private fun onLeftButtonClick(button: Button) {
         button.setBackgroundColor(resources.getColor(R.color.seleccionado))
 
@@ -67,6 +77,12 @@ class FragmentParejas : Fragment() {
         parejas += button.text.toString() + "_"
     }
 
+
+    /**
+     * Maneja el clic en los botones de la derecha.
+     *
+     * @param button El botón de la derecha que se ha clicado.
+     */
     private fun onRightButtonClick(button: Button) {
         selectedButtonRight?.isSelected = false
         selectedButtonRight = button
@@ -85,6 +101,12 @@ class FragmentParejas : Fragment() {
 
     }
 
+
+    /**
+     * Comprueba si las parejas seleccionadas son correctas.
+     *
+     * @param pareja La pareja seleccionada.
+     */
     private fun checkForMatch(pareja: String) {
         val pareja1 = arguments?.getString("pregunta_0")
         val pareja2 = arguments?.getString("pregunta_1")
@@ -130,53 +152,66 @@ class FragmentParejas : Fragment() {
             }
         }
     }
-        private fun isCheckAllButtonsDisabled(): Boolean {
-            return !buttonLeft1.isEnabled && !buttonLeft2.isEnabled && !buttonLeft3.isEnabled && !buttonRight1.isEnabled && !buttonRight2.isEnabled && !buttonRight3.isEnabled
-        }
 
-        private fun enableAllButtons() {
-            intentos--
-            Toast.makeText(context, "Fallaste, te quedan $intentos intentos", Toast.LENGTH_SHORT)
-                .show()
-            // Pner fondo por defecto
-            buttonLeft1.setBackgroundColor(resources.getColor(R.color.defecto))
-            buttonLeft2.setBackgroundColor(resources.getColor(R.color.defecto))
-            buttonLeft3.setBackgroundColor(resources.getColor(R.color.defecto))
-            buttonRight1.setBackgroundColor(resources.getColor(R.color.defecto))
-            buttonRight2.setBackgroundColor(resources.getColor(R.color.defecto))
-            buttonRight3.setBackgroundColor(resources.getColor(R.color.defecto))
-            buttonLeft1.isEnabled = true
-            buttonLeft2.isEnabled = true
-            buttonLeft3.isEnabled = true
-            buttonRight1.isEnabled = true
-            buttonRight2.isEnabled = true
-            buttonRight3.isEnabled = true
-        }
-
-
-        private fun loadParejasData() {
-            val pregunta0 = arguments?.getString("pregunta_0")
-            val pregunta1 = arguments?.getString("pregunta_1")
-            val pregunta2 = arguments?.getString("pregunta_2")
-
-            // Crear una lista de preguntas y mezclarla aleatoriamente
-            val preguntas = mutableListOf(
-                pregunta0?.split("_")?.toMutableList(),
-                pregunta1?.split("_")?.toMutableList(),
-                pregunta2?.split("_")?.toMutableList()
-            )
-
-            preguntas.shuffle()
-
-            // Asignar las preguntas a los botones de manera aleatoria
-            buttonLeft1.text = preguntas[0]?.get(0) ?: ""
-            buttonRight3.text = preguntas[0]?.get(1) ?: ""
-
-            buttonLeft3.text = preguntas[1]?.get(0) ?: ""
-            buttonRight2.text = preguntas[1]?.get(1) ?: ""
-
-            buttonLeft2.text = preguntas[2]?.get(0) ?: ""
-            buttonRight1.text = preguntas[2]?.get(1) ?: ""
-        }
-
+    /**
+     * Comprueba si todos los botones están deshabilitados.
+     *
+     * @return True si todos los botones están deshabilitados, false en caso contrario.
+     */
+    private fun isCheckAllButtonsDisabled(): Boolean {
+        return !buttonLeft1.isEnabled && !buttonLeft2.isEnabled && !buttonLeft3.isEnabled && !buttonRight1.isEnabled && !buttonRight2.isEnabled && !buttonRight3.isEnabled
     }
+
+
+    /**
+     * Habilita todos los botones.
+     */
+    private fun enableAllButtons() {
+        intentos--
+        Toast.makeText(context, "Fallaste, te quedan $intentos intentos", Toast.LENGTH_SHORT)
+            .show()
+        // Pner fondo por defecto
+        buttonLeft1.setBackgroundColor(resources.getColor(R.color.defecto))
+        buttonLeft2.setBackgroundColor(resources.getColor(R.color.defecto))
+        buttonLeft3.setBackgroundColor(resources.getColor(R.color.defecto))
+        buttonRight1.setBackgroundColor(resources.getColor(R.color.defecto))
+        buttonRight2.setBackgroundColor(resources.getColor(R.color.defecto))
+        buttonRight3.setBackgroundColor(resources.getColor(R.color.defecto))
+        buttonLeft1.isEnabled = true
+        buttonLeft2.isEnabled = true
+        buttonLeft3.isEnabled = true
+        buttonRight1.isEnabled = true
+        buttonRight2.isEnabled = true
+        buttonRight3.isEnabled = true
+    }
+
+
+    /**
+     * Carga los datos de las parejas.
+     */
+    private fun loadParejasData() {
+        val pregunta0 = arguments?.getString("pregunta_0")
+        val pregunta1 = arguments?.getString("pregunta_1")
+        val pregunta2 = arguments?.getString("pregunta_2")
+
+        // Crear una lista de preguntas y mezclarla aleatoriamente
+        val preguntas = mutableListOf(
+            pregunta0?.split("_")?.toMutableList(),
+            pregunta1?.split("_")?.toMutableList(),
+            pregunta2?.split("_")?.toMutableList()
+        )
+
+        preguntas.shuffle()
+
+        // Asignar las preguntas a los botones de manera aleatoria
+        buttonLeft1.text = preguntas[0]?.get(0) ?: ""
+        buttonRight3.text = preguntas[0]?.get(1) ?: ""
+
+        buttonLeft3.text = preguntas[1]?.get(0) ?: ""
+        buttonRight2.text = preguntas[1]?.get(1) ?: ""
+
+        buttonLeft2.text = preguntas[2]?.get(0) ?: ""
+        buttonRight1.text = preguntas[2]?.get(1) ?: ""
+    }
+
+}

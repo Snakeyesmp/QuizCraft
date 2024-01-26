@@ -34,6 +34,12 @@ class DBHelper(context: Context) :
         onCreate(db)
     }
 
+    /**
+     * Método para añadir una nueva partida a la base de datos.
+     *
+     * @param nombrePartida Nombre de la partida.
+     * @param datosPartida Lista de datos de la partida.
+     */
     fun addPartida(nombrePartida: String, datosPartida: ArrayList<String>) {
         val db = this.writableDatabase
         val values = ContentValues()
@@ -46,6 +52,11 @@ class DBHelper(context: Context) :
         db.close()
     }
 
+    /**
+     * Método para obtener todas las partidas almacenadas en la base de datos.
+     *
+     * @return Lista de objetos Partida.
+     */
     fun getAllPartidas(): List<Partida> {
         // Lista para almacenar y retornar los discos.
         val partidasList = ArrayList<Partida>()
@@ -92,7 +103,8 @@ class DBHelper(context: Context) :
                     turno = cursor.getString(turnoIndex)
                     tiposPreguntas = cursor.getString(tiposPreguntasIndex)
 
-                    val partida = Partida(id, nombre, posJugador1, posJugador2, turno, tiposPreguntas)
+                    val partida =
+                        Partida(id, nombre, posJugador1, posJugador2, turno, tiposPreguntas)
                     partidasList.add(partida)
                 }
             } while (cursor.moveToNext())
@@ -104,7 +116,11 @@ class DBHelper(context: Context) :
     }
 
 
-
+    /**
+     * Método para eliminar una partida de la base de datos.
+     *
+     * @param partidaSeleccionada Objeto Partida a ser eliminado.
+     */
     fun deletePartida(partidaSeleccionada: Partida) {
         val db = this.writableDatabase
         db.delete(TABLE_PARTIDAS, "$KEY_ID=?", arrayOf(partidaSeleccionada.id.toString()))
@@ -114,6 +130,16 @@ class DBHelper(context: Context) :
 
 }
 
+/**
+ * Clase de datos que representa una partida.
+ *
+ * @property id Identificador único de la partida.
+ * @property nombrePartida Nombre de la partida.
+ * @property posJugador1 Posición del jugador 1.
+ * @property posJugador2 Posición del jugador 2.
+ * @property turno Turno actual.
+ * @property tiposPreguntas Tipos de preguntas seleccionadas.
+ */
 data class Partida(
     val id: Int,
     val nombrePartida: String,
